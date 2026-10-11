@@ -1,7 +1,5 @@
 # Gobierno de datos Hogar Andino Inmobiliaria S.A.S. 
 
-- [1. Entendimiento del negocio y mapa de capacidades](#1-entendimiento-del-negocio-y-mapa-de-capacidades)
-  - [1.1 V1: motivación de la soluci# Gobierno de datos Hogar Andino Inmobiliaria S.A.S. 
 
 - [1. Entendimiento del negocio y mapa de capacidades](#1-entendimiento-del-negocio-y-mapa-de-capacidades)
   - [1.1 V1: motivación de la solución, de la necesidad a la meta](#11-v1-motivación-de-la-solución-de-la-necesidad-a-la-meta)
