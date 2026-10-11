@@ -72,7 +72,7 @@ Relaciones que se usan:
  
 ## 1.1 V1: motivación de la solución, de la necesidad a la meta
 
-![V1 - Motivación de la solución de gobierno de datos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/main/motivacion/V1 · Motivación.png?raw=true)
+![V1 - Motivación de la solución de gobierno de datos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/main/motivacion/V1%20%C2%B7%20Motivaci%C3%B3n.png?raw=true)
 
 ### Qué muestra
 
