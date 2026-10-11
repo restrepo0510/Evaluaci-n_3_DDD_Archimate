@@ -1,5 +1,16 @@
 # Gobierno de datos Hogar Andino Inmobiliaria S.A.S. 
 
+- [1. Entendimiento del negocio y mapa de capacidades](#1-entendimiento-del-negocio-y-mapa-de-capacidades)
+  - [1.1 V2: mapa de capacidades](#11-v2-mapa-de-capacidades)
+
+  - [1.2 V2B: dependencias de gobierno de datos, recursos y cursos de acción](#12-v2b-dependencias-de-gobierno-de-datos-recursos-y-cursos-de-acción)
+
+  - [1.3 V3A: cadena de valor del negocio, eventos y capacidades que la habilitan](#13-v3a-cadena-de-valor-del-negocio-eventos-y-capacidades-que-la-habilitan)
+  
+  - [1.4 V3B: proceso E2E de gobierno de datos, cadena de valor, eventos y actores](#14-v3b-proceso-e2e-de-gobierno-de-datos-cadena-de-valor-eventos-y-actores)
+  
+  - [1.5 V3C: proceso E2E y capacidades que realiza](#15-v3c-proceso-e2e-y-capacidades-que-realiza)
+    
 - [2. Descomposición de servicios del proceso E2E](#2-descomposición-de-servicios-del-proceso-e2e)
   - [2.1 V4a: del proceso E2E a los servicios de actividad](#21-v4a-del-proceso-e2e-a-los-servicios-de-actividad)
   
@@ -12,6 +23,288 @@
   - [2.5 V4E: Contract First, contratos de los servicios de actividad (capa 3)](#25-v4e-contract-first-contratos-de-los-servicios-de-actividad-capa-3)
 
   - [2.6 V4F: Contract First, contratos de entidad, utilidad e interoperabilidad](#26-v4f-contract-first-contratos-de-entidad-utilidad-e-interoperabilidad)
+
+# 1. Entendimiento del negocio y mapa de capacidades 
+
+La Fase 1 responde cinco preguntas, que se reparten entre las vistas así:
+ 
+| Vista | Pregunta que responde |
+|---|---|
+| V2 | Qué es capaz de hacer la organización y en cuáles capacidades impacta la solución |
+| V2b | Cómo dependen entre sí las capacidades de datos y qué recursos y cursos de acción las sostienen |
+| V3a | Cuál es la cadena de valor del negocio, qué eventos la disparan y qué capacidades habilitan cada etapa |
+| V3b | Cuál es el proceso E2E donde opera la aplicación, quién interviene y qué pasos apoya la solución |
+| V3c | Qué capacidades realiza cada paso del proceso E2E |
+ 
+Principio de modelado: una capacidad describe lo que la organización es capaz de hacer, no un proceso ni una actividad operativa. Por eso los nombres de las capacidades son sustantivos de habilidad ("Gestión de metadatos técnicos") y los pasos del proceso son verbos ("Importar metadatos técnicos").
+ 
+Elementos de ArchiMate que se usan:
+ 
+| Elemento | Capa | Uso en este modelo |
+|---|---|---|
+| Capability | Estrategia | Capacidades en tres niveles (Nivel 1, 2 y 3) |
+| Value Stream | Estrategia | Etapas de la cadena de valor del negocio y de la cadena de gobierno de datos |
+| Resource | Estrategia | Recursos que habilitan las capacidades de datos |
+| Course of Action | Estrategia | Líneas de acción propuestas a partir de las metas de la entrevista |
+| Business Process | Negocio | Pasos del proceso E2E |
+| Business Event | Negocio | Hechos que disparan una etapa o un paso |
+| Business Actor y Business Role | Negocio | Quién ejecuta o responde por cada paso |
+| Grouping | Otros | Franjas de la V2 |
+ 
+Relaciones que se usan:
+ 
+| Relación | Significado en este modelo |
+|---|---|
+| Composition | Una capacidad de Nivel 1 se compone de las de Nivel 2, y estas de las de Nivel 3 |
+| Serving | La capacidad origen sirve a la capacidad o a la etapa destino; "A sirve a B" también se lee "B depende de A" |
+| Realization | Un paso del proceso realiza una capacidad |
+| Assignment | Un actor, rol o recurso se asigna a un paso o a una capacidad |
+| Triggering | Secuencia entre etapas o pasos, o un evento que dispara una etapa o un paso |
+| Association | Un curso de acción se ejecuta mediante una capacidad, o un evento se asocia con la etapa que dispara |
+ 
+---
+ 
+## 1.1 V2: mapa de capacidades
+ 
+![V2 - Mapa de capacidades de Hogar Andino](images/V2.png)
+ 
+### Qué muestra
+ 
+El mapa de capacidades completo del negocio, con 78 elementos Capability organizados en tres niveles: 13 de Nivel 1, 44 de Nivel 2 y 21 de Nivel 3. Las capacidades se agrupan en cuatro franjas. El color de cada caja indica el impacto de la solución de gobierno de datos, y la leyenda está en la parte superior de la vista.
+ 
+### Cómo se lee
+ 
+La vista usa anidamiento: el Nivel 1 contiene a sus capacidades de Nivel 2, y estas a las de Nivel 3 (relación Composition representada por contención). Solo los bloques de gestión de datos y de cumplimiento se detallan hasta Nivel 3; el resto del negocio llega a Nivel 2. Las cinco flechas de la vista son relaciones Serving que parten de Gestión de Datos e Información hacia las capacidades que consumen sus resultados.
+ 
+### Franjas y capacidades de Nivel 1
+ 
+| Franja | Capacidades de Nivel 1 | Rol estratégico |
+|---|---|---|
+| Dirección y Cumplimiento | Planeación y Dirección Estratégica; Gestión de Cumplimiento y Riesgos | Soporte; Habilitadora crítica |
+| Capacidades Core del Negocio inmobiliario | Gestión del Portafolio Inmobiliario; Comercialización de Inmuebles; Administración de Arrendamientos; Gestión de Relaciones con Clientes | Diferenciadoras (las tres primeras); Soporte |
+| Gestión de Datos e Información | Gestión de Datos e Información, con Gobierno de Datos, Gestión de Metadatos, Clasificación de Datos, Gestión de la Calidad de Datos, Gestión de Datos Maestros y Gestión del Ciclo de Vida de los Datos | Habilitadora crítica |
+| Capacidades Habilitadoras | Mercadeo y Canales Digitales; Gestión Financiera y Contable; Gestión Jurídica y Contractual; Gestión de Tecnología de la Información; Gestión del Talento Humano; Gestión Administrativa y de Compras | Soporte (las cuatro primeras) y Genérica (las dos últimas) |
+ 
+### Propiedades de cada capacidad
+ 
+Cada elemento Capability lleva ocho propiedades, que se pueden mostrar en Archi con una expresión de etiqueta:
+ 
+| Propiedad | Valores usados |
+|---|---|
+| Nivel | Nivel 1, Nivel 2, Nivel 3 |
+| Tipo de capacidad | Estratégica (22) o Táctica (56) |
+| Rol estratégico (empresa) | Habilitadora crítica (33), Soporte (22), Diferenciadora (16), Genérica (7) |
+| Subdominio DDD (solución Tema 2) | Dominio principal del Tema 2 (1), Core (6), Supporting (11), Generic (1), N/A fuera de la solución (59) |
+| Impacto de la solución | Directo (12), Parcial (6), Indirecto (36), Fuera de alcance como brecha (9), Sin impacto (15) |
+| Madurez actual (según entrevista) | Inexistente (17), Informal (24), No evaluada (37) |
+| Estado de validación | Respaldada por la entrevista (64), Parcialmente respaldada (4), Inferida por validar con el experto (10) |
+| Apoyo de la solución | Solo en los pasos del proceso (se usa en V3b y V3c) |
+ 
+### Impacto de la solución
+ 
+| Impacto | Significado | Capacidades |
+|---|---|---|
+| Directo | La solución opera aquí | Gestión de Datos e Información; Gestión de Metadatos; Clasificación de Datos; Gestión de responsables de datos; Gestión de trazabilidad y evidencia de decisiones; Gestión de metadatos de negocio; Gestión de metadatos técnicos; Gestión del diccionario de datos; Gestión del catálogo de términos de negocio; Inventario de atributos de negocio; Clasificación de atributos por categoría legal; Definición de políticas y reglas de calidad y validación |
+| Parcial | La solución registra o prepara, pero la decisión o la ejecución es humana | Gobierno de Datos; Gestión de la Calidad de Datos; Resolución de conflictos y decisiones sobre datos; Gestión de cambios de estructura de datos; Validación jurídica de la clasificación; Reporte regulatorio ante la SIC |
+| Indirecto | La capacidad consume o produce datos que la solución describe | 36 capacidades, entre ellas las del negocio inmobiliario y los bloques de cumplimiento y TI |
+| Fuera de alcance (brecha) | Capacidad que el negocio necesita pero la solución no cubre | Políticas de tratamiento y avisos; autorizaciones de titulares; incidentes con datos personales; encargados del tratamiento; definición de políticas y principios de datos; medición y monitoreo de la calidad; depuración y duplicados; Gestión de Datos Maestros; Gestión del Ciclo de Vida de los Datos |
+| Sin impacto | La solución no interviene | 15 capacidades, por ejemplo tesorería, talento humano y compras |
+ 
+### Justificación
+ 
+El dominio principal es Gobierno de Datos orientado a la protección de datos personales. Esta capacidad no diferencia a la inmobiliaria en el mercado: es una habilitadora crítica de cumplimiento, y solo es central dentro de la solución, donde el diccionario y la clasificación son lo que conviene construir con más cuidado. Las capacidades diferenciadoras del negocio son las de portafolio, comercialización y administración de arrendamientos.
+ 
+Las capacidades fuera de alcance se dibujan en gris a propósito: hacen visible lo que la solución no cubre, para no prometer más de lo que entrega. La madurez "No evaluada" de 37 capacidades indica que la entrevista no cubre ese bloque y que debe validarse con el experto del negocio.
+ 
+---
+ 
+## 1.2 V2b: dependencias de gobierno de datos, recursos y cursos de acción
+ 
+![V2b - Dependencias de gobierno de datos](images/V2b.png)
+ 
+### Qué muestra
+ 
+El detalle del bloque de datos en columnas: 23 capacidades relacionadas por Serving, 7 recursos asignados a las capacidades que habilitan y 3 cursos de acción asociados a las capacidades que los ejecutan. La vista tiene 39 conexiones.
+ 
+### Cómo se lee
+ 
+La relación usada es Serving y se lee "A sirve a B", es decir, B depende de A. El orden de izquierda a derecha es: proveedores de servicio, gobierno, captura, integración y clasificación, y consumidores. Los recursos están en la parte inferior y los cursos de acción en la superior.
+ 
+### Cadenas de dependencia
+ 
+| Cadena | Razón |
+|---|---|
+| Gestión de metadatos técnicos, Inventario de atributos de negocio, Clasificación de atributos por categoría legal | No se clasifica lo que no se ha inventariado |
+| Definición de políticas y principios, Validación jurídica y Resolución de conflictos, Clasificación de atributos | La categoría necesita criterio, aprobación y desempate |
+| Gestión de metadatos técnicos, Gestión de metadatos de negocio y Clasificación, Gestión del diccionario de datos, Gestión del catálogo de términos | El diccionario integra todo y el catálogo se apoya en él |
+| Gestión del diccionario y Clasificación, Atención de derechos de los titulares, Reporte regulatorio ante la SIC, Gestión de la seguridad de la información | Son los consumidores de la información |
+| Gestión de aplicaciones y proveedores y Administración de accesos, Gestión de metadatos técnicos y Gestión de cambios de estructura | Sin acceso de solo lectura no hay importación |
+| Gestión de responsables de datos y Definición de políticas y reglas de calidad, Gestión de metadatos de negocio | El metadato de negocio necesita dueño y regla |
+| Gestión de trazabilidad y evidencia de decisiones, Reporte regulatorio ante la SIC | La evidencia de quién decidió y con qué criterio respalda el reporte |
+ 
+### Recursos
+ 
+| Recurso | Capacidad que habilita |
+|---|---|
+| Diccionarios de los motores de S1, S3 (SQL Server) y S4 (MySQL) | Gestión de metadatos técnicos |
+| Consulta de solo lectura sobre la estructura del CRM S2 (PostgreSQL), vía proveedor | Gestión de metadatos técnicos |
+| Conocimiento jurídico (abogada interna y abogado externo) | Validación jurídica de la clasificación |
+| Coordinador de TI | Gestión de aplicaciones y proveedores de software |
+| Responsables de dato por área (por designar) | Gestión de responsables de datos |
+| Oficial de protección de datos (cargo por decidir) | Atención de derechos de los titulares |
+| Marco normativo: Ley 1581 de 2012, Ley 1266 de 2008, Decreto 1074 de 2015 y guías de la SIC | Gestión del cumplimiento normativo |
+ 
+### Cursos de acción
+ 
+Son propuestas del equipo basadas en las metas de ejemplo del Bloque 6 de la entrevista, por validar:
+ 
+| Curso de acción | Se ejecuta mediante |
+|---|---|
+| Inventariar y clasificar primero los atributos con datos personales | Inventario de atributos de negocio; Clasificación de atributos por categoría legal |
+| Documentar la estructura técnica de S1, S3 y S4 y gestionar S2 vía proveedor | Gestión de metadatos técnicos |
+| Establecer roles de gobierno (oficial, responsables de dato) y registrar decisiones | Gestión de responsables de datos; Gestión de trazabilidad y evidencia de decisiones |
+ 
+### Cuellos de botella externos
+ 
+La vista deja ver tres dependencias que no controla el equipo: el proveedor de S2, que debe entregar la estructura; la disponibilidad de Jurídica para validar clasificaciones; y la designación pendiente del oficial de protección de datos y de los responsables de dato.
+ 
+---
+ 
+## 1.3 V3A: cadena de valor del negocio, eventos y capacidades que la habilitan
+ 
+![V3a - Cadena de valor del negocio](images/V3a.png)
+ 
+### Qué muestra
+ 
+La cadena de valor primaria "Intermediación inmobiliaria (de la captación al cierre)" con seis etapas encadenadas por Triggering, tres eventos de negocio que disparan etapas y, bajo cada etapa, las capacidades que la habilitan (Serving). En la franja superior aparece la cadena de soporte "Gobierno de datos personales" y las tres capacidades transversales que sirven a toda la cadena.
+ 
+### Cómo se lee
+ 
+Las etapas van de izquierda a derecha. Las cajas bajo cada etapa son capacidades de la V2 que sirven a esa etapa; una misma capacidad puede aparecer en varias columnas porque sirve a más de una etapa. Cada evento se une con su etapa mediante una Association rotulada "dispara la etapa".
+ 
+### Etapas de la cadena de valor
+ 
+| Etapa | Qué ocurre | Capacidades que la habilitan |
+|---|---|---|
+| Captar y publicar | Captación del propietario con contrato de corretaje, fotos y publicación en web y portales | Captación de propietarios e inmuebles; Gestión de la información del inmueble; Valoración y fijación de precios de inmuebles; Gestión de contenidos de inmuebles; Gestión de canales web y portales |
+| Atender interesados | Recepción por web, portales, teléfono y WhatsApp y registro en el CRM | Gestión de interesados; Atención de visitas y negociación; Gestión del conocimiento del cliente; Gestión de canales web y portales |
+| Evaluar y negociar | Estudio y aprobación del candidato (arriendo) u oferta y negociación con revisión jurídica (venta) | Evaluación de candidatos a arrendamiento; Atención de visitas y negociación; Asesoría y revisión legal |
+| Formalizar | Firma del contrato de arriendo, o promesa de compraventa y escritura | Gestión de contratos de arrendamiento; Gestión de la venta de inmuebles; Asesoría y revisión legal |
+| Administrar la vigencia | Solo arriendo: cobro mensual, pago al propietario, reparaciones, reajuste anual y renovación | Gestión de contratos de arrendamiento; recaudo y cartera; pagos a propietarios; novedades y mantenimiento; contable y de facturación; tesorería; cobro jurídico; peticiones, quejas y reclamos |
+| Cerrar | Acta de entrega y devolución de depósitos (arriendo) o liquidación de comisión (venta) | Renovación y cierre de contratos; Entrega de inmuebles y devolución de depósitos; Gestión de comisiones; Gestión contable y de facturación |
+ 
+El arriendo recorre las seis etapas. La venta omite "Administrar la vigencia" y termina en "Cerrar" con la liquidación de la comisión.
+ 
+### Eventos
+ 
+| Evento | Etapa que dispara | Regla o efecto |
+|---|---|---|
+| Candidato aprobado | Formalizar | Un arriendo no se firma sin estudio aprobado |
+| Contrato de arrendamiento firmado | Administrar la vigencia | Nacen los datos de las partes, que hoy se digitan de nuevo en S1 |
+| Vencimiento o terminación del contrato | Cerrar | Da paso al acta de entrega y a la devolución de depósitos |
+ 
+### Capacidades transversales y cadena de soporte
+ 
+Tres capacidades sirven a toda la cadena de intermediación: Gestión de Datos e Información, Gestión de la protección de datos personales y Gestión de Tecnología de la Información. La cadena "Gobierno de datos personales (del dato desconocido al dato gobernado)" también se relaciona con la primaria mediante Serving: gobierna los datos que nacen en cada etapa de la intermediación (identificación y contacto del propietario, estudio financiero del candidato, contrato, pagos y mora, acta y saldos).
+ 
+### Justificación
+ 
+Esta vista ubica la solución dentro del negocio: la aplicación no es una etapa de la cadena primaria, sino una cadena de soporte cuyo insumo son los datos que producen esas etapas. Las capacidades de la V2 quedan ancladas a etapas concretas, así se puede responder en qué momento del negocio cada capacidad aporta valor.
+ 
+---
+ 
+## 1.4 V3B: proceso E2E de gobierno de datos, cadena de valor, eventos y actores
+ 
+![V3b - Proceso E2E de gobierno de datos](images/V3b.png)
+ 
+### Qué muestra
+ 
+De arriba hacia abajo: la cadena de valor de gobierno de datos con cinco etapas, cuatro eventos que disparan el proceso, el proceso E2E "Gobierno E2E del dato personal (de la fuente al reporte)" con nueve pasos, y los actores y roles asignados a cada paso. Cada etapa de la cadena queda sobre los pasos que la realizan. El color de cada paso indica el apoyo de la solución.
+ 
+### Cómo se lee
+ 
+Los pasos del proceso se encadenan con Triggering de izquierda a derecha. Hay un ciclo de mantenimiento: "Controlar cambios de estructura" vuelve a disparar "Importar metadatos técnicos". Cada línea de la franja inferior es una Assignment de un actor o rol a un paso. La leyenda de colores está en la parte inferior de la vista.
+ 
+### Pasos del proceso y apoyo de la solución
+ 
+| Paso | Qué hace | Apoyo de la solución | Etapa de la cadena |
+|---|---|---|---|
+| P1 Identificar fuentes y gestionar acceso a sus metadatos | TI y proveedores habilitan acceso de solo lectura a S1, S3, S4 y, vía proveedor, S2 | No (lo hace TI o el proveedor) | Conocer los datos |
+| P2 Importar metadatos técnicos | Trae tipo de dato y longitud desde los diccionarios de los motores | Sí | Conocer los datos |
+| P3 Inventariar atributos de negocio | Consolida los atributos distintos y suma los de fuentes sin motor (hojas, carpetas) | Sí | Conocer los datos |
+| P4 Describir atributos (definición, responsable, calidad y validación) | Registra metadatos de negocio por atributo | Sí | Describir los datos |
+| P5 Clasificar atributos por categoría legal | Asigna categoría con criterio y justificación | Sí | Clasificar los datos |
+| P6 Validar jurídicamente la clasificación | Jurídica revisa y deja constancia; la herramienta registra | Parcial | Clasificar los datos |
+| P7 Publicar diccionario de datos y catálogo de términos | Integra lo técnico y lo de negocio y asocia términos a atributos | Sí | Publicar y mantener el diccionario |
+| P8 Controlar cambios de estructura | Detecta cambios entre importaciones y deja evidencia | Parcial | Publicar y mantener el diccionario |
+| P9 Consultar y reportar (titulares, seguridad, SIC) | Ubica datos de una persona, informa atributos sensibles y prepara el reporte | Parcial | Usar y rendir cuentas |
+ 
+Resumen: cinco pasos con apoyo de la solución (P2, P3, P4, P5 y P7), tres con apoyo parcial (P6, P8 y P9) y uno sin apoyo (P1). El proceso completo está marcado como "Sí (transversal)".
+ 
+### Eventos que disparan el proceso
+ 
+| Evento | Paso que dispara | Descripción |
+|---|---|---|
+| Nueva fuente de datos incorporada | P1 | Se incorpora un sistema o fuente que maneja datos de personas |
+| Cambio de estructura en una base de datos | P8 | Un proveedor o TI modifica tablas o columnas, hoy sin aviso formal |
+| Reclamo o solicitud de un titular | P9 | Una persona consulta, corrige o pide suprimir sus datos |
+| Requerimiento de la SIC | P9 | La autoridad solicita información; la obligación concreta está por verificar |
+ 
+### Actores y roles por paso
+ 
+| Actor o rol | Tipo | Pasos asignados |
+|---|---|---|
+| Gerente general | Actor | Proceso E2E completo (aprueba políticas y asigna recursos) |
+| Coordinador de TI | Actor | P1, P2, P3, P8 |
+| Proveedor del CRM (S2) | Actor externo | P1 |
+| Jefa de administración de arrendamientos | Actor | P3 |
+| Director comercial | Actor | P3 |
+| Responsable de dato de área | Rol por designar | P4 |
+| Oficial de protección de datos | Rol por designar | P5, P7, P9 |
+| Abogada interna | Actor | P5, P6 |
+| Abogado externo | Actor | P6 |
+| Servicio al cliente | Actor | P9 |
+ 
+### Justificación
+ 
+Esta vista es el punto de partida de la Fase 2: el proceso E2E es el que se descompone después en servicios por capas. Identificar el apoyo de la solución paso por paso evita sobreprometer: P1 es una tarea de TI y del proveedor, y P6, P8 y P9 dependen de decisiones o ejecuciones humanas, por lo que la herramienta solo registra o prepara.
+ 
+---
+ 
+## 1.5 V3C: proceso E2E y capacidades que realiza
+ 
+![V3c - Proceso E2E y capacidades](images/V3c.png)
+ 
+### Qué muestra
+ 
+Los nueve pasos del proceso E2E arriba y, abajo, las 16 capacidades de la V2 que esos pasos realizan, unidas con 17 relaciones Realization. También conserva la secuencia de Triggering y el ciclo de mantenimiento entre P8 y P2. La vista tiene 26 conexiones.
+ 
+### Cómo se lee
+ 
+Una línea de Realization desde un paso hacia una capacidad significa que el paso es la forma concreta en que la organización ejerce esa capacidad. Un paso puede realizar varias capacidades, y se lee de arriba hacia abajo. Los pasos usan la leyenda de apoyo de la solución (naranja con apoyo, naranja claro apoyo parcial, gris sin apoyo) y las capacidades usan la de impacto de la V2 (naranja directo, naranja claro parcial, crema indirecto).
+ 
+### Trazabilidad paso a capacidad
+ 
+| Paso del proceso | Capacidades que realiza |
+|---|---|
+| P1 Identificar fuentes y gestionar acceso a sus metadatos | Gestión de metadatos técnicos; Administración de accesos e identidades |
+| P2 Importar metadatos técnicos | Gestión de metadatos técnicos |
+| P3 Inventariar atributos de negocio | Inventario de atributos de negocio |
+| P4 Describir atributos | Gestión de metadatos de negocio; Gestión de responsables de datos; Definición de políticas y reglas de calidad y validación |
+| P5 Clasificar atributos por categoría legal | Clasificación de atributos por categoría legal |
+| P6 Validar jurídicamente la clasificación | Validación jurídica de la clasificación; Resolución de conflictos y decisiones sobre datos |
+| P7 Publicar diccionario de datos y catálogo de términos | Gestión del diccionario de datos; Gestión del catálogo de términos de negocio |
+| P8 Controlar cambios de estructura | Gestión de cambios de estructura de datos; Gestión de trazabilidad y evidencia de decisiones |
+| P9 Consultar y reportar (titulares, seguridad, SIC) | Atención de derechos de los titulares; Reporte regulatorio ante la SIC; Gestión de la seguridad de la información |
+ 
+### Qué permite concluir
+ 
+- Los pasos P2, P3, P4, P5 y P7 realizan capacidades con impacto directo, y son el núcleo de la solución.
+- P6 realiza dos capacidades de impacto parcial; P8 realiza una de impacto parcial (cambios de estructura) y una directa (trazabilidad y evidencia de decisiones); P9 realiza una de impacto parcial (reporte ante la SIC) y dos indirectas (derechos de los titulares y seguridad de la información). Esto es coherente con el apoyo parcial de estos tres pasos en la V3b.
+- P1 realiza una capacidad de impacto directo (metadatos técnicos), pero el paso lo ejecuta TI o el proveedor, y una capacidad de impacto indirecto (accesos e identidades), por eso se marca sin apoyo de la solución.
+- Las capacidades fuera de alcance de la V2, como Medición y monitoreo de la calidad o Gestión de Datos Maestros, no tienen un paso que las realice: es la forma de mostrar que son brechas y no parte de la solución.
+
+---
 
 # 2. Descomposición de servicios del proceso E2E
 
