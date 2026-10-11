@@ -1,15 +1,17 @@
 # Gobierno de datos Hogar Andino Inmobiliaria S.A.S. 
 
 - [1. Entendimiento del negocio y mapa de capacidades](#1-entendimiento-del-negocio-y-mapa-de-capacidades)
-  - [1.1 V2: mapa de capacidades](#11-v2-mapa-de-capacidades)
+  - [1.1 V1: motivación de la solución, de la necesidad a la meta](#11-v1-motivación-de-la-solución-de-la-necesidad-a-la-meta)
 
-  - [1.2 V2B: dependencias de gobierno de datos, recursos y cursos de acción](#12-v2b-dependencias-de-gobierno-de-datos-recursos-y-cursos-de-acción)
+  - [1.2 V2: mapa de capacidades](#12-v2-mapa-de-capacidades)
 
-  - [1.3 V3A: cadena de valor del negocio, eventos y capacidades que la habilitan](#13-v3a-cadena-de-valor-del-negocio-eventos-y-capacidades-que-la-habilitan)
+  - [1.3 V2B: dependencias de gobierno de datos, recursos y cursos de acción](#13-v2b-dependencias-de-gobierno-de-datos-recursos-y-cursos-de-acción)
+
+  - [1.4 V3A: cadena de valor del negocio, eventos y capacidades que la habilitan](#14-v3a-cadena-de-valor-del-negocio-eventos-y-capacidades-que-la-habilitan)
   
-  - [1.4 V3B: proceso E2E de gobierno de datos, cadena de valor, eventos y actores](#14-v3b-proceso-e2e-de-gobierno-de-datos-cadena-de-valor-eventos-y-actores)
+  - [1.5 V3B: proceso E2E de gobierno de datos, cadena de valor, eventos y actores](#15-v3b-proceso-e2e-de-gobierno-de-datos-cadena-de-valor-eventos-y-actores)
   
-  - [1.5 V3C: proceso E2E y capacidades que realiza](#15-v3c-proceso-e2e-y-capacidades-que-realiza)
+  - [1.6 V3C: proceso E2E y capacidades que realiza](#16-v3c-proceso-e2e-y-capacidades-que-realiza)
     
 - [2. Descomposición de servicios del proceso E2E](#2-descomposición-de-servicios-del-proceso-e2e)
   - [2.1 V4a: del proceso E2E a los servicios de actividad](#21-v4a-del-proceso-e2e-a-los-servicios-de-actividad)
@@ -26,10 +28,11 @@
 
 # 1. Entendimiento del negocio y mapa de capacidades 
 
-La Fase 1 responde cinco preguntas, que se reparten entre las vistas así:
+La Fase 1 responde seis preguntas, que se reparten entre las vistas así:
  
 | Vista | Pregunta que responde |
 |---|---|
+| V1 | Por qué se necesita la aplicación: quién la necesita, qué problemas la justifican, qué metas persigue y qué requisitos, principios y restricciones se derivan |
 | V2 | Qué es capaz de hacer la organización y en cuáles capacidades impacta la solución |
 | V2b | Cómo dependen entre sí las capacidades de datos y qué recursos y cursos de acción las sostienen |
 | V3a | Cuál es la cadena de valor del negocio, qué eventos la disparan y qué capacidades habilitan cada etapa |
@@ -46,6 +49,7 @@ Elementos de ArchiMate que se usan:
 | Value Stream | Estrategia | Etapas de la cadena de valor del negocio y de la cadena de gobierno de datos |
 | Resource | Estrategia | Recursos que habilitan las capacidades de datos |
 | Course of Action | Estrategia | Líneas de acción propuestas a partir de las metas de la entrevista |
+| Stakeholder, Driver, Assessment, Goal, Outcome, Principle, Requirement y Constraint | Motivación | Quién necesita la aplicación y por qué: de la necesidad a la meta, los requisitos y las restricciones (V1) |
 | Business Process | Negocio | Pasos del proceso E2E |
 | Business Event | Negocio | Hechos que disparan una etapa o un paso |
 | Business Actor y Business Role | Negocio | Quién ejecuta o responde por cada paso |
@@ -57,14 +61,294 @@ Relaciones que se usan:
 |---|---|
 | Composition | Una capacidad de Nivel 1 se compone de las de Nivel 2, y estas de las de Nivel 3 |
 | Serving | La capacidad origen sirve a la capacidad o a la etapa destino; "A sirve a B" también se lee "B depende de A" |
-| Realization | Un paso del proceso realiza una capacidad |
+| Realization | Un paso del proceso realiza una capacidad. En la V1, un resultado, un principio o un requisito realiza una meta, un resultado o un principio |
 | Assignment | Un actor, rol o recurso se asigna a un paso o a una capacidad |
 | Triggering | Secuencia entre etapas o pasos, o un evento que dispara una etapa o un paso |
-| Association | Un curso de acción se ejecuta mediante una capacidad, o un evento se asocia con la etapa que dispara |
+| Association | Un curso de acción se ejecuta mediante una capacidad, o un evento se asocia con la etapa que dispara. En la V1, un interesado se asocia con un impulsor y un impulsor con una evaluación |
+| Influence | Solo en la V1: una evaluación motiva una meta («motiva +») y una restricción limita un requisito («restringe») |
+| Aggregation | Solo en la V1: una meta general se compone de sub-metas (se dibuja por anidamiento) |
  
 ---
  
-## 1.1 V2: mapa de capacidades
+## 1.1 V1: motivación de la solución, de la necesidad a la meta
+
+![V1 - Motivación de la solución de gobierno de datos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/main/motivacion/V1_motivacion.png?raw=true)
+
+### Qué muestra
+
+Una sola vista de la capa de Motivación de ArchiMate con los 56 elementos del modelo de motivación y 75 relaciones dibujadas. Responde por qué se necesita la aplicación de gobierno de datos: quién la necesita (interesados), qué fuerzas la originan (impulsores), qué problemas actuales la justifican (evaluaciones), qué se quiere lograr (metas y resultados) y qué requisitos, principios y restricciones se derivan. No basta con listar necesidades: la vista muestra cómo cada necesidad conduce a un objetivo de la solución.
+
+### Cómo se lee
+
+Es una sola vista organizada en **bandas horizontales** que se leen de arriba hacia abajo, de la necesidad a la solución:
+
+| Banda | Elementos | Lectura |
+|---|---|---|
+| Interesados internos y externos | S1–S8 | quién tiene la necesidad |
+| Impulsores | D1–D5 | qué fuerza la origina |
+| Evaluaciones (problemas actuales) | A1–A9 | qué problema concreto hace evidente cada impulsor |
+| Metas | G1 con G2–G6 anidadas | qué se quiere lograr; cada evaluación **motiva** una meta |
+| Resultados esperados y principios | O1–O9, P1–P5 | cómo se sabrá que se logró y bajo qué criterios; ambos **realizan** las metas |
+| Requisitos de la aplicación | R1–R10 | qué debe hacer la aplicación; los requisitos **realizan** resultados y principios |
+| Restricciones | C1–C4 | qué limita a los requisitos |
+
+Las sub-metas G2–G6 están **anidadas dentro de G1**: el anidamiento representa la relación de agregación (G1 se compone de ellas), por eso no se dibujan esas cinco líneas. El proveedor del CRM aparece **dos veces**, como el mismo elemento del modelo: arriba, junto al impulsor de fragmentación, y abajo, junto a la restricción C3 que condiciona. Así se evita una línea que cruce toda la vista.
+
+> **Códigos.** Los códigos de esta vista (S, D, A, G, O, P, R, C) son propios de la V1. En el resto del documento, S1–S4 son los sistemas fuente (en el nombre del resultado O1 se mantienen así) y P1–P9 son los pasos del proceso E2E.
+
+### Relaciones usadas
+
+| Relación | Cómo se ve en Archi | Uso en la vista | Lectura |
+|---|---|---|---|
+| Asociación | Línea continua sin flecha | Interesado–impulsor e impulsor–evaluación | «le importa» / «hace evidente» |
+| Influencia positiva | Línea discontinua con flecha abierta y la etiqueta «motiva +» | Evaluación → meta | el problema empuja a perseguir la meta |
+| Influencia | Línea discontinua con flecha abierta y la etiqueta «restringe» | Restricción → requisito | la restricción limita cómo puede cumplirse el requisito |
+| Realización | Línea discontinua con punta de triángulo vacío | Resultado → meta, principio → meta, requisito → resultado, requisito → principio | «contribuye a lograr» |
+| Agregación (anidada) | Cajas anidadas, sin línea | G1 → G2…G6 | la meta general se compone de las sub-metas |
+
+El «+» de «motiva +» es el signo de la influencia: la evaluación favorece la meta. «restringe» no lleva signo porque limita, no empuja a favor ni en contra.
+
+### Cadena de justificación: de la necesidad a la meta
+
+Cada fila sigue un hilo completo impulsor → evaluación → meta. Es la respuesta a «cómo cada necesidad conduce a un objetivo».
+
+| Impulsor | Evaluación (problema actual) | Meta que motiva |
+|---|---|---|
+| D4 · Calidad y coherencia de la información | A1 · No existe un diccionario de datos integrado | G2 · Conocer los datos que maneja la empresa |
+| D5 · Fragmentación de sistemas y fuentes | A1 · No existe un diccionario de datos integrado | G2 · Conocer los datos que maneja la empresa |
+| D4 · Calidad y coherencia de la información | A1 · No existe un diccionario de datos integrado | G4 · Describir los datos con un lenguaje común |
+| D5 · Fragmentación de sistemas y fuentes | A1 · No existe un diccionario de datos integrado | G4 · Describir los datos con un lenguaje común |
+| D4 · Calidad y coherencia de la información | A2 · Términos de negocio ambiguos y sin catálogo | G4 · Describir los datos con un lenguaje común |
+| D1 · Cumplimiento de la Ley 1581 de 2012 | A3 · Atributos sin responsable formal | G4 · Describir los datos con un lenguaje común |
+| D1 · Cumplimiento de la Ley 1581 de 2012 | A4 · Clasificación de datos intuitiva y sin documentar | G3 · Clasificar los datos |
+| D3 · Riesgo de exposición de datos personales | A4 · Clasificación de datos intuitiva y sin documentar | G3 · Clasificar los datos |
+| D4 · Calidad y coherencia de la información | A5 · Reglas de calidad dispersas y desiguales | G4 · Describir los datos con un lenguaje común |
+| D1 · Cumplimiento de la Ley 1581 de 2012 | A6 · Datos personales en canales informales sin inventario | G2 · Conocer los datos que maneja la empresa |
+| D3 · Riesgo de exposición de datos personales | A6 · Datos personales en canales informales sin inventario | G2 · Conocer los datos que maneja la empresa |
+| D2 · Rendición de cuentas ante la SIC | A7 · Cambios de estructura y de finalidad sin registro | G5 · Mantener el diccionario vigente y trazable |
+| D5 · Fragmentación de sistemas y fuentes | A7 · Cambios de estructura y de finalidad sin registro | G5 · Mantener el diccionario vigente y trazable |
+| D2 · Rendición de cuentas ante la SIC | A8 · La cobertura de metadatos no se mide | G6 · Contar con evidencia consultable del gobierno de datos |
+| D1 · Cumplimiento de la Ley 1581 de 2012 | A9 · Documentación de cumplimiento incompleta | G1 · Gobernar los datos y apoyar el cumplimiento de protección de datos |
+| D2 · Rendición de cuentas ante la SIC | A9 · Documentación de cumplimiento incompleta | G1 · Gobernar los datos y apoyar el cumplimiento de protección de datos |
+
+Un hilo completo, de arriba abajo: Jurídica (interesado) se asocia con *Cumplimiento de la Ley 1581* (impulsor), que se asocia con *Clasificación de datos intuitiva y sin documentar* (evaluación), que motiva *Clasificar los datos* (meta). A esa meta la realiza el resultado *Atributos con clasificación registrada*; a ese resultado lo realiza el requisito *Registrar la clasificación de cada atributo*, y la restricción *Obligaciones legales por verificar con Jurídica* limita a ese requisito.
+
+### Interesados y sus necesidades
+
+| ID | Interesado | Necesidad / interés | Naturaleza |
+|---|---|---|---|
+| S1 | Gerencia general | Necesidad: reducir el riesgo legal y reputacional de la empresa y contar con información confiable para decidir. Espera ver avances medibles (cobertura de metadatos). | Supuesto del escenario |
+| S2 | Jurídica / protección de datos | Necesidad: saber qué datos personales existen, cómo están clasificados y quién responde por ellos, para validar la clasificación y atender consultas. El rol de 'oficial de protección de datos' queda abierto: no se asume que la ley exija un cargo con esa denominación. | Supuesto del escenario |
+| S3 | Responsables de datos por área | Personas expertas de las áreas de negocio (comercial, administración, contabilidad, etc.). Necesidad: un lugar único donde definir y consultar el significado y la calidad esperada de sus atributos y acordar términos con otras áreas. | Supuesto del escenario |
+| S4 | Equipo de TI | Necesidad: documentar la estructura técnica y vincularla con el significado de negocio; saber qué impacto tiene un cambio de estructura; conservar el control del acceso a los motores. | Supuesto del escenario |
+| S5 | Titulares de los datos | Clientes, propietarios, arrendatarios y personas de contacto. Necesidad: que sus datos se traten conforme a la ley y a la finalidad autorizada. Interesado externo que no usa la aplicación. | Supuesto del escenario |
+| S6 | Superintendencia de Industria y Comercio (SIC) | Autoridad de protección de datos. Necesidad: que la organización pueda demostrar cómo administra los datos personales. El formato y la obligación de reporte están por verificar; la entrevista no muestra una API o reporte automático. | Supuesto del escenario |
+| S7 | Seguridad de la información | Necesidad: saber dónde están los datos privados y sensibles para priorizar controles. Aparece en las interoperabilidades del enunciado, pero el escenario no define si es un área propia o parte de TI (supuesto arquitectónico). | Propuesta del equipo (por validar) |
+| S8 | Proveedor del CRM | Proveedor externo del CRM en la nube (S2). Interés: controlar qué estructura de su plataforma expone. La entrega de metadatos del CRM depende de él. | Supuesto del escenario |
+
+### Impulsores
+
+| ID | Impulsor | Descripción | Fuente |
+|---|---|---|---|
+| D1 | Cumplimiento de la Ley 1581 de 2012 | Obligación de protección de datos personales aplicable a la empresa. El alcance exacto de las obligaciones debe verificarse con Jurídica y en fuentes oficiales vigentes; la aplicación apoya, no garantiza el cumplimiento. | Enunciado; Bloque 7; H-09 |
+| D2 | Rendición de cuentas ante la SIC | Necesidad de poder demostrar, con información clara, cómo se administran los datos personales. El formato y la obligación de reporte están por verificar. | Bloques 7 y 8; H-12 |
+| D3 | Riesgo de exposición de datos personales | Hay datos personales en hojas de cálculo, carpetas, correo y WhatsApp, y atributos delicados (ingresos, mora, datos de menores, imágenes de documentos). Riesgo de incidentes, sanciones y daño reputacional. | Bloques 4 y 7; H-08 |
+| D4 | Calidad y coherencia de la información | La operación (arriendos, ventas, contabilidad) depende de datos consistentes. Hoy hay nombres de campo ambiguos, reglas de validación distintas y digitación repetida entre CRM y arriendos. | Bloques 1, 2 y 5; H-04 |
+| D5 | Fragmentación de sistemas y fuentes | S1–S4 (motores distintos y proveedores distintos) más S5 y canales informales, sin diccionario técnico central. | Bloques 1 y 8; H-03 |
+
+### Problemas actuales del gobierno de datos (evaluaciones)
+
+| ID | Evaluación | Descripción | Fuente |
+|---|---|---|---|
+| A1 | No existe un diccionario de datos integrado | Los metadatos técnicos (en cada motor) y los de negocio (conocimiento tácito) están separados; no hay una vista única por atributo. | Bloque 2; H-04 |
+| A2 | Términos de negocio ambiguos y sin catálogo | 'Cliente', 'activo', 'estado', 'canon' y 'propietario' significan cosas distintas según el área; los conflictos se resuelven caso por caso. | Bloques 2 y 5; H-05 |
+| A3 | Atributos sin responsable formal | Las definiciones dependen de conocimiento tácito; TI conoce la estructura pero no siempre el significado de negocio; no hay mecanismo estable para aprobar definiciones. | Bloque 3; H-06 |
+| A4 | Clasificación de datos intuitiva y sin documentar | Casos dudosos: direcciones, identificaciones, ingresos, extractos, mora, referencias personales, datos de menores, imágenes de documentos y observaciones libres. Las clasificaciones tentativas no son dictamen jurídico. | Bloque 4; H-09 |
+| A5 | Reglas de calidad dispersas y desiguales | Validaciones distintas en S1, S2 y S4 y sin control equivalente en S5; los errores se detectan después de ocurrir. | Bloques 2 y 4; H-07 |
+| A6 | Datos personales en canales informales sin inventario | Hojas de cálculo, carpetas, correo y WhatsApp no tienen diccionario técnico que importar; requieren inventario manual. | Bloques 5 y 8; H-08 |
+| A7 | Cambios de estructura y de finalidad sin registro | Se agregan o cambian campos (p. ej., '¿Acepta publicidad?' existe en la web y no en el CRM) o cambia el uso de un dato sin avisar ni revisar su clasificación. | Bloques 2, 4 y 5; H-10, H-15 |
+| A8 | La cobertura de metadatos no se mide | No hay línea base de cuántos atributos tienen definición, responsable, clasificación o regla de calidad. | Bloque 6; H-11, H-17 |
+| A9 | Documentación de cumplimiento incompleta | Formatos de autorización dispersos, política de tratamiento en desuso, sin procedimiento de solicitudes ni política de conservación. Se resuelve sobre todo con procesos organizacionales, fuera del núcleo de la aplicación. | Bloque 7; H-14 |
+
+### Metas y resultados esperados
+
+Las **metas** dicen qué se quiere lograr (cualitativas); los **resultados** dicen cómo se sabrá que se logró (medibles). Los indicadores son *candidatos* tomados de la entrevista (H-11); no son metas obligatorias del enunciado ni compromisos aprobados, y no llevan cifras porque las del escenario son ficticias (H-17).
+
+| ID | Meta | Resultados que la realizan |
+|---|---|---|
+| G1 | Gobernar los datos y apoyar el cumplimiento de protección de datos — Meta general. La aplicación contribuye al cumplimiento con información clara sobre qué datos existen, cómo están clasificados y quién responde por ellos; no sustituye los procesos legales, de seguridad ni de operación. | Agrega G2–G6 |
+| G2 | Conocer los datos que maneja la empresa — Inventario de atributos y fuentes, estructuradas y no estructuradas ('conocer' en el enunciado). | O1 · Metadatos técnicos de S1–S4 importados<br>O2 · Fuentes no estructuradas inventariadas |
+| G3 | Clasificar los datos — Asignar a cada atributo una categoría (público, semiprivado, privado, sensible) con revisión jurídica. | O3 · Atributos con clasificación registrada |
+| G4 | Describir los datos con un lenguaje común — Definición, responsable, políticas de calidad, expresiones regulares y términos de negocio asociados a cada atributo. | O4 · Atributos con definición y responsable asignados<br>O5 · Atributos con política de calidad y regla de validación<br>O6 · Términos asociados a atributos y conflictos identificados<br>O7 · Diccionario integrado consultable por atributo |
+| G5 | Mantener el diccionario vigente y trazable — Que los cambios de estructura, las importaciones y las decisiones queden registrados. Meta derivada del escenario, no del enunciado. | O8 · Historial de importaciones y cambios disponible |
+| G6 | Contar con evidencia consultable del gobierno de datos — Que Jurídica, Seguridad y la dirección puedan consultar y exportar la información para revisión y para preparar lo que se requiera ante la SIC. | O9 · Metadatos consultables y exportables para revisión |
+
+| ID | Resultado | Indicador / observación |
+|---|---|---|
+| O1 | Metadatos técnicos de S1–S4 importados | Indicador candidato: columnas importadas / columnas existentes en cada motor. La meta numérica queda por definir con una línea base real (las cifras del escenario son ficticias). |
+| O2 | Fuentes no estructuradas inventariadas | Hojas, carpetas, correo y WhatsApp registrados manualmente (contenido, responsable, tipos de datos). Indicador candidato: fuentes inventariadas / fuentes identificadas. |
+| O3 | Atributos con clasificación registrada | Cada atributo con categoría o con estado 'pendiente' / 'en revisión'. Denominador: atributos de negocio inventariados. |
+| O4 | Atributos con definición y responsable asignados | Indicador candidato: atributos con definición y responsable / atributos de negocio inventariados. |
+| O5 | Atributos con política de calidad y regla de validación | Sólo donde aplique. Denominador: atributos que requieren regla de validación, no todos los atributos. La expresión regular valida formato, no licitud ni veracidad. |
+| O6 | Términos asociados a atributos y conflictos identificados | Términos con atributos asociados y conflictos de significado visibles. Resolverlos sigue siendo decisión de la organización. |
+| O7 | Diccionario integrado consultable por atributo | Cada atributo con sus metadatos técnicos y de negocio juntos y comparables. |
+| O8 | Historial de importaciones y cambios disponible | Fecha y estado de importación, diferencias de estructura detectadas y cambios de clasificación o definición. |
+| O9 | Metadatos consultables y exportables para revisión | Consultas o exportaciones para Jurídica, Seguridad y preparación de información ante la SIC. No se asume una integración regulatoria automática. |
+
+### Principios, requisitos y restricciones
+
+#### Principios
+
+| ID | Principio | Qué significa | Realiza |
+|---|---|---|---|
+| P1 | El negocio es dueño del significado de sus datos | El responsable de negocio define y aprueba; TI administra lo técnico. No se da autoridad automática a TI sobre las definiciones. | G4 |
+| P2 | Mostrar lo faltante o dudoso como tal | Un atributo sin definición, responsable o clasificación se muestra como incompleto o 'en revisión', no como correcto. | G3, G4 |
+| P3 | Gobernar metadatos sin modificar los sistemas operativos | La aplicación documenta y gobierna; no corrige datos, no depura duplicados ni reemplaza S1–S5. | G1 |
+| P4 | Un término, una definición vigente | Cada término del catálogo tiene una definición vigente; los conflictos de significado se hacen explícitos (lenguaje ubicuo para DDD). | G4 |
+| P5 | La decisión jurídica es de Jurídica | La aplicación registra y propone; la categoría final de un atributo la valida Jurídica o la asesoría competente. | G3 |
+
+#### Requisitos
+
+| ID | Requisito | Detalle | Origen | Realiza |
+|---|---|---|---|---|
+| R1 | Importar metadatos técnicos desde los motores | Tipo de dato y longitud (y nombre de tabla y columna) leídos de los diccionarios de S1–S4. | Requisito del enunciado | O1, P3 |
+| R2 | Registrar la clasificación de cada atributo | Categoría (público, semiprivado, privado, sensible) y estado (clasificado, pendiente, en revisión). | Requisito del enunciado | O3, P2, P5 |
+| R3 | Registrar definición y responsable por atributo | Metadatos de negocio por atributo: definición y responsable de negocio. | Requisito del enunciado | O4, P1 |
+| R4 | Registrar políticas de calidad y expresiones regulares | Política de calidad y expresión regular de validación por atributo cuando aplique. | Requisito del enunciado | O5 |
+| R5 | Gestionar el diccionario de datos integrado | Vista unificada de metadatos técnicos y de negocio por atributo. | Requisito del enunciado | O7 |
+| R6 | Gestionar el catálogo de términos y asociarlos a atributos | Alta y mantenimiento de términos de negocio, cada uno asociado a los atributos que lo describen. | Requisito del enunciado | O6, P4 |
+| R7 | Registrar manualmente fuentes no estructuradas | Inventario manual de hojas, carpetas, correo y canales de mensajería, sin escaneo automático. | Propuesta del equipo (por validar) | O2 |
+| R8 | Registrar importaciones y detectar cambios de estructura | Fecha y estado de importación, reimportación y comparación de estructura; historial de cambios de clasificación y definición. | Propuesta del equipo (por validar) | O8 |
+| R9 | Consultar y exportar metadatos | Para Jurídica, Seguridad de la información y preparación de información ante la SIC (consulta o exportación, no integración automática). | Propuesta del equipo (por validar) | O9 |
+| R10 | Gestionar roles de edición y aprobación | Quién propone, revisa y aprueba definiciones y clasificaciones. Las reglas de autoridad quedan por definir con la organización. | Propuesta del equipo (por validar) | O4, P1, P5 |
+
+R1–R6 corresponden uno a uno al alcance funcional del enunciado; R7–R10 son propuestas del equipo derivadas del escenario y deben validarse.
+
+#### Restricciones
+
+| ID | Restricción | Detalle | Afecta a |
+|---|---|---|---|
+| C1 | Solo lectura de estructura; sin leer datos personales | La herramienta lee la estructura (metadatos) y no los registros con datos personales. Restricción candidata del escenario que debe reflejarse en permisos e interoperabilidad. | R1 |
+| C2 | Obligaciones legales por verificar con Jurídica | Las categorías finales y las reglas sobre autorización, menores, datos financieros, finalidad o conservación se contrastan con fuentes oficiales; los ejemplos de la entrevista no son dictamen. | R2 |
+| C3 | Acceso a metadatos del CRM depende del proveedor | La estructura del CRM (S2) se obtiene mediante el proveedor, con tiempos y permisos que la empresa no controla. | R1 |
+| C4 | Fuera de alcance: autorizaciones, solicitudes de titulares y depuración | Tampoco incluye reportes regulatorios automáticos ni gestión de accesos o de copias de respaldo; son procesos organizacionales con los que sólo se interopera. | R9 |
+
+### Justificación
+
+La vista responde por qué se necesita la aplicación y deja explícito su alcance. Las metas G2, G3 y G4 y los requisitos R1–R6 corresponden uno a uno al alcance funcional del enunciado; G5, G6 y R7–R10 son propuestas del equipo derivadas del escenario y deben validarse. Las restricciones y las metas que la aplicación no cubre son coherentes con las capacidades marcadas como fuera de alcance en la V2 y con los servicios excluidos de la V4b: la aplicación documenta y gobierna metadatos, no corrige datos ni reemplaza los procesos legales, de seguridad o de operación.
+
+### Supuestos arquitectónicos e impacto
+
+| # | Supuesto | Impacto si cambia |
+|---|---|---|
+| 1 | Se modela el caso ficticio **Hogar Andino** tal como lo propuso la entrevista; cifras, cargos y sistemas no son hechos reales. | Si el profesor fija otro escenario, cambian S1–S8 y los impulsores D3–D5; las metas G2–G4 y R1–R6 no, porque vienen del enunciado. |
+| 2 | El rol de oficial de protección de datos queda abierto: se modela «Jurídica / protección de datos» como interesado. | Si se define un cargo formal, se separa de S2 y se ajusta R10 (roles de aprobación). |
+| 3 | «Seguridad de la información» se trata como interesado propio aunque el escenario no define el área (podría ser parte de TI). | Si es parte de TI, S7 se fusiona con S4 y D3 pierde un interesado directo. |
+| 4 | La aplicación sólo lee estructura (metadatos), no datos personales (C1, candidata). | Si se necesita perfilar datos reales, cambian R1, el riesgo D3 sobre la propia herramienta y los permisos. |
+| 5 | No hay integración automática con la SIC: sólo consulta o exportación (R9, C4). | Si el formato de reporte es obligatorio y estructurado, se agrega un requisito y un actor técnico. |
+| 6 | G5 (vigencia y trazabilidad) y G6 (evidencia) son metas **derivadas del escenario**, no del enunciado. | Si el equipo las excluye, se eliminan O8, O9, R8, R9 y A7/A8 pierden destino. |
+| 7 | Los indicadores de O1–O6 son candidatos sin meta numérica. | Se necesita una línea base real antes de fijar metas (H-17). |
+
+### Inconsistencias y puntos a cuestionar
+
+1. **El Bloque 6 del guion repite el Bloque 7.** En el documento de la Fase 0 las preguntas del Bloque 6 («Indicadores y resultados») son las de normatividad y su objetivo dice «obligaciones y restricciones», pero los hallazgos del Bloque 6 hablan de indicadores. Conviene corregir el guion para que coincida con lo realmente preguntado.
+2. **«Cumplir la ley» no es una meta alcanzable por software.** La entrevista lo reconoce (registrar metadatos no garantiza cumplimiento). Por eso el impulsor es «Cumplimiento de la Ley 1581» y la meta es «**apoyar** el cumplimiento» (G1). Se descartó también «cero duplicados» como resultado, porque la aplicación no corrige datos operativos (H-14).
+3. **Las categorías de datos requieren verificación jurídica.** El enunciado atribuye la clasificación público/semiprivado/privado/sensible a la Ley 1581. Hasta donde sé, el dato sensible está definido en la Ley 1581 y la distinción público/semiprivado/privado proviene sobre todo de la Ley 1266 de 2008, además de normas reglamentarias; hay que confirmarlo con fuentes oficiales vigentes antes de citarlo en el informe (restricción C2, principio P5).
+4. **A9 (documentación de cumplimiento incompleta) se resuelve sobre todo fuera de la aplicación.** Se dejó en el modelo porque justifica G1, pero sólo se cubre la parte de metadatos; autorizaciones, solicitudes de titulares y conservación son procesos organizacionales (C4).
+5. **Interesados externos sin voz directa.** Titulares y SIC no usan la aplicación: su necesidad se infiere de la ley y de la entrevista, no se validó con ellos.
+6. **Decisión pendiente de fondo:** quién puede proponer, revisar y aprobar definiciones y clasificaciones (R10). La entrevista no lo resuelve y afecta el diseño de roles.
+
+<details>
+<summary><b>Anexo: las 80 relaciones de la V1 y su justificación</b></summary>
+
+| Tipo | Origen | Destino | Justificación |
+|---|---|---|---|
+| Asociación | S1 · Gerencia general | D1 · Cumplimiento de la Ley 1581 de 2012 | La gerencia responde ante la ley por el tratamiento de datos de la empresa. |
+| Asociación | S1 · Gerencia general | D3 · Riesgo de exposición de datos personales | La gerencia asume el riesgo legal y reputacional de una exposición de datos. |
+| Asociación | S1 · Gerencia general | D4 · Calidad y coherencia de la información | Necesita información coherente para operar y decidir. |
+| Asociación | S2 · Jurídica / protección de datos | D1 · Cumplimiento de la Ley 1581 de 2012 | Jurídica vela por el cumplimiento de la Ley 1581 y orienta a las áreas. |
+| Asociación | S2 · Jurídica / protección de datos | D2 · Rendición de cuentas ante la SIC | Jurídica prepara y valida la información que eventualmente se presente a la SIC. |
+| Asociación | S3 · Responsables de datos por área | D4 · Calidad y coherencia de la información | Cada área sufre inconsistencias, reprocesos y términos ambiguos en sus propios datos. |
+| Asociación | S3 · Responsables de datos por área | D5 · Fragmentación de sistemas y fuentes | Las áreas digitan y consultan datos en varios sistemas y canales. |
+| Asociación | S4 · Equipo de TI | D5 · Fragmentación de sistemas y fuentes | TI administra los sistemas fragmentados y recibe el impacto de sus cambios. |
+| Asociación | S5 · Titulares de los datos | D1 · Cumplimiento de la Ley 1581 de 2012 | La ley protege los derechos de los titulares sobre sus datos. |
+| Asociación | S5 · Titulares de los datos | D3 · Riesgo de exposición de datos personales | Los titulares son quienes sufren la exposición de sus datos. |
+| Asociación | S6 · Superintendencia de Industria y Comercio (SIC) | D1 · Cumplimiento de la Ley 1581 de 2012 | La SIC vigila el cumplimiento de la ley de protección de datos. |
+| Asociación | S6 · Superintendencia de Industria y Comercio (SIC) | D2 · Rendición de cuentas ante la SIC | La SIC es la autoridad ante la cual la empresa rinde cuentas. |
+| Asociación | S7 · Seguridad de la información | D3 · Riesgo de exposición de datos personales | Seguridad necesita saber dónde están los datos de mayor riesgo para protegerlos. |
+| Asociación | S8 · Proveedor del CRM | D5 · Fragmentación de sistemas y fuentes | El CRM es una plataforma externa; su estructura sólo se obtiene a través del proveedor. |
+| Asociación | D1 · Cumplimiento de la Ley 1581 de 2012 | A3 · Atributos sin responsable formal | Cumplir exige saber quién responde por cada dato; hoy no hay responsable formal. |
+| Asociación | D1 · Cumplimiento de la Ley 1581 de 2012 | A4 · Clasificación de datos intuitiva y sin documentar | Aplicar la ley exige clasificar los datos; hoy la clasificación es intuitiva. |
+| Asociación | D1 · Cumplimiento de la Ley 1581 de 2012 | A6 · Datos personales en canales informales sin inventario | Los datos personales en canales informales escapan al control que exige la ley. |
+| Asociación | D1 · Cumplimiento de la Ley 1581 de 2012 | A9 · Documentación de cumplimiento incompleta | La obligación legal se evidencia con documentación que hoy está incompleta. |
+| Asociación | D2 · Rendición de cuentas ante la SIC | A7 · Cambios de estructura y de finalidad sin registro | Rendir cuentas requiere trazabilidad de cambios; hoy no se registran. |
+| Asociación | D2 · Rendición de cuentas ante la SIC | A8 · La cobertura de metadatos no se mide | No se puede demostrar avance sin medir la cobertura de metadatos. |
+| Asociación | D2 · Rendición de cuentas ante la SIC | A9 · Documentación de cumplimiento incompleta | Sin políticas y procedimientos documentados no hay evidencia que presentar. |
+| Asociación | D3 · Riesgo de exposición de datos personales | A4 · Clasificación de datos intuitiva y sin documentar | Sin clasificar no se sabe qué datos privados o sensibles necesitan más protección. |
+| Asociación | D3 · Riesgo de exposición de datos personales | A6 · Datos personales en canales informales sin inventario | Los canales informales son la mayor superficie de exposición. |
+| Asociación | D4 · Calidad y coherencia de la información | A1 · No existe un diccionario de datos integrado | La información no es coherente cuando metadatos técnicos y de negocio están separados. |
+| Asociación | D4 · Calidad y coherencia de la información | A2 · Términos de negocio ambiguos y sin catálogo | Términos ambiguos producen interpretaciones distintas del mismo dato. |
+| Asociación | D4 · Calidad y coherencia de la información | A5 · Reglas de calidad dispersas y desiguales | Reglas de validación dispersas generan datos inconsistentes entre sistemas. |
+| Asociación | D5 · Fragmentación de sistemas y fuentes | A1 · No existe un diccionario de datos integrado | Cada sistema tiene su propio diccionario técnico, sin integración entre ellos. |
+| Asociación | D5 · Fragmentación de sistemas y fuentes | A7 · Cambios de estructura y de finalidad sin registro | La fragmentación hace que los cambios de estructura no se comuniquen. |
+| Influencia | A1 · No existe un diccionario de datos integrado | G2 · Conocer los datos que maneja la empresa | Sin diccionario no se sabe con certeza qué datos existen en cada sistema. |
+| Influencia | A1 · No existe un diccionario de datos integrado | G4 · Describir los datos con un lenguaje común | Describir exige unir lo técnico y lo de negocio en un solo lugar. |
+| Influencia | A2 · Términos de negocio ambiguos y sin catálogo | G4 · Describir los datos con un lenguaje común | Un lenguaje común exige un catálogo de términos asociado a atributos. |
+| Influencia | A3 · Atributos sin responsable formal | G4 · Describir los datos con un lenguaje común | Describir incluye asignar y mantener un responsable por atributo. |
+| Influencia | A4 · Clasificación de datos intuitiva y sin documentar | G3 · Clasificar los datos | La clasificación intuitiva y sin registro motiva clasificar de forma sistemática. |
+| Influencia | A5 · Reglas de calidad dispersas y desiguales | G4 · Describir los datos con un lenguaje común | Las políticas de calidad y expresiones regulares forman parte de la descripción del atributo. |
+| Influencia | A6 · Datos personales en canales informales sin inventario | G2 · Conocer los datos que maneja la empresa | Hay que inventariar las fuentes no estructuradas para conocer todos los datos. |
+| Influencia | A7 · Cambios de estructura y de finalidad sin registro | G5 · Mantener el diccionario vigente y trazable | Los cambios sin registro motivan mantener el diccionario vigente y trazable. |
+| Influencia | A8 · La cobertura de metadatos no se mide | G6 · Contar con evidencia consultable del gobierno de datos | Sin cobertura medida no hay evidencia consultable del gobierno de datos. |
+| Influencia | A9 · Documentación de cumplimiento incompleta | G1 · Gobernar los datos y apoyar el cumplimiento de protección de datos | La documentación incompleta justifica la meta general; la aplicación sólo cubre la parte de metadatos. |
+| Agregación | G1 · Gobernar los datos y apoyar el cumplimiento de protección de datos | G2 · Conocer los datos que maneja la empresa | 'Conocer' es una de las tres acciones del enunciado. |
+| Agregación | G1 · Gobernar los datos y apoyar el cumplimiento de protección de datos | G3 · Clasificar los datos | 'Clasificar' es una de las tres acciones del enunciado. |
+| Agregación | G1 · Gobernar los datos y apoyar el cumplimiento de protección de datos | G4 · Describir los datos con un lenguaje común | 'Describir' es una de las tres acciones del enunciado. |
+| Agregación | G1 · Gobernar los datos y apoyar el cumplimiento de protección de datos | G5 · Mantener el diccionario vigente y trazable | Sin vigencia y trazabilidad el diccionario pierde valor con el tiempo. |
+| Agregación | G1 · Gobernar los datos y apoyar el cumplimiento de protección de datos | G6 · Contar con evidencia consultable del gobierno de datos | Apoyar el cumplimiento implica poder mostrar evidencia. |
+| Realización | O1 · Metadatos técnicos de S1–S4 importados | G2 · Conocer los datos que maneja la empresa | Con los metadatos técnicos importados se conoce la estructura de los datos de S1–S4. |
+| Realización | O2 · Fuentes no estructuradas inventariadas | G2 · Conocer los datos que maneja la empresa | Inventariar lo no estructurado completa el conocimiento de los datos. |
+| Realización | O3 · Atributos con clasificación registrada | G3 · Clasificar los datos | Un atributo con categoría o estado registrado evidencia que fue clasificado. |
+| Realización | O4 · Atributos con definición y responsable asignados | G4 · Describir los datos con un lenguaje común | Definición y responsable son parte central de la descripción. |
+| Realización | O5 · Atributos con política de calidad y regla de validación | G4 · Describir los datos con un lenguaje común | Políticas de calidad y reglas de validación describen cómo debe ser el dato. |
+| Realización | O6 · Términos asociados a atributos y conflictos identificados | G4 · Describir los datos con un lenguaje común | Términos asociados a atributos dan el lenguaje común. |
+| Realización | O7 · Diccionario integrado consultable por atributo | G4 · Describir los datos con un lenguaje común | El diccionario integrado reúne la descripción técnica y de negocio. |
+| Realización | O8 · Historial de importaciones y cambios disponible | G5 · Mantener el diccionario vigente y trazable | El historial muestra que el diccionario se mantiene vigente. |
+| Realización | O9 · Metadatos consultables y exportables para revisión | G6 · Contar con evidencia consultable del gobierno de datos | Poder consultar y exportar es la evidencia que se necesita. |
+| Realización | P1 · El negocio es dueño del significado de sus datos | G4 · Describir los datos con un lenguaje común | La responsabilidad de negocio hace confiable la descripción de los datos. |
+| Realización | P2 · Mostrar lo faltante o dudoso como tal | G3 · Clasificar los datos | Un estado 'en revisión' evita presentar como definitiva una clasificación dudosa. |
+| Realización | P2 · Mostrar lo faltante o dudoso como tal | G4 · Describir los datos con un lenguaje común | Lo incompleto debe verse como incompleto en la descripción. |
+| Realización | P3 · Gobernar metadatos sin modificar los sistemas operativos | G1 · Gobernar los datos y apoyar el cumplimiento de protección de datos | Delimita la meta general: se gobiernan metadatos, no se reemplazan procesos operativos. |
+| Realización | P4 · Un término, una definición vigente | G4 · Describir los datos con un lenguaje común | Una definición vigente por término es la base del lenguaje común. |
+| Realización | P5 · La decisión jurídica es de Jurídica | G3 · Clasificar los datos | La clasificación sólo es confiable si la valida quien tiene competencia jurídica. |
+| Realización | R1 · Importar metadatos técnicos desde los motores | O1 · Metadatos técnicos de S1–S4 importados | Importar desde los diccionarios de los motores produce los metadatos técnicos. |
+| Realización | R7 · Registrar manualmente fuentes no estructuradas | O2 · Fuentes no estructuradas inventariadas | El registro manual es la única vía para inventariar fuentes sin motor de base de datos. |
+| Realización | R2 · Registrar la clasificación de cada atributo | O3 · Atributos con clasificación registrada | Registrar categoría y estado produce atributos clasificados o pendientes. |
+| Realización | R3 · Registrar definición y responsable por atributo | O4 · Atributos con definición y responsable asignados | Registrar definición y responsable produce atributos descritos. |
+| Realización | R10 · Gestionar roles de edición y aprobación | O4 · Atributos con definición y responsable asignados | Roles de edición y aprobación aseguran que definición y responsable tengan dueño y autoridad. |
+| Realización | R4 · Registrar políticas de calidad y expresiones regulares | O5 · Atributos con política de calidad y regla de validación | Registrar políticas y expresiones regulares produce los atributos con regla. |
+| Realización | R6 · Gestionar el catálogo de términos y asociarlos a atributos | O6 · Términos asociados a atributos y conflictos identificados | El catálogo y sus asociaciones producen los términos vinculados a atributos. |
+| Realización | R5 · Gestionar el diccionario de datos integrado | O7 · Diccionario integrado consultable por atributo | Gestionar el diccionario integrado produce la vista consultable por atributo. |
+| Realización | R8 · Registrar importaciones y detectar cambios de estructura | O8 · Historial de importaciones y cambios disponible | Registrar importaciones y cambios produce el historial. |
+| Realización | R9 · Consultar y exportar metadatos | O9 · Metadatos consultables y exportables para revisión | Consultar y exportar produce los metadatos disponibles para revisión. |
+| Realización | R1 · Importar metadatos técnicos desde los motores | P3 · Gobernar metadatos sin modificar los sistemas operativos | Importa estructura sin escribir en los sistemas de origen. |
+| Realización | R2 · Registrar la clasificación de cada atributo | P2 · Mostrar lo faltante o dudoso como tal | El estado 'pendiente' / 'en revisión' hace visible lo dudoso. |
+| Realización | R2 · Registrar la clasificación de cada atributo | P5 · La decisión jurídica es de Jurídica | El estado 'en revisión' permite la validación jurídica antes de dar por final una categoría. |
+| Realización | R3 · Registrar definición y responsable por atributo | P1 · El negocio es dueño del significado de sus datos | El responsable de negocio queda registrado por atributo. |
+| Realización | R10 · Gestionar roles de edición y aprobación | P1 · El negocio es dueño del significado de sus datos | Define quién propone y aprueba sin dar esa autoridad automáticamente a TI. |
+| Realización | R10 · Gestionar roles de edición y aprobación | P5 · La decisión jurídica es de Jurídica | Incluye la aprobación jurídica de clasificaciones. |
+| Realización | R6 · Gestionar el catálogo de términos y asociarlos a atributos | P4 · Un término, una definición vigente | El catálogo mantiene una definición vigente por término. |
+| Influencia | C1 · Solo lectura de estructura; sin leer datos personales | R1 · Importar metadatos técnicos desde los motores | La importación se limita a estructura y no debe leer registros con datos personales. |
+| Influencia | C3 · Acceso a metadatos del CRM depende del proveedor | R1 · Importar metadatos técnicos desde los motores | La importación desde el CRM depende de lo que entregue el proveedor. |
+| Influencia | C2 · Obligaciones legales por verificar con Jurídica | R2 · Registrar la clasificación de cada atributo | La categoría final depende de la verificación jurídica con fuentes oficiales. |
+| Influencia | C4 · Fuera de alcance: autorizaciones, solicitudes de titulares y depuración | R9 · Consultar y exportar metadatos | La exportación apoya los reportes, pero no se asume integración automática con la SIC. |
+| Asociación | S8 · Proveedor del CRM | C3 · Acceso a metadatos del CRM depende del proveedor | El proveedor del CRM es quien condiciona el acceso a la estructura de S2. |
+
+</details>
+
+---
+
+## 1.2 V2: mapa de capacidades
  
 ![V2 - Mapa de capacidades de Hogar Andino](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/192e266f42374043f8ea87a2868c98509428f996/mapa%20de%20capacidades%20y%20procesos/V2%20-%20Mapa%20de%20Capacidades%20de%20Hogar%20Andino.png)
  
@@ -118,7 +402,7 @@ Las capacidades fuera de alcance se dibujan en gris a propósito: hacen visible 
  
 ---
  
-## 1.2 V2b: dependencias de gobierno de datos, recursos y cursos de acción
+## 1.3 V2b: dependencias de gobierno de datos, recursos y cursos de acción
  
 ![V2b - Dependencias de gobierno de datos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/192e266f42374043f8ea87a2868c98509428f996/mapa%20de%20capacidades%20y%20procesos/V2b%20-%20Dependencias%20de%20Gobierno%20de%20Datos.png)
  
@@ -170,7 +454,7 @@ La vista deja ver tres dependencias que no controla el equipo: el proveedor de S
  
 ---
  
-## 1.3 V3A: cadena de valor del negocio, eventos y capacidades que la habilitan
+## 1.4 V3A: cadena de valor del negocio, eventos y capacidades que la habilitan
  
 ![V3a - Cadena de valor del negocio](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/192e266f42374043f8ea87a2868c98509428f996/mapa%20de%20capacidades%20y%20procesos/V3a%20-%20Cadena%20de%20valor%20del%20negocio.png)
  
@@ -213,7 +497,7 @@ Esta vista ubica la solución dentro del negocio: la aplicación no es una etapa
  
 ---
  
-## 1.4 V3B: proceso E2E de gobierno de datos, cadena de valor, eventos y actores
+## 1.5 V3B: proceso E2E de gobierno de datos, cadena de valor, eventos y actores
  
 ![V3b - Proceso E2E de gobierno de datos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/192e266f42374043f8ea87a2868c98509428f996/mapa%20de%20capacidades%20y%20procesos/V3b%20-%20Proceso%20E2E%20de%20gobierno%20de%20datos.png)
  
@@ -271,7 +555,7 @@ Esta vista es el punto de partida de la Fase 2: el proceso E2E es el que se desc
  
 ---
  
-## 1.5 V3C: proceso E2E y capacidades que realiza
+## 1.6 V3C: proceso E2E y capacidades que realiza
  
 ![V3c - Proceso E2E y capacidades](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/192e266f42374043f8ea87a2868c98509428f996/mapa%20de%20capacidades%20y%20procesos/V3c%20-%20Proceso%20E2E%20y%20capacidades%20que%20realiza.png)
  
