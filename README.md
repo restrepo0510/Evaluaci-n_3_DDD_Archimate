@@ -66,7 +66,7 @@ Relaciones que se usan:
  
 ## 1.1 V2: mapa de capacidades
  
-![V2 - Mapa de capacidades de Hogar Andino](images/V2.png)
+![V2 - Mapa de capacidades de Hogar Andino](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/192e266f42374043f8ea87a2868c98509428f996/mapa%20de%20capacidades%20y%20procesos/V2%20-%20Mapa%20de%20Capacidades%20de%20Hogar%20Andino.png)
  
 ### Qué muestra
  
@@ -120,7 +120,7 @@ Las capacidades fuera de alcance se dibujan en gris a propósito: hacen visible 
  
 ## 1.2 V2b: dependencias de gobierno de datos, recursos y cursos de acción
  
-![V2b - Dependencias de gobierno de datos](images/V2b.png)
+![V2b - Dependencias de gobierno de datos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/192e266f42374043f8ea87a2868c98509428f996/mapa%20de%20capacidades%20y%20procesos/V2b%20-%20Dependencias%20de%20Gobierno%20de%20Datos.png)
  
 ### Qué muestra
  
@@ -172,7 +172,7 @@ La vista deja ver tres dependencias que no controla el equipo: el proveedor de S
  
 ## 1.3 V3A: cadena de valor del negocio, eventos y capacidades que la habilitan
  
-![V3a - Cadena de valor del negocio](images/V3a.png)
+![V3a - Cadena de valor del negocio](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/192e266f42374043f8ea87a2868c98509428f996/mapa%20de%20capacidades%20y%20procesos/V3a%20-%20Cadena%20de%20valor%20del%20negocio.png)
  
 ### Qué muestra
  
@@ -215,7 +215,7 @@ Esta vista ubica la solución dentro del negocio: la aplicación no es una etapa
  
 ## 1.4 V3B: proceso E2E de gobierno de datos, cadena de valor, eventos y actores
  
-![V3b - Proceso E2E de gobierno de datos](images/V3b.png)
+![V3b - Proceso E2E de gobierno de datos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/192e266f42374043f8ea87a2868c98509428f996/mapa%20de%20capacidades%20y%20procesos/V3b%20-%20Proceso%20E2E%20de%20gobierno%20de%20datos.png)
  
 ### Qué muestra
  
@@ -273,7 +273,7 @@ Esta vista es el punto de partida de la Fase 2: el proceso E2E es el que se desc
  
 ## 1.5 V3C: proceso E2E y capacidades que realiza
  
-![V3c - Proceso E2E y capacidades](images/V3c.png)
+![V3c - Proceso E2E y capacidades](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/192e266f42374043f8ea87a2868c98509428f996/mapa%20de%20capacidades%20y%20procesos/V3c%20-%20Proceso%20E2E%20y%20capacidades%20que%20realiza.png)
  
 ### Qué muestra
  
