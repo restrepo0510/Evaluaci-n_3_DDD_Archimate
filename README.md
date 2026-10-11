@@ -1,7 +1,7 @@
 # Gobierno de datos Hogar Andino Inmobiliaria S.A.S. 
 
 - [1. Entendimiento del negocio y mapa de capacidades](#1-entendimiento-del-negocio-y-mapa-de-capacidades)
-  - [1.1 V1: motivación de la solución, de la necesidad a la meta](#11-v1-motivación-de-la-solución-de-la-necesidad-a-la-meta)
+  - [1.1 V1: motivación de la solución, y objetos del negocio](#11-v1-motivación-de-la-solución-de-la-necesidad-a-la-meta)
 
   - [1.2 V2: mapa de capacidades](#12-v2-mapa-de-capacidades)
 
@@ -72,7 +72,7 @@ Relaciones que se usan:
  
 ## 1.1 V1: motivación de la solución, de la necesidad a la meta
 
-![V1 - Motivación de la solución de gobierno de datos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/main/motivacion/V1_motivacion.png?raw=true)
+![V1 - Motivación de la solución de gobierno de datos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/main/motivacion/V1motivacion.png?raw=true)
 
 ### Qué muestra
 
