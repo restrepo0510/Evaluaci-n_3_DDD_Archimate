@@ -332,18 +332,19 @@ La vista usa anidamiento: el Nivel 1 contiene a sus capacidades de Nivel 2, y es
  
 ### Propiedades de cada capacidad
  
-Cada elemento Capability lleva ocho propiedades, que se pueden mostrar en Archi con una expresión de etiqueta:
+Cada elemento Capability lleva 7 propiedades, que se pueden mostrar en Archi con una expresión de etiqueta:
  
 | Propiedad | Valores usados |
 |---|---|
 | Nivel | Nivel 1, Nivel 2, Nivel 3 |
 | Tipo de capacidad | Estratégica (22) o Táctica (56) |
 | Rol estratégico (empresa) | Habilitadora crítica (33), Soporte (22), Diferenciadora (16), Genérica (7) |
-| Subdominio DDD (solución Tema 2) | Dominio principal del Tema 2 (1), Core (6), Supporting (11), Generic (1), N/A fuera de la solución (59) |
 | Impacto de la solución | Directo (12), Parcial (6), Indirecto (36), Fuera de alcance como brecha (9), Sin impacto (15) |
 | Madurez actual (según entrevista) | Inexistente (17), Informal (24), No evaluada (37) |
 | Estado de validación | Respaldada por la entrevista (64), Parcialmente respaldada (4), Inferida por validar con el experto (10) |
 | Apoyo de la solución | Solo en los pasos del proceso (se usa en V3b y V3c) |
+
+El mapa no clasifica las capacidades en subdominios DDD (Core, Supporting, Generic). Esa clasificación se hace en la fase de dominios, porque una capacidad no equivale a un subdominio ni a un contexto delimitado.
  
 ### Impacto de la solución
  
@@ -893,9 +894,9 @@ Estos contratos son los que sirven de base a la capa de aplicaciones: cada uno c
 | Campo | Contenido |
 |---|---|
 | Operaciones | proponer(atributo, categoría, criterio, justificación); registrarValidacion(id, decisión); marcarEnRevision(id, opinión); consultar(atributo); listarPendientes() |
-| Entrada | atributo, categoría (pública, semiprivada, privada, sensible, no personal), criterio, justificación, fuente normativa, autor |
+| Entrada | atributo, categoría (pública, semiprivada, privada, sensible), criterio, justificación, fuente normativa, autor |
 | Salida | clasificación con estado (propuesta, en revisión, validada), versión y fecha |
-| Reglas de negocio | Se propone añadir la categoría "no personal". La valida solo Jurídica u oficial. Reclasificar crea versión |
+| Reglas de negocio | La valida solo Jurídica u oficial. Reclasificar crea versión |
 | Excepciones | Sin justificación no se guarda; sin validar no es definitiva |
  
 ### Ejemplo completo de adaptador: A1 Servicio de adaptación de metadatos técnicos de motores relacionales
