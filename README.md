@@ -26,6 +26,13 @@
   - [2.5 V4E: Contract First, contratos de los servicios de actividad (capa 3)](#25-v4e-contract-first-contratos-de-los-servicios-de-actividad-capa-3)
 
   - [2.6 V4F: Contract First, contratos de entidad, utilidad e interoperabilidad](#26-v4f-contract-first-contratos-de-entidad-utilidad-e-interoperabilidad)
+ 
+- [3. Dominios y lenguaje ubicuo](#3-dominios-y-lenguaje-ubicuo)
+  - [3.1 V5: dominios y subdominios](#31-v5-dominios-y-subdominios)
+    
+  - [3.2 V7: lenguaje ubicuo](#32-v7-lenguaje-ubicuo)
+    
+  - [3.3 V7b: términos con varios significados](#33-v7b-términos-con-varios-significados)
 
 # 1. Entendimiento del negocio y mapa de capacidades 
 
@@ -1922,3 +1929,215 @@ Estos contratos son los que sirven de base a la capa de aplicaciones: cada uno c
 Total: 14 contratos de actividad, 13 de entidad y utilidad y 8 de adaptadores, es decir, 35 contratos. Son un primer borrador de operaciones y reglas que se refina en la capa de aplicaciones.
  
 ---
+
+# 3. Dominios y lenguaje ubicuo
+
+La Fase 3 responde tres preguntas, repartidas entre las vistas así:
+
+| Vista | Pregunta que responde |
+|---|---|
+| V5 | En qué partes se divide el problema del dominio y cuáles son el núcleo de la solución |
+| V7 | Cómo se llaman las cosas del proceso y su entorno, y a qué subdominio o grupo pertenece cada término |
+| V7b | Qué términos significan cosas distintas según el contexto, y cuáles son esos significados |
+
+Elementos de ArchiMate que se agregan en esta fase:
+
+| Elemento | Capa | Uso en este modelo |
+|---|---|---|
+| Grouping | Otros | El dominio, cada subdominio y los dos grupos de lenguaje que no pertenecen a un subdominio |
+| Business Object | Negocio | Conceptos que maneja cada subdominio, los mismos de la V4c |
+| Representation | Negocio | Cada término del glosario |
+| Meaning | Motivación | Cada significado de un término en un contexto |
+
+Relaciones nuevas: **Serving** entre subdominios ("A sirve a B" se lee "B depende de A") y **Association** entre un significado y su término. En esta sección, P1 a P9 son los pasos del proceso E2E (V3b) y R1 a R10 los requisitos de la V1.
+
+---
+
+## Análisis del ecosistema
+
+<!-- Base para reescribir con palabras propias. Cada afirmación lleva su bloque de la entrevista: verificar contra el registro. -->
+
+Este análisis describe el entorno en que operará la solución, siguiendo el primer paso del método de extracción de dominios: entender la estructura organizacional del problema para tener una visión general del entorno. Ninguna área de nuestro caso tiene el gobierno de los datos como función: varias personas participan en identificar, documentar y controlar los datos, pero ninguna lo tiene asignado y cada una hace una parte por costumbre (Bloque 3). Por eso las personas se agrupan según su relación con los datos. Los grupos se solapan: la abogada interna juzga lo legal y a la vez sería quien consulte la información (Bloque 8), y la gerente general decide y a la vez espera recibir un listado de datos personales clasificado (Bloque 6).
+
+**Los sistemas.** Los datos están en cinco fuentes, más canales informales y portales. S1 es un software de administración de arrendamientos, comprado y alojado en servidor propio (SQL Server). S2 es un CRM comercial hecho a la medida por un proveedor y alojado en la nube (PostgreSQL). S3 es un sistema contable comercial (SQL Server, otra instancia). S4 es el sitio web (MySQL). S5 son las hojas de cálculo y las carpetas compartidas, sin motor de base de datos (Bloque 1). Fuera de las cinco están el correo y el WhatsApp de los asesores, que guardan cédulas, certificados y datos de contacto (Bloque 8), y los portales inmobiliarios, no controlados por la empresa (Bloque 1). Los portales actúan en dos sentidos: reciben las fichas de los inmuebles y envían interesados por correo, que se copian a mano a S2 (Bloques 1 y 8). La conexión entre los sistemas es mínima: S2 publica fichas en S4 y en los portales, el asesor vuelve a digitar en S1 los datos del contrato, y S1 envía a S3 un archivo plano cada noche (Bloque 1).
+
+**Quienes generan y usan los datos.** El director comercial y los asesores veteranos conocen lo de captación e interesados. La jefa de administración y la analista más antigua conocen lo de contratos y cánones, y el contador lo contable. Ese conocimiento está repartido, sin documentar, y se pierde si la persona se va (Bloque 3). Los asesores recogen más datos que nadie y los guardan en sus celulares, y Mercadeo decide qué se publica y a quién se envía publicidad sin consultar a nadie. Ambos figuran entre quienes hoy no participan en el gobierno de los datos (Bloque 3). Cada área nombra distinto lo mismo: "activo" es un interesado con seguimiento abierto para Comercial y un contrato vigente para Administración (Bloque 2), y una misma columna, VR_CAN, la definen de tres formas la analista, el contador y el proveedor (Bloque 5).
+
+**Quienes administran lo técnico.** El coordinador de TI administra servidores, accesos y puede consultar los diccionarios de S1, S3 y S4 (Bloque 1), pero no conoce el significado de negocio de muchos campos (Bloque 3). La estructura de S2 solo se obtiene mediante un pedido al proveedor (Bloque 1), que responde en días (Bloque 8). Los proveedores cambian las estructuras a pedido de cada área: en S3 TI casi nunca se entera, y en S2 el aviso llega solo cuando el proveedor quiere (Bloque 5). El proveedor del CRM guarda datos de la empresa y no hay un documento que defina sus responsabilidades sobre ellos (Bloque 3). En general los proveedores pueden ver datos (Bloque 8). Las hojas, las carpetas, el correo y WhatsApp no tienen diccionario, y ahí vive una parte importante de los datos delicados (Bloque 1).
+
+**Quienes juzgan lo legal.** La abogada interna da su opinión por correo o de palabra, sin dejar registro, y a veces interviene el abogado externo (Bloque 4). Además recibe los reclamos de las personas sobre sus datos, sin nombramiento formal (Bloque 1). Cuando el negocio cambia el uso de un dato, como el teléfono del propietario compartido con un portal, no se revisa la clasificación ni la autorización (Bloque 4).
+
+**Quienes deberían decidir.** La gerente general aprueba las políticas y nunca ha aprobado una sobre datos (Bloques 1 y 3). Cuando dos áreas discrepan, decide caso por caso, casi siempre por correo, y la decisión no se guarda como definición oficial. Quiere que "los de sistemas decidan", pero TI responde que eso no le corresponde (Bloque 3). El oficial de protección de datos es un cargo por decidir y los responsables de dato son personas por decidir (Bloque 3). Los desacuerdos ya existen: la abogada piensa que cada área debería decidir el uso de sus datos y ella solo asesorar, el director comercial opina que "eso le toca a Jurídica" y la jefa de administración teme recibir más trabajo sin más personal (Bloque 3).
+
+**Quienes necesitarían consultar.** La abogada, que hoy hace de oficial de forma informal, pediría los atributos con datos personales, su categoría, dónde están y quién responde por ellos. No existe un área de seguridad de la información: la función la cumple de forma parcial el coordinador de TI, que necesitaría la lista de atributos sensibles y privados y dónde están (Bloque 8). Servicio al cliente apoya a Jurídica en las solicitudes de los titulares (Bloque 2). La gerente general espera en seis meses un listado de datos personales clasificado y con responsables (Bloque 6). La empresa nunca ha preparado un reporte ante la SIC y no se ha determinado si estaba obligada a registrar sus bases; la gerente general quiere resolver esa duda con el abogado externo (Bloque 7).
+
+**Lo que rodea al dominio.** Varias actividades ya tienen quien las haga, de forma informal: las autorizaciones, las solicitudes de los titulares, la corrección de duplicados, el control de accesos y las copias de seguridad. El depurar datos viejos no tiene un responsable, y reportar incidentes carece de procedimiento definido (Bloque 2). Alrededor hay terceros que reciben datos del negocio: portales, aseguradora, banco y notarías (Bloque 8). Otros acceden a información delicada: el abogado externo ve contratos, cédulas y expedientes de cobro, y los practicantes y contratistas acceden a hojas y carpetas (Bloque 8).
+
+**Dónde queda la herramienta.** Se ubicaría al lado de estas fuentes sin reemplazarlas: el negocio no espera que cambie las bases de datos, y sí que el diccionario refleje los cambios que hagan los proveedores. Recibiría la estructura de S1, S3 y S4 que entrega TI, la de S2 que entrega el proveedor, un inventario hecho a mano de las hojas, las carpetas, el correo y WhatsApp, las definiciones y reglas de calidad de los responsables de dato, y la clasificación con su justificación, que el negocio espera de Jurídica o del oficial y no de cada área por su cuenta (Bloques 4 y 8). Entregaría información a la abogada que hace de oficial, a TI por su función de seguridad y a los abogados para preparar un eventual reporte a la SIC, que se exportaría como informe. La gerente general y la abogada prefieren que no lea datos de personas, solo la estructura, para no abrir otro punto de exposición de cédulas e ingresos. La entrevista lo presenta como un deseo que el equipo puede discutir, y el equipo lo adoptó como restricción todavía candidata (C1, H-13). Esa adopción es decisión del equipo, no del escenario.
+
+---
+
+## 3.1 V5: dominios y subdominios
+
+![V5 - Dominios y subdominios](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/main/dominios%20y%20lenguajes%20ubicuos/V5%20-%20Dominios%20y%20subdominios.png)
+
+### Qué muestra
+
+El dominio de Gestión del Dato Personal, en la parte que cubre la solución (el gobierno del dato personal), dividido en 8 subdominios. Cada uno está clasificado como Core, de soporte o genérico. La vista muestra las dependencias entre subdominios y los objetos de negocio que maneja cada uno: 8 subdominios, 13 objetos y 13 relaciones Serving.
+
+### Cómo se lee
+
+- Cada rectángulo grande es un subdominio. Su color indica el tipo: naranja fuerte Core, naranja claro soporte y gris genérico. **No es el impacto de la solución de la V2**: la leyenda de la vista lo aclara.
+- Cada subdominio lleva tres propiedades: `Subdominio DDD` (Core, Supporting o Generic, los mismos valores de la V2), `Requisitos` y `Pasos E2E`.
+- Una flecha de A a B es una relación Serving y se lee "A sirve a B", es decir, B depende de A.
+- Los objetos dentro de cada subdominio son los mismos de la V4c, no copias.
+
+### Subdominios y su clasificación
+
+| # | Subdominio | Tipo | Pasos del E2E | Requisitos | Objetos de negocio |
+|---|---|---|---|---|---|
+| 1 | Fuentes y metadatos técnicos | Soporte | P1, P2, P8 | R1, R7, R8 | Fuente de datos, Autorización de acceso a metadatos, Metadato técnico, Cambio de estructura |
+| 2 | Atributos de negocio y su descripción | **Core** | P3, P4 | R3, R4 | Atributo de negocio, Metadato de negocio |
+| 3 | Clasificación y validación jurídica | **Core** | P5, P6 | R2 | Clasificación del atributo |
+| 4 | Responsables, autoridad y decisiones | Soporte | P4 (en parte) | R10; R3 y R8 (en parte) | Responsabilidad sobre el dato, Evidencia de decisión |
+| 5 | Catálogo de términos | Soporte | Parte de P7 | R6 | Término de negocio |
+| 6 | Diccionario integrado | **Core** | Parte de P7 | R5 | Diccionario de datos |
+| 7 | Consulta y reporte | Soporte | P9 | R9 | Informe regulatorio |
+| 8 | Control de acceso por rol | Genérico | Transversal | R10 (parte técnica) | Permiso de acceso |
+
+### Argumento de cada subdominio y su relación con la V2
+
+| # | Argumento | Capacidades de la V2 (propiedad Subdominio DDD) |
+|---|---|---|
+| 1 | Alimenta a todos los demás con la estructura técnica, pero importarla es una función habitual y no es lo que el negocio pidió. Lo específico (CRM vía proveedor, solo estructura) queda en la capa anticorrupción. Una columna renombrada en S2 dejó a S4 tres días sin actualizar precios (Bloque 5) | Gestión de metadatos técnicos, Gestión de cambios de estructura de datos (Supporting) |
+| 2 | Cubre "conocer" y "describir": inventario, definición, calidad y validación del atributo. Es el concepto del que dependen el 3, el 4, el 5 y el 6. VR_CAN tiene tres definiciones (Bloque 5) y las reglas de calidad están dentro del código de cada sistema (Bloque 4) | Gestión de metadatos de negocio, Inventario de atributos de negocio (Core); Definición de políticas y reglas de calidad y validación (Supporting) |
+| 3 | Cubre "clasificar": categorías legales, validación de Jurídica y estados propuesta, en revisión y validada. Hoy la abogada responde sin dejar registro y la categoría puede depender del uso (Bloque 4) | Clasificación de atributos por categoría legal (Core); Validación jurídica de la clasificación (Supporting) |
+| 4 | Nadie tiene autoridad para aprobar definiciones y la gerente decide por correo sin guardar la decisión (Bloque 3). No hay procedimiento cuando falta un responsable (Bloque 5). La evidencia es una ausencia. Sube a Core si R10 se cierra con reglas propias | Gestión de responsables de datos, Gestión de trazabilidad y evidencia de decisiones, Resolución de conflictos y decisiones sobre datos (Supporting) |
+| 5 | Cada área nombra distinto lo mismo (Bloque 2). Gestionar términos y conflictos es funcionalidad habitual de un catálogo | Gestión del catálogo de términos de negocio (Supporting) |
+| 6 | Cubre "describir" al reunir lo técnico y lo de negocio por atributo, y R5 es requisito explícito del enunciado. Versiona lo publicado y marca lo incompleto. Es el más débil: es una vista de lectura, sin escenario propio en la entrevista y con riesgo de dominio anémico | Gestión del diccionario de datos (Core) |
+| 7 | La abogada y TI necesitarían consultar (Bloque 8). La ubicación de datos responde al dolor n.º 1 de la gerente (Bloque 5), pero el formato del informe es genérico | Reporte regulatorio ante la SIC (Supporting) |
+| 8 | Roles locales, sin directorio corporativo (Z15). Sin escenario propio fuerte. Se mantiene como decisión de diseño | Administración de accesos e identidades (Generic) |
+
+En la V2, Gestión de Metadatos y Clasificación de Datos están marcadas como Core, pero son capacidades madre cuyas hijas incluyen varias Supporting. El Core se lee en las capacidades de la hoja.
+
+### Dependencias entre subdominios
+
+| Subdominio | Depende de | Evidencia |
+|---|---|---|
+| 1 Fuentes y metadatos técnicos | 8 | La gestión del acceso a metadatos usa el control de acceso (matriz de uso de la V4b) |
+| 2 Atributos y su descripción | 1 | El contrato 3.3 vincula columnas técnicas con atributos y usa la fuente de datos |
+| 3 Clasificación y validación jurídica | 2, 4 | No se clasifica lo que no se ha inventariado (V2b). La autoridad y la evidencia de decisiones son del 4 |
+| 4 Responsables, autoridad y decisiones | 2 | El responsable se asigna a un atributo (contrato 3.5) |
+| 5 Catálogo de términos | 2 | El contrato 3.9 asocia términos a atributos |
+| 6 Diccionario integrado | 1, 2, 3 | El contrato 3.8 usa metadato técnico, atributo, metadato de negocio y clasificación |
+| 7 Consulta y reporte | 1, 3, 4, 6 | Los contratos 3.11 a 3.14 usan diccionario, clasificación, responsable, fuente y cambio de estructura |
+| 8 Control de acceso por rol | Ninguna | |
+
+Son 13 relaciones. La dependencia del 1 respecto al 4 (por la bitácora) se retiró porque la bitácora técnica no es subdominio y creaba el ciclo 1, 2, 4, 1. Entre el 2 y el 4 la dependencia va del 4 al 2, porque el responsable se asigna a un atributo. El control de acceso solo se conecta con el 1, tal como lo marca la matriz de la V4b.
+
+### Contraste de los cortes con el ecosistema
+
+Los subdominios salieron del proceso y de tres criterios: lenguaje propio, actores distintos y razón de cambio distinta. El ecosistema permite ver cuáles tienen un grupo distinto detrás. Esta lectura es del equipo, no de la entrevista.
+
+- **Fuentes y metadatos técnicos** tiene grupo propio: TI y los proveedores, con S2 accesible solo mediante el proveedor.
+- **Clasificación y validación jurídica** también: la abogada interna y, a veces, el abogado externo.
+- **Atributos y su descripción** y **catálogo de términos** comparten el mismo grupo, las áreas que generan y usan los datos. Separarlos es una decisión de diseño: el concepto del dato frente a la palabra con que cada área lo nombra. El conflicto de significado aparece entre áreas y se manifiesta en el dato, como en VR_CAN (Bloque 5).
+- **Responsables, autoridad y decisiones** se apoya en una ausencia: nadie tiene la autoridad, el oficial está por decidir y los responsables por designar. A eso se suman los desacuerdos sobre quién debería decidir.
+- **Consulta y reporte** se apoya en quienes necesitarían consultar, aunque el informe nunca se haya preparado.
+- **Diccionario integrado** y **control de acceso** no corresponden a ningún grupo de personas. Son decisiones de diseño. El Bloque 7 solo advierte que el propio diccionario puede ser información delicada.
+
+## 3.2 V7: lenguaje ubicuo
+
+![V7](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/main/dominios%20y%20lenguajes%20ubicuos/V7%20-%20Lenguaje%20ubicuo.png)
+
+
+### Qué muestra
+
+Los 35 términos del glosario en 10 agrupaciones: los 8 subdominios de la V5 (25 términos) y dos grupos que no son subdominios, el lenguaje del negocio inmobiliario (7) y el lenguaje jurídico (3).
+
+### Cómo se lee
+
+- Cada término es una Representation. Su definición está en Documentation y su ejemplo en la propiedad `Ejemplo`.
+- Los subdominios llevan el color de la V5. Los dos grupos de lenguaje no tienen color, porque no son subdominios.
+- Trece términos tienen un objeto equivalente en la V5, y la propiedad `Objeto de negocio en la V5` lo indica. En *Clasificación* y *Responsable de dato* el nombre del objeto es distinto (*Clasificación del atributo* y *Responsabilidad sobre el dato*).
+
+### Glosario
+
+| Término | Subdominio o grupo | Definición | Ejemplo |
+|---|---|---|---|
+| **Fuente de datos** | 1 · Fuentes y metadatos técnicos | Sistema o lugar donde hay datos que deben documentarse. Puede tener diccionario técnico (una base de datos) o no tenerlo (hojas, carpetas, correo, mensajería). Una fuente identificada pero sin inventariar se muestra como *área sin cubrir*. | S2, un CRM en la nube, solo entrega su estructura mediante un pedido al proveedor, y las hojas de cálculo no tienen diccionario (Bloque 1) |
+| **Metadato técnico** | 1 · Fuentes y metadatos técnicos | Descripción de la estructura de una columna en un sistema fuente: tabla, columna, tipo de dato, longitud y obligatoriedad. Se lee del diccionario del motor y no incluye los registros. Es la parte técnica de un *atributo de negocio*. | El negocio dice que la cédula tiene hasta 10 dígitos, pero en S2 el campo acepta 20 caracteres, incluidas letras (Bloque 5) |
+| **Autorización de acceso a metadatos** | 1 · Fuentes y metadatos técnicos | Constancia de quién autorizó, y cuándo, el acceso de solo lectura a la estructura de una fuente. Sin ella no se habilita la importación. No es la autorización que firma un *titular* ni un *permiso de acceso* a la herramienta. | Para S1 autoriza la jefa de administración y ejecuta el coordinador de TI (Bloque 8) |
+| **Importación** | 1 · Fuentes y metadatos técnicos | Lectura de la estructura técnica de una fuente para traerla a la herramienta. Solo trae estructura, nunca registros con datos de personas. | S2 tarda días en entregar su estructura, y el negocio acepta tener esa fuente desactualizada si se sabe (Bloque 8) |
+| **Cambio de estructura** | 1 · Fuentes y metadatos técnicos | Diferencia detectada entre dos importaciones de una misma fuente: tabla o columna agregada, renombrada o modificada. No es un cambio de clasificación ni de definición. | El proveedor de S2 renombró una columna y la publicación hacia S4 dejó de actualizar los precios durante tres días (Bloque 5) |
+| **Atributo de negocio** | 2 · Atributos de negocio y su descripción | Concepto de dato que se documenta una sola vez, con su definición, su responsable y su clasificación, aunque esté guardado en varias columnas de varios sistemas. No es la columna o campo de un sistema fuente, que es solo la ubicación técnica del dato (ver *metadato técnico*). | La cédula está en S1, que acepta de 7 a 11 caracteres, y en S2, que acepta letras (Bloque 4): son dos columnas de un mismo atributo |
+| **Metadato de negocio** | 2 · Atributos de negocio y su descripción | Descripción de un atributo hecha desde el negocio: su definición, su responsable, su política de calidad y su expresión regular. La asignación del responsable, su historial y quién lo designa se gestionan aparte (ver *responsable de dato*). | La columna VR_CAN de S1 tiene tres definiciones en uso y ningún responsable asignado (Bloque 5) |
+| **Política de calidad** | 2 · Atributos de negocio y su descripción | Regla que describe cómo debe ser el valor de un atributo (formato, longitud, obligatoriedad). Se documenta, no se ejecuta contra los datos. | La cédula debería tener solo números, de 6 a 10 dígitos y sin puntos (Bloque 4) |
+| **Expresión regular** | 2 · Atributos de negocio y su descripción | Patrón de texto que valida el formato de un atributo. Se registra y se comprueba que sea sintácticamente válida, pero no se ejecuta contra datos reales. Valida el formato, no que el dato sea verdadero ni lícito. | `^[0-9]{6,10}$` para la cédula, ilustrativa (Bloque 4) |
+| **Atributo incompleto** | 2 · Atributos de negocio y su descripción | Atributo al que le falta definición, responsable o clasificación. Se muestra como incompleto y no como correcto. | Nadie recuerda con certeza qué guarda la columna OBS3 de S1, así que le faltaría la definición (Bloque 5) |
+| **Clasificación** | 3 · Clasificación y validación jurídica | Asignación a un atributo de una *categoría legal*, con su criterio y su justificación. No incluye la *finalidad* del dato. | La abogada considera privada la cuenta bancaria del propietario (Bloque 4) |
+| **Categoría legal** | 3 · Clasificación y validación jurídica | Cada nivel con que se clasifica un atributo. Las clases pública, semiprivada y privada las define la Ley 1266 de 2008, y la Ley 1581 de 2012 añade otras categorías. El Decreto 1377 de 2013 completa la de dato público: es el que no cae en las otras tres. El dato semiprivado no es íntimo, reservado ni público, y su conocimiento puede interesar a cierto sector o a la sociedad, por ejemplo la información financiera y crediticia de la actividad comercial o de servicios. El privado, por ser íntimo o reservado, solo le interesa a su titular. El sensible es el que afecta la intimidad del titular, y su definición completa está en el art. 5 de la Ley 1581. En el habla cotidiana "delicado" es una intuición; aquí son categorías con definición legal. | La abogada considera sensible el estado de salud escrito en "observaciones" y dice que no debería estar ahí (Bloque 4) |
+| **Estado de la clasificación** | 3 · Clasificación y validación jurídica | Punto de revisión de una clasificación: propuesta, en revisión o validada. Es definitiva solo cuando la valida quien tenga la autoridad, hoy Jurídica o el oficial (por definir en R10). Un atributo sin clasificación no tiene estado y se muestra como "sin clasificar". Ver *estado*. | La abogada duda entre privado y semiprivado para el historial de mora (Bloque 4); la clasificación quedaría "en revisión", con la opinión de cada parte (Bloque 8) |
+| **Finalidad** | 3 · Clasificación y validación jurídica (fuera del modelo) | Propósito para el cual se usa un dato personal. La herramienta no la registra: es una exclusión explícita, y su cambio no se detecta por software. | El teléfono del propietario se recogía para la captación, y luego Mercadeo lo compartió con un portal (Bloque 4) |
+| **Responsable de dato** | 4 · Responsables, autoridad y decisiones | Persona o rol de negocio que responde por la definición y la calidad de un atributo, y queda registrado como tal. Se distingue del *administrador técnico* (TI, que conoce la estructura pero no decide el significado), del *oficial de protección de datos* y del *Responsable del Tratamiento* (término legal). | Un teléfono errado: TI dice que "es del negocio", Comercial dice que es de Administración, y nadie lo corrige (Bloque 5) |
+| **Oficial de protección de datos** | 4 · Responsables, autoridad y decisiones | Rol por designar, hoy inexistente. La gerencia imagina que mantendría las políticas, atendería los reclamos de los titulares y sería el contacto con la autoridad. Si la ley exige designarlo está por verificar. No es el *responsable de dato*. | Ante la solicitud de un titular que pide suprimir sus datos, necesitaría saber en qué sistemas están (Bloque 2) |
+| **Administrador del diccionario** | 4 · Responsables, autoridad y decisiones | Rol por designar que mantiene el diccionario y el catálogo en la herramienta. No es el administrador técnico de TI ni el "administrador" de permisos. | TI entrega la estructura técnica a "quien administre el diccionario", sin que esté definido quién es (Bloque 8) |
+| **Evidencia de decisión** | 4 · Responsables, autoridad y decisiones | Registro inmutable de una decisión sobre un atributo (clasificación, definición o responsable): quién, cuándo, con qué criterio y qué cambió. El registro técnico guarda además denegaciones e importaciones, que no son decisiones. | El negocio querría mostrar quién clasificó un dato, con qué criterio y cuándo (Bloque 7) |
+| **Término de negocio** | 5 · Catálogo de términos | Palabra con que las áreas nombran un concepto, registrada con su significado y asociada a los atributos que la describen. Puede tener un significado por área. | "Activo" es un interesado con seguimiento abierto para Comercial y un contrato vigente para Administración (Bloque 2) |
+| **Catálogo de términos** | 5 · Catálogo de términos | Conjunto de términos de negocio con sus significados y los atributos asociados. Se consulta junto al *diccionario de datos*, que puede buscar un atributo por término. | Quien busque el atributo asociado a "canon" encontraría las dos columnas que lo guardan (Bloques 2 y 5) |
+| **Conflicto de significado** | 5 · Catálogo de términos | Un término con más de un significado. Hay dos casos: (a) significados distintos por área, que se mantienen, uno por contexto; (b) disputa dentro de un mismo contexto sobre la definición de un atributo, que la organización debe decidir. | (a) "Canon" es el valor pactado al firmar para Comercial y el cobrado hoy para Administración (Bloque 2). (b) Tres definiciones de VR_CAN (Bloque 5) |
+| **Diccionario de datos** | 6 · Diccionario integrado | Vista de solo lectura de cada atributo con su metadato técnico, su metadato de negocio, su clasificación y su responsable, más los términos asociados. Se publica por versiones y marca lo incompleto y la antigüedad de la información técnica. | La ficha de VR_CAN reuniría su estructura en S1, sus tres definiciones y la ausencia de responsable (Bloque 5) |
+| **Informe regulatorio** | 7 · Consulta y reporte | Informe con información sobre las bases de datos y su clasificación, para que Jurídica lo presente a la autoridad. La herramienta no lo transmite y su formato está por verificar. Si no está validado, no se presenta como definitivo. | Habría que reunir la lista de bases con datos personales, su finalidad, responsable y encargado, clasificación y medidas de seguridad (Bloque 8) |
+| **Permiso de acceso** | 8 · Control de acceso por rol | Autorización para que un *rol* realice una operación en la herramienta, como consultar, proponer o aprobar. No es la *autorización de acceso a metadatos* ni la de un *titular*. | Quién puede ver y modificar la clasificación y las definiciones es un punto a revisar antes de dar el diseño por suficiente (Bloque 7) |
+| **Rol** | 8 · Control de acceso por rol | En la herramienta, conjunto de permisos que se asigna a un usuario. En el negocio y en las vistas de ArchiMate, función que alguien cumple (responsable de dato de área, oficial), que no es un cargo. | Quién propone una definición y quién la aprueba tendrían roles distintos, y esa autoridad sigue por definir (R10, Bloque 3) |
+| **Cliente** | Lenguaje del negocio inmobiliario | Para Comercial es el interesado que busca inmueble; para Administración, el arrendatario; para Contabilidad, el propietario que paga la administración. | Ilustrativo: una consulta de "clientes" daría interesados si la hace Comercial y propietarios si la hace Contabilidad. La entrevista solo da los significados (Bloque 2) |
+| **Propietario** | Lenguaje del negocio inmobiliario | Para Comercial es quien firmó el contrato de corretaje; para Administración y Contabilidad, el titular de la cuenta bancaria a la que se paga, que a veces es otra persona. | Quien firmó el contrato de corretaje puede no ser a quien se le paga (Bloque 2) |
+| **Interesado** | Lenguaje del negocio inmobiliario | Persona que busca un inmueble y queda registrada con un asesor. No es el *interesado* (stakeholder) de ArchiMate en la V1. | Hay interesados de 2016 que nunca contrataron y siguen en S2 (Bloque 1) |
+| **Inmueble** | Lenguaje del negocio inmobiliario | Bien que se vende o se arrienda. S1 registra los administrados y S2 los que están en oferta. Que sean el mismo bien en dos momentos es inferencia del equipo, no está en la entrevista. | S2 publica la ficha del inmueble en el sitio web S4 (Bloque 1) |
+| **Estado** | Lenguaje del negocio inmobiliario | Palabra con varios sentidos: para Comercial, el inmueble está publicado, reservado, vendido o arrendado; para Administración, ocupado, desocupado o en reparación; en S1, el campo describe el contrato (6 valores técnicos); en la herramienta hay un *estado de la clasificación* y un estado de importación (disponible o desactualizada). | "Estado" significa "publicado o no" en S2 y "contrato vigente" en S1 (Bloque 1) |
+| **Activo** | Lenguaje del negocio inmobiliario | Para Comercial es un interesado con seguimiento abierto; para Administración, un contrato vigente. | El reporte de morosidad de septiembre incluyó contratos terminados porque "estado = activo" significa cosas distintas en S1 y S2 (Bloque 2) |
+| **Canon** | Lenguaje del negocio inmobiliario | Para Comercial es el valor pactado al firmar; para Administración, el valor que se cobra hoy, ya reajustado. | Tras el reajuste anual (Bloque 1), el valor pactado y el cobrado dejan de coincidir |
+| **Titular** | Lenguaje jurídico | Persona natural a quien pertenecen los datos personales que se tratan (Ley 1581 de 2012, art. 3). Puede ser propietario, arrendatario, interesado u otra. No es el "titular de la cuenta bancaria" del propietario. | Un propietario pide que borren sus datos y nadie sabe en cuántos lugares están (Bloque 1) |
+| **Dato personal** | Lenguaje jurídico | Cualquier información que se relacione con una persona natural identificada o que pueda llegar a identificarse (Ley 1581 de 2012, art. 3). La herramienta no lee datos personales, solo la estructura de dónde están (restricción C1). | La gerente y la abogada no quieren abrir otro punto de exposición de cédulas e ingresos (Bloque 8) |
+| **Responsable y Encargado del Tratamiento** | Lenguaje jurídico | Términos legales de la Ley 1581 (art. 3). El Responsable es quien decide, solo o con otros, sobre la base de datos o el tratamiento. El Encargado es la persona natural o jurídica, pública o privada, que realiza el tratamiento por cuenta del Responsable. No es el *responsable de dato*. | El proveedor del CRM guarda datos de la empresa y tiene acceso a ellos, sin documento que defina sus responsabilidades (Bloques 3 y 7) |
+
+---
+
+## 3.3 V7b: términos con varios significados
+
+![V7b - Términos con varios significados](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/main/dominios%20y%20lenguajes%20ubicuos/V7b%20-%20Términos%20con%20varios%20significados.png)
+
+### Cómo se lee
+
+Los diez términos son los mismos elementos de la V7. Cada significado es un Meaning unido a su término con una Association, y su propiedad `Contexto` dice dónde aplica. Cliente, Propietario, Estado, Activo, Canon y Titular vienen de la entrevista. Interesado, Rol y Atributo de negocio salen del vocabulario del equipo, y Responsable de dato mezcla las dos fuentes.
+
+| Término | Contexto | Significado |
+|---|---|---|
+| Cliente | Comercial | Interesado que busca inmueble |
+| Cliente | Administración | Arrendatario |
+| Cliente | Contabilidad | Propietario que paga la administración |
+| Propietario | Comercial | Quien firmó el contrato de corretaje |
+| Propietario | Administración y Contabilidad | Titular de la cuenta bancaria a la que se paga, que a veces es otra persona |
+| Estado | Comercial | Publicado, reservado, vendido o arrendado |
+| Estado | Administración | Ocupado, desocupado o en reparación |
+| Estado | Sistema S1 | Describe el contrato (6 valores técnicos) |
+| Estado | Herramienta | Estado de la clasificación: propuesta, en revisión o validada |
+| Estado | Herramienta | Estado de importación: disponible o desactualizada |
+| Activo | Comercial | Interesado con seguimiento abierto |
+| Activo | Administración | Contrato vigente |
+| Canon | Comercial | Valor pactado al firmar |
+| Canon | Administración | Valor que se cobra hoy, ya reajustado |
+| Interesado | Comercial | Persona que busca un inmueble y queda registrada con un asesor |
+| Interesado | ArchiMate (V1) | Stakeholder: persona, equipo u organización con interés en la solución |
+| Rol | Herramienta | Conjunto de permisos que se asigna a un usuario |
+| Rol | Negocio y ArchiMate | Función que alguien cumple, como responsable de dato de área u oficial; no es un cargo |
+| Responsable de dato | Negocio | Persona o rol de negocio que responde por la definición y la calidad de un atributo |
+| Responsable de dato | TI | Administrador técnico: conoce la estructura de la base de datos, pero no decide el significado |
+| Responsable de dato | Legal | Responsable del Tratamiento: quien decide sobre la base de datos o el tratamiento (Ley 1581, art. 3) |
+| Titular | Legal | Persona natural a quien pertenecen los datos personales (Ley 1581, art. 3) |
+| Titular | Administración y Contabilidad | Titular de la cuenta bancaria a la que se paga al propietario |
+| Atributo de negocio | Herramienta | Concepto de dato documentado una sola vez, guardado en varias columnas de varios sistemas |
+| Atributo de negocio | Sistema fuente | Columna o campo: la ubicación técnica del dato |
+
+---
+
