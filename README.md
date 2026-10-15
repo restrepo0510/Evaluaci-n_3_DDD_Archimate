@@ -33,6 +33,8 @@
   - [3.2 V7: lenguaje ubicuo](#32-v7-lenguaje-ubicuo)
     
   - [3.3 V7b: términos con varios significados](#33-v7b-términos-con-varios-significados)
+    
+  - [3.4 V10: Trazabilidad Vertical](#34-V10-trazabilidad-vertical)
 
 # 1. Entendimiento del negocio y mapa de capacidades 
 
@@ -2140,4 +2142,89 @@ Los diez términos son los mismos elementos de la V7. Cada significado es un Mea
 | Atributo de negocio | Sistema fuente | Columna o campo: la ubicación técnica del dato |
 
 ---
+
+# V10 trazabilidad vertical
+
+![V10 - Trazabilidad vertical](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/tree/f72a6f8b41602e87ca24d183a394e8fe6308c789/trazabilidad%20vertical)
+
+### Qué muestra
+
+Una sola vista transversal que recorre las cuatro capas del modelo de arriba abajo: Motivación, Estrategia, Negocio y Aplicación. Parte de la meta general y sus cinco sub-metas, baja por los resultados esperados, las restricciones y los requisitos de la aplicación, llega a las capacidades que realizan cada requisito y a los pasos del proceso E2E que realizan esas capacidades, y termina en los servicios de aplicación que apoyan cada paso y en los componentes que los prestan. Responde la pregunta que pide el enunciado: **por qué existe cada componente**, es decir, qué meta y qué capacidad lo justifican.
+
+### Cómo se lee
+
+Cada banda se conecta solo con la contigua, así que cada hilo se sigue en vertical sin saltar capas. Todas las flechas apuntan hacia arriba, de lo construido a lo que se persigue:
+
+| Banda | Elementos | Relación hacia la banda superior | Lectura |
+|---|---|---|---|
+| Motivación · Metas | G1 con G2–G6 anidadas | Agregación (por anidamiento) | qué se quiere lograr |
+| Motivación · Resultados esperados | O1–O9 | Realización → meta | cómo se sabrá que se logró |
+| Motivación · Restricciones | C1–C4, cada una junto a su requisito | Influencia «restringe» → requisito | qué limita al requisito |
+| Motivación · Requisitos de la aplicación | R1–R10 | Realización → resultado | qué debe hacer la aplicación |
+| Estrategia · Capacidades | 13 capacidades de la V2 | Realización → requisito | qué habilidad de la organización cumple el requisito |
+| Negocio · Proceso E2E | P1–P9 dentro de "Gobierno E2E del dato personal" | Realización → capacidad | cómo se ejerce la capacidad en el día a día |
+| Aplicación · Servicios de aplicación | 12 servicios | Servicio → paso | qué funcionalidad del software apoya el paso |
+| Aplicación · Componentes | 8, uno por subdominio de la V5 | Asignación → servicio de aplicación | qué parte del software presta el servicio |
+
+Cada elemento está ubicado debajo de los elementos a los que se conecta, para que las líneas bajen casi en vertical y se crucen lo menos posible. Las capacidades conservan el color de impacto de la V2 y los pasos el color de apoyo de la solución de la V3b, así que la misma vista muestra dónde la herramienta opera de lleno y dónde solo registra o prepara. Motivación usa el morado estándar de ArchiMate y Aplicación el azul.
+
+> **Códigos.** G, O, R y C son los de la V1; P1–P9 son los pasos del proceso E2E. Los componentes se numeran como el subdominio de la V5 al que corresponden.
+
+### Hilos completos, de la meta al componente
+
+Cada fila es un recorrido de arriba abajo. Es la respuesta a «por qué existe cada componente».
+
+| Meta | Resultado | Requisito | Capacidad | Paso | Servicio de aplicación | Componente |
+|---|---|---|---|---|---|---|
+| G2 Conocer los datos | O1 Metadatos técnicos de S1–S4 importados | R1 Importar metadatos técnicos (restringido por C1 y C3) | Gestión de metadatos técnicos | P1, P2 | fuentes y autorizaciones; importación de estructura | 1 Fuentes y metadatos técnicos |
+| G2 Conocer los datos | O2 Fuentes no estructuradas inventariadas | R7 Registrar manualmente fuentes no estructuradas | Inventario de atributos de negocio | P3 | inventario de atributos | 2 Atributos de negocio |
+| G3 Clasificar los datos | O3 Atributos con clasificación registrada | R2 Registrar la clasificación (restringido por C2) | Clasificación de atributos por categoría legal; Validación jurídica de la clasificación | P5, P6 | clasificación; validación jurídica; responsables y evidencia | 3 Clasificación y validación jurídica; 4 Responsables y decisiones |
+| G4 Describir los datos | O4 Atributos con definición y responsable | R3 Registrar definición y responsable | Gestión de metadatos de negocio; Gestión de responsables de datos | P4 | descripción de atributos; responsables y evidencia | 2 Atributos de negocio; 4 Responsables y decisiones |
+| G4 Describir los datos | O4 Atributos con definición y responsable | R10 Gestionar roles de edición y aprobación | Gestión de responsables de datos; Administración de accesos e identidades | P4, P1 | responsables y evidencia; control de acceso | 4 Responsables y decisiones; 8 Control de acceso por rol |
+| G4 Describir los datos | O5 Atributos con política de calidad y regla | R4 Registrar políticas de calidad y expresiones regulares | Definición de políticas y reglas de calidad y validación | P4 | descripción de atributos | 2 Atributos de negocio |
+| G4 Describir los datos | O6 Términos asociados y conflictos identificados | R6 Gestionar el catálogo de términos | Gestión del catálogo de términos de negocio | P7 | catálogo de términos | 5 Catálogo de términos |
+| G4 Describir los datos | O7 Diccionario integrado consultable | R5 Gestionar el diccionario integrado | Gestión del diccionario de datos | P7 | diccionario integrado | 6 Diccionario integrado |
+| G5 Mantener el diccionario vigente | O8 Historial de importaciones y cambios | R8 Registrar importaciones y detectar cambios | Gestión de cambios de estructura de datos; Gestión de trazabilidad y evidencia de decisiones | P8 | cambios de estructura | 1 Fuentes y metadatos técnicos |
+| G6 Contar con evidencia consultable | O9 Metadatos consultables y exportables | R9 Consultar y exportar metadatos (restringido por C4) | Gestión del diccionario de datos; Reporte regulatorio ante la SIC | P7, P9 | diccionario integrado; consulta y reporte | 6 Diccionario integrado; 7 Consulta y reporte |
+
+Un hilo completo, de arriba abajo: la meta *Clasificar los datos* se logra con el resultado *Atributos con clasificación registrada*, que realiza el requisito *Registrar la clasificación de cada atributo*, limitado por la restricción *Obligaciones legales por verificar con Jurídica*. Ese requisito lo realiza la capacidad *Clasificación de atributos por categoría legal*, que se ejerce en el paso *Clasificar atributos por categoría legal*. Al paso lo apoya el *Servicio de aplicación de clasificación*, que presta el *Componente de clasificación y validación jurídica*.
+
+### Relaciones nuevas: capacidad → requisito
+
+Estas 15 realizaciones no existían en el modelo: la V1 llega hasta el requisito y la V2 empieza en la capacidad. Son el puente entre Motivación y Estrategia.
+
+| Capacidad | Requisito que realiza | Justificación |
+|---|---|---|
+| Gestión de metadatos técnicos | R1 Importar metadatos técnicos desde los motores | La importación de la estructura de S1 a S4 es la forma en que se ejerce la capacidad |
+| Inventario de atributos de negocio | R7 Registrar manualmente fuentes no estructuradas | El inventario suma los atributos de fuentes sin motor, que solo se registran a mano (V3b, P3) |
+| Clasificación de atributos por categoría legal | R2 Registrar la clasificación de cada atributo | Registrar la categoría legal es la capacidad de clasificar |
+| Validación jurídica de la clasificación | R2 Registrar la clasificación de cada atributo | El estado "validada" depende de Jurídica (principio P5 de la V1) |
+| Gestión de metadatos de negocio | R3 Registrar definición y responsable por atributo | La definición es metadato de negocio |
+| Gestión de responsables de datos | R3 Registrar definición y responsable por atributo | El responsable por atributo lo gestiona esta capacidad |
+| Definición de políticas y reglas de calidad y validación | R4 Registrar políticas de calidad y expresiones regulares | Política y expresión regular son reglas de calidad y validación |
+| Gestión del diccionario de datos | R5 Gestionar el diccionario de datos integrado | Correspondencia directa |
+| Gestión del catálogo de términos de negocio | R6 Gestionar el catálogo de términos y asociarlos a atributos | Correspondencia directa |
+| Gestión de cambios de estructura de datos | R8 Registrar importaciones y detectar cambios de estructura | Detectar diferencias entre importaciones es gestionar cambios de estructura |
+| Gestión de trazabilidad y evidencia de decisiones | R8 Registrar importaciones y detectar cambios de estructura | El historial de cambios de clasificación y definición es evidencia trazable |
+| Gestión del diccionario de datos | R9 Consultar y exportar metadatos | Lo que se consulta y exporta es el diccionario publicado |
+| Reporte regulatorio ante la SIC | R9 Consultar y exportar metadatos | La exportación prepara lo que Jurídica presenta ante la SIC |
+| Gestión de responsables de datos | R10 Gestionar roles de edición y aprobación | Quién propone y quién aprueba se apoya en los responsables de datos |
+| Administración de accesos e identidades | R10 Gestionar roles de edición y aprobación | Los roles se aplican como permisos locales de la herramienta (Z15) |
+
+### Servicios y componentes de aplicación
+
+Los servicios de aplicación son la versión en software de los servicios de negocio de la V4: cada uno se basa en los contratos de capa 3 y capa 4 de la V4e y la V4f. Se propone **un componente por subdominio de la V5**, porque cada subdominio tiene lenguaje, actores y razón de cambio propios, y esos son los límites naturales del software.
+
+| # | Componente (subdominio V5) | Servicios de aplicación que presta | Paso al que sirven | Contratos en que se basan |
+|---|---|---|---|---|
+| 1 | Fuentes y metadatos técnicos (Soporte) | fuentes y autorizaciones; importación de estructura; cambios de estructura | P1; P2; P8 | 3.1, 3.2, 3.10, 4.2, 4.3, 4.9; usa los adaptadores A1 a A4 |
+| 2 | Atributos de negocio (Core) | inventario de atributos; descripción de atributos | P3; P4 | 3.3, 3.4, 4.1, 4.4 |
+| 3 | Clasificación y validación jurídica (Core) | clasificación; validación jurídica | P5; P6 | 3.6, 3.7, 4.6 |
+| 4 | Responsables y decisiones (Soporte) | responsables y evidencia | P4 y P6 | 3.5, 4.5, 4.10; el contrato 3.7 agrega la Evidencia de decisión |
+| 5 | Catálogo de términos (Soporte) | catálogo de términos | P7 | 3.9, 4.7 |
+| 6 | Diccionario integrado (Core) | diccionario integrado | P7 | 3.8, 4.8 |
+| 7 | Consulta y reporte (Soporte) | consulta y reporte | P9 | 3.11 a 3.14, 4.11, 4.13; usa los adaptadores A5 a A8 |
+| 8 | Control de acceso por rol (Genérico) | control de acceso | P1 | 4.12 |
+
+El componente 1 presta el servicio de cambios de estructura, que apoya a P8, al otro extremo del proceso. Esa línea de asignación rodea la banda de componentes por debajo para no cruzar las demás.
 
