@@ -34,7 +34,7 @@
     
   - [3.3 V7b: términos con varios significados](#33-v7b-términos-con-varios-significados)
     
-  - [3.4 V10: Trazabilidad Vertical](#34-V10-trazabilidad-vertical)
+  - [3.4 V10: Trazabilidad Vertical](#V10-trazabilidad-vertical)
 
 # 1. Entendimiento del negocio y mapa de capacidades 
 
