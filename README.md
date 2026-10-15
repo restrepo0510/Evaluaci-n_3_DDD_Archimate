@@ -2145,7 +2145,7 @@ Los diez términos son los mismos elementos de la V7. Cada significado es un Mea
 
 # V10 trazabilidad vertical
 
-![V10 - Trazabilidad vertical](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/tree/f72a6f8b41602e87ca24d183a394e8fe6308c789/trazabilidad%20vertical)
+![V10 - Trazabilidad vertical](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/f72a6f8b41602e87ca24d183a394e8fe6308c789/trazabilidad%20vertical/V10%20-%20Trazabilidad%20vertical.png)
 
 ### Qué muestra
 
