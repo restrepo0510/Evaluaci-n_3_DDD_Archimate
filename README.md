@@ -33,8 +33,25 @@
   - [3.2 V7: lenguaje ubicuo](#32-v7-lenguaje-ubicuo)
     
   - [3.3 V7b: términos con varios significados](#33-v7b-términos-con-varios-significados)
+ 
+- [4. Agregados, comandos y eventos](#4-agregados-comandos-y-eventos)
+  - [4.1 V6.a: Fuentes y metadatos técnicos](#41-v6a-fuentes-y-metadatos-técnicos)
     
-  - [3.4 V10: Trazabilidad Vertical](#V10-trazabilidad-vertical)
+  - [4.2 V6.b: Atributos de negocio y descripción](#42-v6b-atributos-de-negocio-y-descripción)
+    
+  - [4.3 V6.c: Clasificación y validación jurídica](#43-v6c-clasificación-y-validación-jurídica)
+    
+  - [4.4 V6.d: Responsables, autoridad y decisiones](#44-v6d-responsables-autoridad-y-decisiones)
+ 
+  - [4.5 V6.e: Catálogo de términos](#45-v6e-catálogo-de-términos)
+ 
+  - [4.6 V6.f: Diccionario integrado](#46-v6f-diccionario-integrado)
+ 
+  - [4.7 V6.g: Consulta y reporte](#47-v6g-consulta-y-reporte)
+ 
+  - [4.8 V6.h: Control de acceso por rol](#48-v6h-control-de-acceso-por-rol)
+ 
+- [5. V10: Trazabilidad Vertical](#V10-trazabilidad-vertical)
 
 # 1. Entendimiento del negocio y mapa de capacidades 
 
@@ -2142,6 +2159,491 @@ Los diez términos son los mismos elementos de la V7. Cada significado es un Mea
 | Atributo de negocio | Sistema fuente | Columna o campo: la ubicación técnica del dato |
 
 ---
+
+# 4. Agregados, comandos y eventos
+
+Esta fase baja desde los ocho subdominios de la V5 hasta las reglas que deben proteger los conceptos del dominio. La intención no es convertir cada término del glosario en una clase ni agrupar todo lo relacionado en un único agregado. Se busca identificar qué conceptos necesitan identidad, cuáles son valores descriptivos, qué reglas deben mantenerse consistentes y qué hechos se producen cuando una operación termina correctamente.
+
+## Criterios de modelado
+
+-   **Entidad:** concepto que necesita identidad propia y puede seguir siendo el mismo aunque cambien algunos de sus datos.
+-   **Objeto de valor:** concepto definido por sus valores, sin identidad independiente. Ejemplos propuestos son la categoría legal, el estado de clasificación y parte de los metadatos descriptivos.
+-   **Agregado:** límite de consistencia que agrupa conceptos y protege
+    reglas de negocio. Un agregado no equivale a todo lo que se
+    relaciona con un concepto.
+-   **Raíz del agregado:** punto de entrada que protege las invariantes
+    del agregado. Los demás agregados se referencian, en lugar de
+    incorporarse completos sin necesidad.
+-   **Comando:** solicitud para intentar realizar una acción. No
+    garantiza que la acción sea aceptada ni que termine con éxito.
+-   **Evento:** hecho que ya ocurrió como resultado de una operación
+    exitosa. Una consulta no produce automáticamente un evento de
+    dominio.
+-   **Representación en ArchiMate:** se usan `Data Object` para
+    representar conceptos y datos de aplicación, `Application Process`
+    para la ejecución de operaciones y `Application Event` para hechos
+    resultantes. Los `Grouping` delimitan visualmente una propuesta de
+    agregado.
+
+Las raíces indicadas a continuación son decisiones de diseño
+justificadas por identidad e invariantes. Cuando la consistencia u otras características aún dependen de reglas no definidas, se indica
+expresamente y no se presenta la hipótesis como una decisión cerrada.
+
+![V6.a - Fuentes y metadatos
+técnicos](V6.a-Fuentes%y%metadatos%tecnicos.png)
+
+### Qué muestra
+
+La vista separa la identidad de la fuente de los metadatos técnicos
+importados y del historial de cambios detectados. La fuente puede seguir
+siendo la misma aunque cambie su estructura o su proveedor. La
+autorización de acceso a metadatos se registra para cada fuente; no
+equivale al permiso de un usuario para operar dentro de la herramienta.
+
+### Decisión de diseño
+
+`Fuente de datos` se propone como raíz del agregado de fuente porque
+mantiene la identidad de una fuente y la relación con sus
+autorizaciones. `Metadato técnico`, `Versión de estructura` y
+`Cambio de estructura` se mantienen fuera de ese límite visual: son
+información relacionada, pero su ciclo de vida histórico no debe darse
+por resuelto solo por estar vinculada a una fuente. El límite definitivo
+del historial técnico requiere concretar cómo se conservan y consultan
+sus versiones.
+
+### Invariantes principales
+
+-   Cada fuente tiene una identidad estable.
+-   La autorización de acceso a metadatos corresponde a una fuente
+    identificable y registra quién autoriza.
+-   Solo se importan metadatos cuando existe autorización para esa
+    fuente.
+-   Cada versión de estructura identifica la fuente y la fecha de
+    importación.
+-   La comparación se realiza entre versiones de la misma fuente; solo
+    se registra un cambio detectado si existe una diferencia.
+-   En S2, la entrega de la estructura depende del proveedor del CRM.
+
+### Comandos y eventos
+
+
+  Comando (solicitud)         |        Evento si la operación tiene éxito
+ | -- |-- |
+  Registrar fuente           |         Fuente registrada
+  Autorizar acceso a metadatos   |     Acceso a metadatos autorizado
+  Revocar autorización de metadatos |  Autorización de metadatos revocada
+  Importar metadatos técnicos   |      Metadatos técnicos importados
+  Comparar estructuras       |         Cambio de estructura detectado,
+                                      solo si hay diferencias
+--
+
+## 4.2 V6.b: Atributos de negocio y descripción
+
+![V6.b - Atributos de negocio y
+descripción](V6.b%-%Atributos%de%negocio%y%descripción.png)
+
+### Qué muestra
+
+La vista centra el concepto de `Atributo de negocio` y lo separa de la
+fuente técnica donde se encuentra y de la responsabilidad que se le
+asigna. Un atributo de negocio puede corresponder a varias columnas
+técnicas, incluso en distintas fuentes. Por eso no se equipara
+automáticamente el atributo con una columna de base de datos.
+
+### Decisión de diseño
+
+`Atributo de negocio` se propone como raíz del agregado porque necesita
+identidad estable y concentra las reglas mínimas para registrar y
+describir un atributo. `Metadato de negocio`, `Política de calidad` y
+`Expresión regular` se modelan como conceptos descriptivos asociados a
+ese límite. La fuente y la responsabilidad se representan como
+referencias externas, para no absorber dentro del agregado conceptos
+pertenecientes a otros subdominios.
+
+### Invariantes principales
+
+-   Todo atributo tiene una identidad estable, un nombre y una fuente
+    identificable.
+-   La definición y la responsabilidad pueden completarse después de la
+    creación.
+-   Si falta la definición o la responsabilidad, el atributo se muestra
+    como incompleto.
+-   Para atributos que contienen datos personales, la asignación de
+    responsable es obligatoria.
+-   La política de calidad y la expresión regular describen reglas;
+    validar la sintaxis de una expresión regular no significa ejecutarla
+    sobre los datos almacenados.
+-   La herramienta documenta metadatos y no modifica los registros
+    operativos de las fuentes.
+
+### Comandos y eventos
+
+  Comando (solicitud) | Evento si la operación tiene éxito
+ | -- |-- |
+  Registrar atributo de negocio    |   Atributo de negocio registrado
+  Actualizar metadato de negocio   |   Metadato de negocio actualizado
+  Registrar política de calidad    |  Política de calidad registrada
+  Validar sintaxis de expresión    |   Expresión regular validada, solo si
+  regular                             la sintaxis es válida
+--
+
+## 4.3 V6.c: Clasificación y validación jurídica
+
+![V6.c - Clasificación y validación
+jurídica](agregados_comandos_eventos/v6c-clasificacion-validacion-juridica.png)
+
+### Qué muestra
+
+La clasificación se representa separada del atributo que clasifica. La
+vista distingue categoría legal, estado y versión de la clasificación,
+sin convertir cada uno en un agregado independiente.
+
+### Decisión de diseño
+
+`Clasificación del atributo` se propone como raíz porque debe conservar
+su identidad, estado, justificación e historial de versiones.
+`Atributo de negocio` queda fuera del agregado y se referencia por
+identidad. Esta separación permite que una clasificación cambie sin que
+la aplicación pierda el vínculo con el atributo ni borre la decisión
+anterior.
+
+El administrador del diccionario propone la clasificación con apoyo del
+responsable del dato. Jurídica revisa y valida. La aplicación registra
+la decisión, pero no decide por sí misma si una categoría es
+jurídicamente correcta. La Gerencia General resuelve desacuerdos
+generales; cuando el desacuerdo es sobre la clasificación legal, la
+autoridad final es Jurídica.
+
+### Invariantes principales
+
+-   Toda clasificación corresponde a un atributo identificable.
+-   Debe registrar categoría y justificación.
+-   Los estados son `Propuesta`, `En revisión` y `Validada`. «Sin
+    clasificar» es una condición derivada cuando no existe una
+    clasificación, no un estado del ciclo.
+-   Una clasificación solo es definitiva después de la revisión y
+    validación de Jurídica.
+-   Si se modifica una clasificación validada, se crea una nueva versión
+    en revisión y se conserva la versión validada anterior hasta que
+    Jurídica decida.
+-   La categoría «no personal» no se incorpora como categoría
+    confirmada: su inclusión sigue pendiente de contrastar con el
+    alcance y la definición normativa aplicable.
+
+### Comandos y eventos
+
+  Comando (solicitud)              |   Evento si la operación tiene éxito
+ | -- |-- |
+  Proponer clasificación             | Clasificación propuesta
+  Enviar clasificación a revisión     |Clasificación enviada a revisión
+  Registrar validación jurídica       |Clasificación validada por Jurídica
+  Solicitar ajuste de clasificación   |Ajuste de clasificación solicitado
+  Solicitar modificación de           |Nueva versión de clasificación en
+  clasificación validada              revisión
+  -----------------------------------------------------------------------
+
+El evento de validación solo se produce cuando Jurídica efectivamente
+valida; no se emite al enviar la clasificación a revisión ni al
+solicitar un ajuste.
+
+## 4.4 V6.d: Responsables, autoridad y decisiones
+
+![V6.d - Responsables, autoridad y
+decisiones](agregados_comandos_eventos/v6d-responsables-autoridad-decisiones.png)
+
+### Qué muestra
+
+La vista modela la asignación de responsabilidad sobre un atributo y la
+conservación de evidencia de decisiones. Distingue quién responde por el
+dato de quién administra técnicamente una fuente y de quién tiene
+autoridad para validar una clasificación legal.
+
+### Decisión de diseño
+
+`Responsabilidad sobre el dato` se propone como raíz de su agregado,
+porque la asignación debe poder identificarse y cambiarse con
+trazabilidad. `Atributo de negocio` y `Responsable del dato` se
+representan como referencias externas. `Evidencia de decisión` registra
+quién decidió, cuándo, con qué criterio y qué cambió; no se trata como
+un registro que pueda editarse silenciosamente.
+
+### Invariantes principales
+
+-   La responsabilidad se asigna a un atributo identificable y a un
+    responsable identificable.
+-   Un cambio de responsable corresponde a una asignación previa.
+-   Las decisiones relevantes conservan actor, fecha, criterio y cambio
+    realizado.
+-   La evidencia de decisión no sustituye la bitácora técnica: una
+    importación es un hecho técnico; aprobar una clasificación o cambiar
+    una definición es una decisión de negocio.
+-   La aplicación hace visibles los desacuerdos y registra las
+    decisiones; no resuelve automáticamente las controversias.
+-   La Gerencia General resuelve desacuerdos generales y Jurídica decide
+    en última instancia sobre discrepancias de clasificación legal.
+
+### Comandos y eventos
+
+
+  Comando (solicitud)            |     Evento si la operación tiene éxito
+ | -- |-- |
+  Asignar responsable de dato     |    Responsable de dato asignado
+  Cambiar responsable de dato      |   Responsable de dato cambiado
+  Registrar evidencia de decisión   |  Evidencia de decisión registrada
+  Registrar decisión organizacional  | Decisión organizacional registrada
+--
+
+`Registrar decisión organizacional` se propone para que la herramienta
+deje constancia de la decisión de la organización; no significa que la
+aplicación elija por sí sola el significado vigente ni la categoría
+legal.
+
+## 4.5 V6.e: Catálogo de términos
+
+![V6.e - Catálogo de
+términos](agregados_comandos_eventos/v6e-catalogo-terminos.png)
+
+### Qué muestra
+
+El catálogo registra las palabras que usan las áreas, sus significados
+por contexto y las asociaciones con los atributos que describen. La
+relación entre términos y atributos es de muchos a muchos: un término
+puede describir varios atributos y un atributo puede estar asociado con
+términos usados por distintas áreas.
+
+### Decisión de diseño
+
+`Término de negocio` se propone como raíz del agregado porque el término
+conserva identidad mientras se registran o cambian sus significados por
+área. Los significados no se fusionan solo porque compartan una palabra.
+Si existen interpretaciones distintas, se conservan los contextos y se
+marca el conflicto. La organización decide cuál significado pasa a ser
+vigente; el sistema registra esa decisión.
+
+### Invariantes principales
+
+-   Cada término tiene una identidad estable.
+-   Cada significado identifica el área o contexto en el que aplica.
+-   Los significados de áreas distintas se conservan por separado.
+-   La asociación término--atributo identifica ambos elementos y admite
+    muchos a muchos.
+-   Un conflicto se hace visible; no se resuelve seleccionando
+    automáticamente uno de los significados.
+-   El significado vigente solo se registra cuando existe una decisión
+    organizacional.
+
+### Comandos y eventos
+
+  Comando (solicitud)            |     Evento si la operación tiene éxito
+ | -- |-- |
+  Registrar término de negocio    |    Término de negocio registrado
+  Actualizar significado de término |  Significado de término actualizado
+  Asociar término a atributo      |    Término asociado a atributo
+  Registrar significado por área  |    Significado por área registrado
+  Marcar conflicto de significado  |   Conflicto de significado marcado
+  Registrar significado vigente |      Significado vigente definido
+--
+## 4.6 V6.f: Diccionario integrado
+
+![V6.f - Diccionario
+integrado](agregados_comandos_eventos/v6f-diccionario-integrado.png)
+
+### Qué muestra
+
+El diccionario integra la información de los subdominios propietarios en
+una ficha consultable por atributo. No se apropia de las decisiones de
+clasificación, responsabilidad o significado: las presenta con su estado
+y procedencia. La vista distingue la consulta de la publicación de una
+versión.
+
+### Decisión de diseño
+
+El diccionario se modela como una proyección de lectura, no como un
+agregado de escritura que sea dueño de los atributos, las
+clasificaciones o los términos. `Ficha integrada del atributo`
+representa la información consolidada de un atributo y
+`Versión publicada del diccionario` permite identificar una publicación
+histórica. El equipo confirmó que habrá versiones publicadas para
+mantener la información vigente y trazable.
+
+### Invariantes principales
+
+-   El diccionario integra información sin apropiarse de los datos de
+    los subdominios fuente.
+-   Los atributos con clasificación `Propuesta` o `En revisión` pueden
+    publicarse si se señalan expresamente; nunca se presentan como
+    definitivos.
+-   La ficha permite identificar información incompleta y la antigüedad
+    de los metadatos técnicos.
+-   Cada publicación tiene una versión identificable.
+-   La consulta ordinaria no produce por sí sola un evento de dominio.
+-   La numeración, la frecuencia de publicación y los datos exactos que
+    se congelan en cada versión siguen por definir.
+
+### Procesos y evento de publicación
+
+  Proceso o comando               |    Resultado/evento
+ | -- |-- |
+  Consultar diccionario integrado  |   Devuelve las fichas que
+                                      correspondan al filtro; no genera
+                                      evento de dominio solo por
+                                      consultar
+  Generar nueva versión del       |    Versión del diccionario publicada,
+  diccionario                         cuando la publicación termina
+                                      correctamente
+--
+
+La publicación de versiones está confirmada; los criterios operativos
+para numerarlas y decidir cuándo generar una nueva versión son detalles
+pendientes.
+
+## 4.7 V6.g: Consulta y reporte
+
+![V6.g - Consulta y
+reporte](agregados_comandos_eventos/v6g-consulta-reporte.png)
+
+### Qué muestra
+
+La vista representa la consulta de información y la generación y
+exportación del informe regulatorio. El informe utiliza información
+disponible en el diccionario y en los subdominios que la producen. No
+modifica las bases de datos fuente ni realiza automáticamente una
+presentación ante la SIC.
+
+### Decisión de diseño
+
+`Informe regulatorio` se conserva como objeto identificable, pero la
+vista no afirma que su agregado esté cerrado: todavía falta conocer su
+formato obligatorio, su ciclo de validación y si se debe conservar una
+copia reproducible de cada exportación. La V1 garantiza consulta y
+exportación; Jurídica presenta el informe manualmente ante la SIC.
+
+### Invariantes y límites
+
+-   El informe se genera a partir de información consultada, sin
+    modificar las fuentes.
+-   Los atributos con clasificación pendiente o en revisión deben
+    aparecer señalados y nunca como definitivos.
+-   El formato y el contenido obligatorio deben verificarse con
+    Jurídica.
+-   La aplicación no presenta el informe automáticamente ante la SIC ni
+    garantiza por sí sola el cumplimiento legal.
+-   No se modela un proceso de validación formal como capacidad
+    confirmada mientras Jurídica no defina sus criterios.
+-   Queda por decidir si cada exportación debe conservar el corte de
+    datos o la versión del diccionario usada para reproducir el informe.
+
+### Procesos y eventos
+
+
+  Proceso o comando          |         Evento si la operación tiene éxito
+ | -- |-- |
+  Consultar información para informe | Resultado de consulta disponible;
+                                      no requiere evento de dominio por
+                                      sí solo
+  Generar informe regulatorio     |    Informe regulatorio generado
+  Exportar informe regulatorio     |   Informe regulatorio exportado, si
+                                      se decide registrar la exportación
+                                      como evento de aplicación o
+                                      auditoría
+
+El registro de una exportación puede ser útil para auditoría, pero no se
+presenta automáticamente como evento de dominio.
+
+## 4.8 V6.h: Control de acceso por rol
+
+![V6.h - Control de acceso por
+rol](agregados_comandos_eventos/v6h-control-acceso-rol.png)
+
+### Qué muestra
+
+La vista representa los roles iniciales predefinidos, los permisos que
+se asignan a cada rol y la comprobación de permisos al ejecutar una
+operación. No supone que los usuarios puedan crear roles nuevos ni que
+la matriz de permisos ya esté aprobada.
+
+### Decisión de diseño
+
+Se parte de seis roles para la herramienta: `Administrador`,
+`Responsable de dato`, `Oficial`, `Jurídica`, `TI` y `Consulta`. Los
+cargos reales todavía no están formalizados; el rol de la aplicación es
+una función de autorización, no una afirmación de que exista ya un cargo
+organizacional con ese nombre.
+
+Se representan `Rol`, `Permiso de acceso` y
+`Asignación de permiso a rol`. La matriz de permisos sigue pendiente. Se
+propone que la apruebe la Gerencia General, con Jurídica y TI
+consultadas. No se declara una raíz de agregado definitiva para roles y
+permisos hasta concretar las reglas de administración y consistencia de
+las asignaciones.
+
+### Invariantes principales
+
+-   Los roles iniciales son predefinidos.
+-   Cada asignación relaciona un rol y un permiso identificables.
+-   La revocación corresponde a una asignación existente.
+-   Una operación protegida solo se permite cuando la política de
+    permisos vigente autoriza al rol.
+-   El permiso de operar en la herramienta es distinto de la
+    autorización para acceder a los metadatos de una fuente externa.
+-   La matriz de permisos y la política de registro de autorizaciones y
+    denegaciones siguen pendientes de aprobación.
+
+### Comandos y eventos
+
+  Comando (solicitud)         |        Evento si la operación tiene éxito
+ | -- |-- |
+  Asignar permiso a rol        |       Permiso asignado a rol
+  Revocar permiso de rol       |       Permiso revocado de rol
+  Autorizar operación          |       Se comprueba la autorización; el
+                                      resultado no se considera
+                                      automáticamente un evento de
+                                      dominio
+--
+
+Las denegaciones y los intentos de acceso pueden registrarse en la
+bitácora de seguridad. Ese registro técnico no se confunde con un evento
+de dominio.
+
+## Decisiones transversales de la Fase 4
+
+1.  **Los límites siguen la consistencia, no la cantidad de objetos.**
+    Un elemento relacionado no entra automáticamente al agregado; se usa
+    una referencia cuando la regla no requiere que ambos conceptos
+    cambien como una sola unidad.
+2.  **Los registros tienen responsabilidades distintas.** La bitácora
+    técnica registra hechos operativos; la evidencia de decisión
+    conserva decisiones de negocio; el historial de estructura conserva
+    diferencias entre versiones técnicas; las versiones del diccionario
+    representan publicaciones históricas.
+3.  **La clasificación jurídica no se automatiza.** El sistema registra
+    propuestas y decisiones, pero Jurídica valida la clasificación
+    final.
+4.  **El diccionario puede mostrar información no definitiva, pero debe
+    marcarla.** Publicar una ficha no equivale a validar su
+    clasificación.
+5.  **La consulta no es un comando de escritura.** Solo se modela un
+    evento cuando ocurrió un hecho significativo; los registros técnicos
+    de consulta o exportación se identifican como auditoría cuando
+    corresponda.
+6.  **Los permisos locales no reemplazan las autorizaciones externas.**
+    El permiso para usar una función no concede por sí mismo acceso a la
+    estructura de una fuente.
+
+## Puntos que siguen abiertos
+
+-   Confirmar con fuentes normativas y Jurídica las categorías legales y
+    resolver si se incorpora una categoría «no personal».
+-   Definir el formato y los campos obligatorios del informe
+    regulatorio.
+-   Definir cómo se identifican y cuándo se publican nuevas versiones
+    del diccionario.
+-   Concretar el límite de consistencia del historial de versiones y
+    cambios de estructura.
+-   Definir y aprobar la matriz de permisos para los seis roles
+    iniciales.
+-   Determinar si la exportación del informe debe conservar un corte
+    reproducible de los datos o la versión del diccionario utilizada.
 
 # V10 trazabilidad vertical
 
