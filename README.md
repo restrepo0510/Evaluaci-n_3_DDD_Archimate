@@ -1,65 +1,43 @@
-# Gobierno de datos Hogar Andino Inmobiliaria S.A.S. 
+# Gobierno de datos Hogar Andino Inmobiliaria S.A.S.
 
+## Contenido
 
 - [1. Entendimiento del negocio y mapa de capacidades](#1-entendimiento-del-negocio-y-mapa-de-capacidades)
   - [1.1 V1: motivación de la solución, de la necesidad a la meta](#11-v1-motivación-de-la-solución-de-la-necesidad-a-la-meta)
-
   - [1.2 V2: mapa de capacidades](#12-v2-mapa-de-capacidades)
-
   - [1.3 V2B: dependencias de gobierno de datos, recursos y cursos de acción](#13-v2b-dependencias-de-gobierno-de-datos-recursos-y-cursos-de-acción)
-
   - [1.4 V3A: cadena de valor del negocio, eventos y capacidades que la habilitan](#14-v3a-cadena-de-valor-del-negocio-eventos-y-capacidades-que-la-habilitan)
-  
   - [1.5 V3B: proceso E2E de gobierno de datos, cadena de valor, eventos y actores](#15-v3b-proceso-e2e-de-gobierno-de-datos-cadena-de-valor-eventos-y-actores)
-  
   - [1.6 V3C: proceso E2E y capacidades que realiza](#16-v3c-proceso-e2e-y-capacidades-que-realiza)
-    
 - [2. Descomposición de servicios del proceso E2E](#2-descomposición-de-servicios-del-proceso-e2e)
   - [2.1 V4a: del proceso E2E a los servicios de actividad](#21-v4a-del-proceso-e2e-a-los-servicios-de-actividad)
-  
   - [2.2 V4b: descomposición en cuatro capas de servicio](#22-v4b-descomposición-en-cuatro-capas-de-servicio)
-   
   - [2.3 V4c: servicios de entidad y utilidad, roles, funciones y objetos pasivos](#23-v4c-servicios-de-entidad-y-utilidad-roles-funciones-y-objetos-pasivos)
-
   - [2.4 V4D: capa anticorrupción e interoperabilidad](#24-v4d-capa-anticorrupción-e-interoperabilidad)
-   
   - [2.5 V4E: Contract First, contratos de los servicios de actividad (capa 3)](#25-v4e-contract-first-contratos-de-los-servicios-de-actividad-capa-3)
-
   - [2.6 V4F: Contract First, contratos de entidad, utilidad e interoperabilidad](#26-v4f-contract-first-contratos-de-entidad-utilidad-e-interoperabilidad)
- 
 - [3. Dominios y lenguaje ubicuo](#3-dominios-y-lenguaje-ubicuo)
   - [3.1 V5: dominios y subdominios](#31-v5-dominios-y-subdominios)
-    
   - [3.2 V7: lenguaje ubicuo](#32-v7-lenguaje-ubicuo)
-    
   - [3.3 V7b: términos con varios significados](#33-v7b-términos-con-varios-significados)
- 
 - [4. Agregados, comandos y eventos](#4-agregados-comandos-y-eventos)
   - [4.1 V6.a: Fuentes y metadatos técnicos](#41-v6a-fuentes-y-metadatos-técnicos)
-    
   - [4.2 V6.b: Atributos de negocio y descripción](#42-v6b-atributos-de-negocio-y-descripción)
-    
   - [4.3 V6.c: Clasificación y validación jurídica](#43-v6c-clasificación-y-validación-jurídica)
-    
   - [4.4 V6.d: Responsables, autoridad y decisiones](#44-v6d-responsables-autoridad-y-decisiones)
- 
   - [4.5 V6.e: Catálogo de términos](#45-v6e-catálogo-de-términos)
- 
   - [4.6 V6.f: Diccionario integrado](#46-v6f-diccionario-integrado)
- 
   - [4.7 V6.g: Consulta y reporte](#47-v6g-consulta-y-reporte)
- 
   - [4.8 V6.h: Control de acceso por rol](#48-v6h-control-de-acceso-por-rol)
- 
-- [5. V10: Trazabilidad Vertical](#V10-trazabilidad-vertical)
+- [5. V10: Trazabilidad Vertical](#5-v10-trazabilidad-vertical)
+- [6. V11: Bounded Context Canvas del contexto principal](#6-v11-bounded-context-canvas-del-contexto-principal)
 
-- [6. Mapa de contextos delimitados](#6-mapa-de-contextos-delimitados)
-  - [6.1 V8: mapa de contextos](#61-v8-mapa-de-contextos)
+---
 
-# 1. Entendimiento del negocio y mapa de capacidades 
+# 1. Entendimiento del negocio y mapa de capacidades
 
 La Fase 1 responde seis preguntas, que se reparten entre las vistas así:
- 
+
 | Vista | Pregunta que responde |
 |---|---|
 | V1 | Por qué se necesita la aplicación: quién la necesita, qué problemas la justifican, qué metas persigue y qué requisitos, principios y restricciones se derivan |
@@ -68,11 +46,11 @@ La Fase 1 responde seis preguntas, que se reparten entre las vistas así:
 | V3a | Cuál es la cadena de valor del negocio, qué eventos la disparan y qué capacidades habilitan cada etapa |
 | V3b | Cuál es el proceso E2E donde opera la aplicación, quién interviene y qué pasos apoya la solución |
 | V3c | Qué capacidades realiza cada paso del proceso E2E |
- 
-Principio de modelado: una capacidad describe lo que la organización es capaz de hacer, no un proceso ni una actividad operativa. Por eso los nombres de las capacidades son sustantivos de habilidad ("Gestión de metadatos técnicos") y los pasos del proceso son verbos ("Importar metadatos técnicos").
- 
-Elementos de ArchiMate que se usan:
- 
+
+**Principio de modelado:** una capacidad describe lo que la organización es capaz de hacer, no un proceso ni una actividad operativa. Por eso los nombres de las capacidades son sustantivos de habilidad ("Gestión de metadatos técnicos") y los pasos del proceso son verbos ("Importar metadatos técnicos").
+
+**Elementos de ArchiMate que se usan:**
+
 | Elemento | Capa | Uso en este modelo |
 |---|---|---|
 | Capability | Estrategia | Capacidades en tres niveles (Nivel 1, 2 y 3) |
@@ -84,9 +62,9 @@ Elementos de ArchiMate que se usan:
 | Business Event | Negocio | Hechos que disparan una etapa o un paso |
 | Business Actor y Business Role | Negocio | Quién ejecuta o responde por cada paso |
 | Grouping | Otros | Franjas de la V2 |
- 
-Relaciones que se usan:
- 
+
+**Relaciones que se usan:**
+
 | Relación | Significado en este modelo |
 |---|---|
 | Composition | Una capacidad de Nivel 1 se compone de las de Nivel 2, y estas de las de Nivel 3 |
@@ -97,12 +75,10 @@ Relaciones que se usan:
 | Association | Un curso de acción se ejecuta mediante una capacidad, o un evento se asocia con la etapa que dispara. En la V1, un interesado se asocia con un impulsor y un impulsor con una evaluación |
 | Influence | Solo en la V1: una evaluación motiva una meta («motiva +») y una restricción limita un requisito («restringe») |
 | Aggregation | Solo en la V1: una meta general se compone de sub-metas (se dibuja por anidamiento) |
- 
----
- 
-## 1.1 V1: motivación de la solución, de la necesidad a la meta
 
-![V1 - Motivación de la solución de gobierno de datos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/main/motivacion/V1%20%C2%B7%20Motivaci%C3%B3n.png?raw=true)
+---
+
+## 1.1 V1: motivación de la solución, de la necesidad a la meta
 
 ### Qué muestra
 
@@ -135,7 +111,7 @@ Las líneas son de cuatro tipos:
 
 El «+» indica que la evaluación favorece la meta; «restringe» no lleva signo porque limita en lugar de empujar.
 
-> **Sobre los códigos.** Los de esta vista (S, D, A, G, O, P, R, C) son propios de la V1. En el resto del documento, S1–S4 son los sistemas fuente y P1–P9 los pasos del proceso E2E.
+**Sobre los códigos.** Los de esta vista (S, D, A, G, O, P, R, C) son propios de la V1. En el resto del documento, S1–S4 son los sistemas fuente y P1–P9 los pasos del proceso E2E.
 
 ### De la necesidad a la meta
 
@@ -339,30 +315,28 @@ La vista deja claro por qué se necesita la aplicación y hasta dónde llega. La
 ---
 
 ## 1.2 V2: mapa de capacidades
- 
-![V2 - Mapa de capacidades de Hogar Andino](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/192e266f42374043f8ea87a2868c98509428f996/mapa%20de%20capacidades%20y%20procesos/V2%20-%20Mapa%20de%20Capacidades%20de%20Hogar%20Andino.png)
- 
+
 ### Qué muestra
- 
+
 El mapa de capacidades completo del negocio, con 78 elementos Capability organizados en tres niveles: 13 de Nivel 1, 44 de Nivel 2 y 21 de Nivel 3. Las capacidades se agrupan en cuatro franjas. El color de cada caja indica el impacto de la solución de gobierno de datos, y la leyenda está en la parte superior de la vista.
- 
+
 ### Cómo se lee
- 
-La vista usa anidamiento: el Nivel 1 contiene a sus capacidades de Nivel 2, y estas a las de Nivel 3 (relación Composition representada por contención). Solo los bloques de gestión de datos y de cumplimiento se detallan hasta Nivel 3; el resto del negocio llega a Nivel 2. Las cinco flechas de la vista son relaciones Serving que parten de Gobierno del Dato Personal hacia las capacidades que consumen sus resultados.
- 
+
+La vista usa anidamiento: el Nivel 1 contiene a sus capacidades de Nivel 2, y estas a las de Nivel 3 (relación Composition representada por contención). Solo los bloques de gestión de datos y de cumplimiento se detallan hasta Nivel 3; el resto del negocio llega a Nivel 2. Las cinco flechas de la vista son relaciones Serving que parten de Gestión de Datos e Información hacia las capacidades que consumen sus resultados.
+
 ### Franjas y capacidades de Nivel 1
- 
+
 | Franja | Capacidades de Nivel 1 | Rol estratégico |
 |---|---|---|
 | Dirección y Cumplimiento | Planeación y Dirección Estratégica; Gestión de Cumplimiento y Riesgos | Soporte; Habilitadora crítica |
 | Capacidades Core del Negocio inmobiliario | Gestión del Portafolio Inmobiliario; Comercialización de Inmuebles; Administración de Arrendamientos; Gestión de Relaciones con Clientes | Diferenciadoras (las tres primeras); Soporte |
 | Gestión de Datos e Información | Gestión de Datos e Información, con Gobierno de Datos, Gestión de Metadatos, Clasificación de Datos, Gestión de la Calidad de Datos, Gestión de Datos Maestros y Gestión del Ciclo de Vida de los Datos | Habilitadora crítica |
 | Capacidades Habilitadoras | Mercadeo y Canales Digitales; Gestión Financiera y Contable; Gestión Jurídica y Contractual; Gestión de Tecnología de la Información; Gestión del Talento Humano; Gestión Administrativa y de Compras | Soporte (las cuatro primeras) y Genérica (las dos últimas) |
- 
+
 ### Propiedades de cada capacidad
- 
+
 Cada elemento Capability lleva 7 propiedades, que se pueden mostrar en Archi con una expresión de etiqueta:
- 
+
 | Propiedad | Valores usados |
 |---|---|
 | Nivel | Nivel 1, Nivel 2, Nivel 3 |
@@ -374,9 +348,9 @@ Cada elemento Capability lleva 7 propiedades, que se pueden mostrar en Archi con
 | Apoyo de la solución | Solo en los pasos del proceso (se usa en V3b y V3c) |
 
 El mapa no clasifica las capacidades en subdominios DDD (Core, Supporting, Generic). Esa clasificación se hace en la fase de dominios, porque una capacidad no equivale a un subdominio ni a un contexto delimitado.
- 
+
 ### Impacto de la solución
- 
+
 | Impacto | Significado | Capacidades |
 |---|---|---|
 | Directo | La solución opera aquí | Gestión de Datos e Información; Gestión de Metadatos; Clasificación de Datos; Gestión de responsables de datos; Gestión de trazabilidad y evidencia de decisiones; Gestión de metadatos de negocio; Gestión de metadatos técnicos; Gestión del diccionario de datos; Gestión del catálogo de términos de negocio; Inventario de atributos de negocio; Clasificación de atributos por categoría legal; Definición de políticas y reglas de calidad y validación |
@@ -384,29 +358,27 @@ El mapa no clasifica las capacidades en subdominios DDD (Core, Supporting, Gener
 | Indirecto | La capacidad consume o produce datos que la solución describe | 36 capacidades, entre ellas las del negocio inmobiliario y los bloques de cumplimiento y TI |
 | Fuera de alcance (brecha) | Capacidad que el negocio necesita pero la solución no cubre | Políticas de tratamiento y avisos; autorizaciones de titulares; incidentes con datos personales; encargados del tratamiento; definición de políticas y principios de datos; medición y monitoreo de la calidad; depuración y duplicados; Gestión de Datos Maestros; Gestión del Ciclo de Vida de los Datos |
 | Sin impacto | La solución no interviene | 15 capacidades, por ejemplo tesorería, talento humano y compras |
- 
+
 ### Justificación
- 
+
 El dominio principal es Gobierno de Datos orientado a la protección de datos personales. Esta capacidad no diferencia a la inmobiliaria en el mercado: es una habilitadora crítica de cumplimiento, y solo es central dentro de la solución, donde el diccionario y la clasificación son lo que conviene construir con más cuidado. Las capacidades diferenciadoras del negocio son las de portafolio, comercialización y administración de arrendamientos.
- 
+
 Las capacidades fuera de alcance se dibujan en gris a propósito: hacen visible lo que la solución no cubre, para no prometer más de lo que entrega. La madurez "No evaluada" de 37 capacidades indica que la entrevista no cubre ese bloque y que debe validarse con el experto del negocio.
- 
+
 ---
- 
-## 1.3 V2b: dependencias de gobierno de datos, recursos y cursos de acción
- 
-![V2b - Dependencias de gobierno de datos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/192e266f42374043f8ea87a2868c98509428f996/mapa%20de%20capacidades%20y%20procesos/V2b%20-%20Dependencias%20de%20Gobierno%20de%20Datos.png)
- 
+
+## 1.3 V2B: dependencias de gobierno de datos, recursos y cursos de acción
+
 ### Qué muestra
- 
+
 El detalle del bloque de datos en columnas: 23 capacidades relacionadas por Serving, 7 recursos asignados a las capacidades que habilitan y 3 cursos de acción asociados a las capacidades que los ejecutan. La vista tiene 39 conexiones.
- 
+
 ### Cómo se lee
- 
+
 La relación usada es Serving y se lee "A sirve a B", es decir, B depende de A. El orden de izquierda a derecha es: proveedores de servicio, gobierno, captura, integración y clasificación, y consumidores. Los recursos están en la parte inferior y los cursos de acción en la superior.
- 
+
 ### Cadenas de dependencia
- 
+
 | Cadena | Razón |
 |---|---|
 | Gestión de metadatos técnicos, Inventario de atributos de negocio, Clasificación de atributos por categoría legal | No se clasifica lo que no se ha inventariado |
@@ -416,9 +388,9 @@ La relación usada es Serving y se lee "A sirve a B", es decir, B depende de A. 
 | Gestión de aplicaciones y proveedores y Administración de accesos, Gestión de metadatos técnicos y Gestión de cambios de estructura | Sin acceso de solo lectura no hay importación |
 | Gestión de responsables de datos y Definición de políticas y reglas de calidad, Gestión de metadatos de negocio | El metadato de negocio necesita dueño y regla |
 | Gestión de trazabilidad y evidencia de decisiones, Reporte regulatorio ante la SIC | La evidencia de quién decidió y con qué criterio respalda el reporte |
- 
+
 ### Recursos
- 
+
 | Recurso | Capacidad que habilita |
 |---|---|
 | Diccionarios de los motores de S1, S3 (SQL Server) y S4 (MySQL) | Gestión de metadatos técnicos |
@@ -428,37 +400,35 @@ La relación usada es Serving y se lee "A sirve a B", es decir, B depende de A. 
 | Responsables de dato por área (por designar) | Gestión de responsables de datos |
 | Oficial de protección de datos (cargo por decidir) | Atención de derechos de los titulares |
 | Marco normativo: Ley 1581 de 2012, Ley 1266 de 2008, Decreto 1074 de 2015 y guías de la SIC | Gestión del cumplimiento normativo |
- 
+
 ### Cursos de acción
- 
+
 Son propuestas del equipo basadas en las metas de ejemplo del Bloque 6 de la entrevista, por validar:
- 
+
 | Curso de acción | Se ejecuta mediante |
 |---|---|
 | Inventariar y clasificar primero los atributos con datos personales | Inventario de atributos de negocio; Clasificación de atributos por categoría legal |
 | Documentar la estructura técnica de S1, S3 y S4 y gestionar S2 vía proveedor | Gestión de metadatos técnicos |
 | Establecer roles de gobierno (oficial, responsables de dato) y registrar decisiones | Gestión de responsables de datos; Gestión de trazabilidad y evidencia de decisiones |
- 
+
 ### Cuellos de botella externos
- 
+
 La vista deja ver tres dependencias que no controla el equipo: el proveedor de S2, que debe entregar la estructura; la disponibilidad de Jurídica para validar clasificaciones; y la designación pendiente del oficial de protección de datos y de los responsables de dato.
- 
+
 ---
- 
+
 ## 1.4 V3A: cadena de valor del negocio, eventos y capacidades que la habilitan
- 
-![V3a - Cadena de valor del negocio](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/192e266f42374043f8ea87a2868c98509428f996/mapa%20de%20capacidades%20y%20procesos/V3a%20-%20Cadena%20de%20valor%20del%20negocio.png)
- 
+
 ### Qué muestra
- 
+
 La cadena de valor primaria "Intermediación inmobiliaria (de la captación al cierre)" con seis etapas encadenadas por Triggering, tres eventos de negocio que disparan etapas y, bajo cada etapa, las capacidades que la habilitan (Serving). En la franja superior aparece la cadena de soporte "Gobierno de datos personales" y las tres capacidades transversales que sirven a toda la cadena.
- 
+
 ### Cómo se lee
- 
+
 Las etapas van de izquierda a derecha. Las cajas bajo cada etapa son capacidades de la V2 que sirven a esa etapa; una misma capacidad puede aparecer en varias columnas porque sirve a más de una etapa. Cada evento se une con su etapa mediante una Association rotulada "dispara la etapa".
- 
+
 ### Etapas de la cadena de valor
- 
+
 | Etapa | Qué ocurre | Capacidades que la habilitan |
 |---|---|---|
 | Captar y publicar | Captación del propietario con contrato de corretaje, fotos y publicación en web y portales | Captación de propietarios e inmuebles; Gestión de la información del inmueble; Valoración y fijación de precios de inmuebles; Gestión de contenidos de inmuebles; Gestión de canales web y portales |
@@ -467,41 +437,39 @@ Las etapas van de izquierda a derecha. Las cajas bajo cada etapa son capacidades
 | Formalizar | Firma del contrato de arriendo, o promesa de compraventa y escritura | Gestión de contratos de arrendamiento; Gestión de la venta de inmuebles; Asesoría y revisión legal |
 | Administrar la vigencia | Solo arriendo: cobro mensual, pago al propietario, reparaciones, reajuste anual y renovación | Gestión de contratos de arrendamiento; recaudo y cartera; pagos a propietarios; novedades y mantenimiento; contable y de facturación; tesorería; cobro jurídico; peticiones, quejas y reclamos |
 | Cerrar | Acta de entrega y devolución de depósitos (arriendo) o liquidación de comisión (venta) | Renovación y cierre de contratos; Entrega de inmuebles y devolución de depósitos; Gestión de comisiones; Gestión contable y de facturación |
- 
+
 El arriendo recorre las seis etapas. La venta omite "Administrar la vigencia" y termina en "Cerrar" con la liquidación de la comisión.
- 
+
 ### Eventos
- 
+
 | Evento | Etapa que dispara | Regla o efecto |
 |---|---|---|
 | Candidato aprobado | Formalizar | Un arriendo no se firma sin estudio aprobado |
 | Contrato de arrendamiento firmado | Administrar la vigencia | Nacen los datos de las partes, que hoy se digitan de nuevo en S1 |
 | Vencimiento o terminación del contrato | Cerrar | Da paso al acta de entrega y a la devolución de depósitos |
- 
+
 ### Capacidades transversales y cadena de soporte
- 
+
 Tres capacidades sirven a toda la cadena de intermediación: Gestión de Datos e Información, Gestión de la protección de datos personales y Gestión de Tecnología de la Información. La cadena "Gobierno de datos personales (del dato desconocido al dato gobernado)" también se relaciona con la primaria mediante Serving: gobierna los datos que nacen en cada etapa de la intermediación (identificación y contacto del propietario, estudio financiero del candidato, contrato, pagos y mora, acta y saldos).
- 
+
 ### Justificación
- 
+
 Esta vista ubica la solución dentro del negocio: la aplicación no es una etapa de la cadena primaria, sino una cadena de soporte cuyo insumo son los datos que producen esas etapas. Las capacidades de la V2 quedan ancladas a etapas concretas, así se puede responder en qué momento del negocio cada capacidad aporta valor.
- 
+
 ---
- 
+
 ## 1.5 V3B: proceso E2E de gobierno de datos, cadena de valor, eventos y actores
- 
-![V3b - Proceso E2E de gobierno de datos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/192e266f42374043f8ea87a2868c98509428f996/mapa%20de%20capacidades%20y%20procesos/V3b%20-%20Proceso%20E2E%20de%20gobierno%20de%20datos.png)
- 
+
 ### Qué muestra
- 
+
 De arriba hacia abajo: la cadena de valor de gobierno de datos con cinco etapas, cuatro eventos que disparan el proceso, el proceso E2E "Gobierno E2E del dato personal (de la fuente al reporte)" con nueve pasos, y los actores y roles asignados a cada paso. Cada etapa de la cadena queda sobre los pasos que la realizan. El color de cada paso indica el apoyo de la solución.
- 
+
 ### Cómo se lee
- 
+
 Los pasos del proceso se encadenan con Triggering de izquierda a derecha. Hay un ciclo de mantenimiento: "Controlar cambios de estructura" vuelve a disparar "Importar metadatos técnicos". Cada línea de la franja inferior es una Assignment de un actor o rol a un paso. La leyenda de colores está en la parte inferior de la vista.
- 
+
 ### Pasos del proceso y apoyo de la solución
- 
+
 | Paso | Qué hace | Apoyo de la solución | Etapa de la cadena |
 |---|---|---|---|
 | P1 Identificar fuentes y gestionar acceso a sus metadatos | TI y proveedores habilitan acceso de solo lectura a S1, S3, S4 y, vía proveedor, S2 | No (lo hace TI o el proveedor) | Conocer los datos |
@@ -513,20 +481,20 @@ Los pasos del proceso se encadenan con Triggering de izquierda a derecha. Hay un
 | P7 Publicar diccionario de datos y catálogo de términos | Integra lo técnico y lo de negocio y asocia términos a atributos | Sí | Publicar y mantener el diccionario |
 | P8 Controlar cambios de estructura | Detecta cambios entre importaciones y deja evidencia | Parcial | Publicar y mantener el diccionario |
 | P9 Consultar y reportar (titulares, seguridad, SIC) | Ubica datos de una persona, informa atributos sensibles y prepara el reporte | Parcial | Usar y rendir cuentas |
- 
+
 Resumen: cinco pasos con apoyo de la solución (P2, P3, P4, P5 y P7), tres con apoyo parcial (P6, P8 y P9) y uno sin apoyo (P1). El proceso completo está marcado como "Sí (transversal)".
- 
+
 ### Eventos que disparan el proceso
- 
+
 | Evento | Paso que dispara | Descripción |
 |---|---|---|
 | Nueva fuente de datos incorporada | P1 | Se incorpora un sistema o fuente que maneja datos de personas |
 | Cambio de estructura en una base de datos | P8 | Un proveedor o TI modifica tablas o columnas, hoy sin aviso formal |
 | Reclamo o solicitud de un titular | P9 | Una persona consulta, corrige o pide suprimir sus datos |
 | Requerimiento de la SIC | P9 | La autoridad solicita información; la obligación concreta está por verificar |
- 
+
 ### Actores y roles por paso
- 
+
 | Actor o rol | Tipo | Pasos asignados |
 |---|---|---|
 | Gerente general | Actor | Proceso E2E completo (aprueba políticas y asigna recursos) |
@@ -539,27 +507,25 @@ Resumen: cinco pasos con apoyo de la solución (P2, P3, P4, P5 y P7), tres con a
 | Abogada interna | Actor | P5, P6 |
 | Abogado externo | Actor | P6 |
 | Servicio al cliente | Actor | P9 |
- 
+
 ### Justificación
- 
+
 Esta vista es el punto de partida de la Fase 2: el proceso E2E es el que se descompone después en servicios por capas. Identificar el apoyo de la solución paso por paso evita sobreprometer: P1 es una tarea de TI y del proveedor, y P6, P8 y P9 dependen de decisiones o ejecuciones humanas, por lo que la herramienta solo registra o prepara.
- 
+
 ---
- 
+
 ## 1.6 V3C: proceso E2E y capacidades que realiza
- 
-![V3c - Proceso E2E y capacidades](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/192e266f42374043f8ea87a2868c98509428f996/mapa%20de%20capacidades%20y%20procesos/V3c%20-%20Proceso%20E2E%20y%20capacidades%20que%20realiza.png)
- 
+
 ### Qué muestra
- 
+
 Los nueve pasos del proceso E2E arriba y, abajo, las 16 capacidades de la V2 que esos pasos realizan, unidas con 17 relaciones Realization. También conserva la secuencia de Triggering y el ciclo de mantenimiento entre P8 y P2. La vista tiene 26 conexiones.
- 
+
 ### Cómo se lee
- 
+
 Una línea de Realization desde un paso hacia una capacidad significa que el paso es la forma concreta en que la organización ejerce esa capacidad. Un paso puede realizar varias capacidades, y se lee de arriba hacia abajo. Los pasos usan la leyenda de apoyo de la solución (naranja con apoyo, naranja claro apoyo parcial, gris sin apoyo) y las capacidades usan la de impacto de la V2 (naranja directo, naranja claro parcial, crema indirecto).
- 
+
 ### Trazabilidad paso a capacidad
- 
+
 | Paso del proceso | Capacidades que realiza |
 |---|---|
 | P1 Identificar fuentes y gestionar acceso a sus metadatos | Gestión de metadatos técnicos; Administración de accesos e identidades |
@@ -571,9 +537,9 @@ Una línea de Realization desde un paso hacia una capacidad significa que el pas
 | P7 Publicar diccionario de datos y catálogo de términos | Gestión del diccionario de datos; Gestión del catálogo de términos de negocio |
 | P8 Controlar cambios de estructura | Gestión de cambios de estructura de datos; Gestión de trazabilidad y evidencia de decisiones |
 | P9 Consultar y reportar (titulares, seguridad, SIC) | Atención de derechos de los titulares; Reporte regulatorio ante la SIC; Gestión de la seguridad de la información |
- 
+
 ### Qué permite concluir
- 
+
 - Los pasos P2, P3, P4, P5 y P7 realizan capacidades con impacto directo, y son el núcleo de la solución.
 - P6 realiza dos capacidades de impacto parcial; P8 realiza una de impacto parcial (cambios de estructura) y una directa (trazabilidad y evidencia de decisiones); P9 realiza una de impacto parcial (reporte ante la SIC) y dos indirectas (derechos de los titulares y seguridad de la información). Esto es coherente con el apoyo parcial de estos tres pasos en la V3b.
 - P1 realiza una capacidad de impacto directo (metadatos técnicos), pero el paso lo ejecuta TI o el proveedor, y una capacidad de impacto indirecto (accesos e identidades), por eso se marca sin apoyo de la solución.
@@ -584,7 +550,7 @@ Una línea de Realization desde un paso hacia una capacidad significa que el pas
 # 2. Descomposición de servicios del proceso E2E
 
 La V4 responde seis preguntas, una por vista:
- 
+
 | Vista | Pregunta que responde |
 |---|---|
 | V4a | De dónde salen los servicios |
@@ -594,22 +560,22 @@ La V4 responde seis preguntas, una por vista:
 | V4e | Cuál es el contrato de cada servicio de actividad |
 | V4f | Cuál es el contrato de cada servicio de entidad, utilidad e interoperabilidad |
 
+---
+
 ## 2.1 V4a: del proceso E2E a los servicios de actividad
 
-![4A](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/bd823eea7ac9f57cca900c48089c03c943edf38e/descomposicion%20de%20servicios/V4a%20-%20Del%20proceso%20E2E%20a%20los%20servicios.png)
-
 ### Qué muestra
- 
+
 Los nueve pasos del proceso E2E "Gobierno E2E del dato personal" (P1 a P9), con flujo secuencial entre ellos, y los 14 servicios de actividad (capa 3) que realizan esos pasos mediante relaciones Realization.
- 
+
 ### Cómo se lee
- 
+
 El proceso va de izquierda a derecha, desde la fuente de datos hasta el reporte. Cada línea punteada que baja desde un paso es una relación Realization hacia un servicio de actividad. Un servicio de actividad es la forma en que el negocio ve lo que hace un paso: expone una capacidad con un consumidor y unas reglas propias.
- 
+
 Cada servicio queda ligado a una capacidad del mapa de la V2, de modo que la descomposición se puede rastrear desde la estrategia hasta el servicio.
- 
+
 ### Trazabilidad paso, servicio y capacidad
- 
+
 | Paso del proceso | Servicios de actividad | Capacidad de la V2 que soportan |
 |---|---|---|
 | P1 Identificar fuentes y gestionar acceso a sus metadatos | gestión del acceso a metadatos técnicos | Gestión de metadatos técnicos |
@@ -621,37 +587,36 @@ Cada servicio queda ligado a una capacidad del mapa de la V2, de modo que la des
 | P7 Publicar diccionario de datos y catálogo de términos | publicación del diccionario de datos; gestión del catálogo de términos de negocio | Gestión del diccionario de datos; Gestión del catálogo de términos de negocio |
 | P8 Controlar cambios de estructura | control de cambios de estructura | Gestión de cambios de estructura de datos |
 | P9 Consultar y reportar (titulares, seguridad, SIC) | ubicación de datos personales; información para seguridad de la información; información para el reporte regulatorio; seguimiento de completitud de atributos | Atención de derechos de los titulares; Gestión de la seguridad de la información; Reporte regulatorio ante la SIC; Gobierno de Datos |
- 
+
 ### Criterio de partición
- 
+
 Un paso se parte en varios servicios cuando atiende capacidades distintas, porque cada servicio resultante tiene consumidores y reglas diferentes:
- 
+
 - P4 separa metadatos de negocio (definición, calidad, expresión regular) de responsables de datos (asignación y reasignación con histórico).
 - P7 separa diccionario (consulta integrada de solo lectura) de catálogo de términos (gestión de significados y conflictos).
 - P9 separa cuatro consumidores: el titular que reclama, seguridad de la información, el reporte regulatorio y la gerencia que mide completitud.
+
 Si estos servicios se agruparan en uno solo, un cambio en las reglas de uno obligaría a modificar los demás. La separación reduce el acoplamiento y mantiene cada servicio cohesivo alrededor de una sola capacidad.
- 
+
 ---
 
 ## 2.2 V4b: descomposición en cuatro capas de servicio
- 
-![4B](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/bd823eea7ac9f57cca900c48089c03c943edf38e/descomposicion%20de%20servicios/V4b%20-%20Descomposici%C3%B3n%20en%20cuatro%20capas%20de%20servicio.png)
- 
+
 ### Qué muestra
- 
+
 Las cuatro capas de servicio, de arriba hacia abajo, más el bloque de servicios excluidos. La capa 1 se compone de la capa 2 y la capa 2 de la capa 3 mediante Composition. Cada servicio de capa 4 queda bajo el servicio de actividad que más lo usa mediante Serving. La vista dibuja solo el uso principal; el uso completo está en la matriz de esta sección y en el modelo como relaciones Serving adicionales.
- 
+
 ### Las cuatro capas
- 
+
 | Capa | Qué es | Cantidad | Se implementa |
 |---|---|---|---|
 | 1. Servicio E2E | El proceso E2E expuesto como un solo servicio al negocio | 1 | No, agrupa |
 | 2. Servicios de proceso | Uno por etapa de la cadena de valor de gobierno de datos | 5 | No, agrupan |
 | 3. Servicios de actividad | Uno por paso o capacidad del proceso | 14 | Sí, como orquestación de la capa 4 |
 | 4. Servicios de entidad y utilidad | Una entidad del dominio o una utilidad transversal | 13 | Sí. Es el tamaño sobre el que se construye la aplicación |
- 
+
 ### Composición completa
- 
+
 - Servicio de gobierno del dato personal (capa 1)
   - Servicio de conocimiento de los datos (capa 2): gestión del acceso a metadatos técnicos; importación de metadatos técnicos; inventario de atributos de negocio
   - Servicio de descripción de los datos: registro de metadatos de negocio; asignación de responsables de datos
@@ -660,21 +625,22 @@ Las cuatro capas de servicio, de arriba hacia abajo, más el bloque de servicios
   - Servicio de uso y rendición de cuentas: ubicación de datos personales; información para seguridad de la información; información para el reporte regulatorio; seguimiento de completitud de atributos
 
 ### Criterio de tamaño adecuado para un servicio de capa 4
- 
+
 Un servicio de capa 4 debe cumplir estas condiciones:
- 
+
 1. Gestiona una sola entidad del dominio o una sola utilidad.
 2. Tiene entre 3 y 6 operaciones.
 3. No depende de otro servicio de su misma capa.
 4. Se explica con una frase del negocio.
+
 Reglas de ajuste: si dos entidades cambian siempre juntas se unen en un servicio; si una entidad tiene dos dueños distintos se divide.
- 
+
 ### Por qué la capa 4 se define por entidades
- 
+
 Las entidades son lo más estable del dominio: los pasos del proceso cambian, pero un atributo, una clasificación o un término siguen existiendo. Por eso la aplicación se construye sobre la capa 4 y la capa 3 solo orquesta llamadas a la capa 4. Las tres utilidades (bitácora, notificación y control de acceso) son transversales porque casi todos los servicios las usan. La bitácora es, además, la evidencia de decisiones que pide la gerencia.
- 
+
 Servicios de capa 4:
- 
+
 | Código | Servicio | Tipo |
 |---|---|---|
 | 4.1 | atributo de negocio | Entidad |
@@ -690,11 +656,11 @@ Servicios de capa 4:
 | 4.11 | notificación | Utilidad |
 | 4.12 | control de acceso por rol | Utilidad |
 | 4.13 | informes y exportación | Entidad |
- 
+
 ### Matriz de uso: capa 3 por capa 4
- 
+
 Una "X" indica que el servicio de actividad (fila) usa el servicio de capa 4 (columna).
- 
+
 | Capa 3 \ Capa 4 | 4.1 | 4.2 | 4.3 | 4.4 | 4.5 | 4.6 | 4.7 | 4.8 | 4.9 | 4.10 | 4.11 | 4.12 | 4.13 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | gestión del acceso a metadatos técnicos | | | X | | | | | | | X | | X | |
@@ -711,11 +677,11 @@ Una "X" indica que el servicio de actividad (fila) usa el servicio de capa 4 (co
 | información para seguridad de la información | | | | | X | X | | X | X | | | | |
 | información para el reporte regulatorio | | | X | | | X | | X | | | | | X |
 | seguimiento de completitud de atributos | X | | | X | X | X | | | | | X | | |
- 
+
 ### Servicios excluidos
- 
+
 Los 16 servicios en gris de la vista son decisiones de alcance, cada una con su justificación:
- 
+
 | Código | Servicio excluido | Justificación |
 |---|---|---|
 | Z1 | Descubrimiento automático de datos personales (lectura de datos) | El negocio prefiere que la herramienta no lea datos de personas para no abrir otro punto de exposición de cédulas e ingresos (Bloque 8). La clasificación es manual. |
@@ -734,27 +700,25 @@ Los 16 servicios en gris de la vista son decisiones de alcance, cada una con su 
 | Z14 | Aprobación de políticas de datos | Decide la gerente fuera de la herramienta; el diccionario solo referencia las vigentes. |
 | Z15 | Directorio e identidad corporativa (SSO) | La empresa no tiene uno; los roles se manejan localmente en el servicio de control de acceso. |
 | Z16 | Integración con portales, aseguradora, banco, notarías y centrales de riesgo | Reciben datos del negocio pero no intercambian información con la herramienta. Extensión futura: registrarlos como destinatarios del atributo. |
- 
+
 ---
 
 ## 2.3 V4c: servicios de entidad y utilidad, roles, funciones y objetos pasivos
- 
-![4C](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/bd823eea7ac9f57cca900c48089c03c943edf38e/descomposicion%20de%20servicios/V4c%20-%20Servicios%20de%20entidad%20y%20utilidad.png)
- 
+
 ### Qué muestra
- 
+
 Para cada servicio de capa 4: los roles y actores asignados (Assignment) a la función de negocio que lo realiza (Realization) y los objetos pasivos que gestiona (Access). En la parte inferior de la vista está el modelo de objetos pasivos.
- 
+
 ### Cómo se lee
- 
+
 La cadena de elementos para cada servicio es:
- 
-Rol o actor, Assignment, Función de negocio, Realization, Servicio de negocio, Access, Objeto pasivo.
- 
+
+`Rol o actor` → Assignment → `Función de negocio` → Realization → `Servicio de negocio` → Access → `Objeto pasivo`
+
 Se usa una función por servicio para dejar claro quién responde por cada entidad.
- 
+
 ### Asignaciones
- 
+
 | Servicio | Función que lo realiza | Roles y actores asignados | Objetos pasivos |
 |---|---|---|---|
 | atributo de negocio | Administración de atributos de negocio | Administrador del diccionario de datos | Atributo de negocio |
@@ -770,46 +734,44 @@ Se usa una función por servicio para dejar claro quién responde por cada entid
 | notificación | Gestión de avisos | Administrador del diccionario de datos | Aviso |
 | control de acceso por rol | Administración de permisos | Administrador del diccionario de datos | Permiso de acceso |
 | informes y exportación | Elaboración de informes | Oficial de protección de datos; Abogada interna | Informe regulatorio |
- 
+
 ### Modelo de objetos pasivos
- 
-- El Atributo de negocio agrega su Metadato técnico, su Metadato de negocio, su Clasificación y su Responsabilidad.
-- La Fuente de datos agrega los metadatos técnicos que se importan de ella.
-- El Término de negocio se asocia a los atributos que describe.
-- El Diccionario de datos agrega atributos y términos.
+
+- El **Atributo de negocio** agrega su Metadato técnico, su Metadato de negocio, su Clasificación y su Responsabilidad.
+- La **Fuente de datos** agrega los metadatos técnicos que se importan de ella.
+- El **Término de negocio** se asocia a los atributos que describe.
+- El **Diccionario de datos** agrega atributos y términos.
 
 ### Roles por designar
- 
+
 Tres de los roles no existen aún en la empresa y se modelaron como roles por designar, sin asignar personas:
- 
+
 - Oficial de protección de datos.
 - Responsable de dato de área.
 - Administrador del diccionario de datos.
+
 La entrevista habla de "quien administre el diccionario" sin definirlo. Quién ocupe ese rol define los permisos del servicio de control de acceso por rol, y eso importa porque el diccionario revela dónde está la información sensible.
- 
+
 ---
 
 ## 2.4 V4D: capa anticorrupción e interoperabilidad
- 
-![v4d](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/bd823eea7ac9f57cca900c48089c03c943edf38e/descomposicion%20de%20servicios/V4d%20-%20Capa%20anticorrupci%C3%B3n.png)
 
- 
 ### Qué muestra
- 
+
 La parte superior (ENTRADA) muestra los servicios externos que alimentan la solución. La parte inferior (SALIDA) muestra los servicios de la solución que consumen el oficial, seguridad y Jurídica. Los servicios en naranja son los adaptadores de la capa anticorrupción. Los servicios en lila son los servicios externos.
- 
+
 La dirección se describe desde la solución: entrada es información que llega a la solución; salida es información que la solución entrega.
- 
+
 ### Cómo se lee
- 
+
 En la entrada, el recorrido es: actor externo, servicio externo, adaptador, servicio de la solución. En la salida, el recorrido es el inverso: servicio de la solución, adaptador, consumidor.
- 
+
 ### Qué es la capa anticorrupción
- 
+
 Es un patrón de DDD (Anti-Corruption Layer). Los sistemas legados, el CRM del proveedor y la SIC tienen sus propios modelos y formatos. El adaptador traduce esos modelos al modelo interno, de modo que un cambio de motor, de proveedor o del formato del reporte afecta solo al adaptador y no al dominio.
- 
+
 ### Inventario de interoperabilidades
- 
+
 | # | Servicio externo | Tipo | Información | Dirección | Adaptador | Si no está disponible o no es válida |
 |---|---|---|---|---|---|---|
 | 1 | S1 Administración de arrendamientos (SQL Server) | Sistema legado | Estructura técnica: tablas, columnas, tipo, longitud, obligatoriedad. Autoriza la jefa de administración; ejecuta TI | Entrada | A1 | Se reintenta; se usa la última versión conocida y se anota su fecha |
@@ -826,9 +788,9 @@ Es un patrón de DDD (Anti-Corruption Layer). Los sistemas legados, el CRM del p
 | 12 | Correo electrónico | Canal | Avisos por rol, sin datos de personas | Salida | A8 | El aviso queda pendiente en la aplicación |
 | 13 | Portales, correo masivo, aseguradora, banco, notarías, centrales de riesgo | Terceros receptores de datos | Reciben datos del negocio, no de la herramienta | Sin intercambio | No aplica | Excluido (Z16); extensión futura: registrarlos como destinatarios del atributo |
 | 14 | Dispositivos | No aplica | Ninguno identificado en la entrevista (la huella de la cédula es un dato, no un dispositivo) | No aplica | No aplica | No aplica |
- 
+
 ### Adaptadores
- 
+
 | Adaptador | Dirección | Sirve a | Qué traduce |
 |---|---|---|---|
 | A1 adaptación de metadatos técnicos de motores relacionales | Entrada | importación de metadatos técnicos | Traduce el catálogo de SQL Server y MySQL (S1, S3, S4) al modelo interno de metadato técnico y normaliza tipos entre motores |
@@ -839,9 +801,9 @@ Es un patrón de DDD (Anti-Corruption Layer). Los sistemas legados, el CRM del p
 | A6 entrega de información a seguridad de la información | Salida | información para seguridad de la información | Presenta atributos sensibles y privados, sistemas de riesgo y cambios de riesgo en la vista de seguridad |
 | A7 generación del informe para la SIC | Salida | información para el reporte regulatorio | Da forma de informe a la información regulatoria; el formato exigido está por verificar |
 | A8 notificación por correo electrónico | Salida | notificación | Convierte un aviso interno en un correo sin datos de personas |
- 
+
 ### Restricciones de diseño
- 
+
 - Todos los intercambios de entrada son de solo estructura: la herramienta no lee datos de personas, como pidieron la gerente y la abogada.
 - Las áreas de negocio y Jurídica interactúan por pantalla con la propia aplicación, por eso no necesitan adaptador.
 - La SIC no recibe nada directamente de la solución: se exporta el informe y Jurídica lo presenta de forma manual.
@@ -850,17 +812,15 @@ Es un patrón de DDD (Anti-Corruption Layer). Los sistemas legados, el CRM del p
 ---
 
 ## 2.5 V4E: Contract First, contratos de los servicios de actividad (capa 3)
- 
-![V4E](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/bd823eea7ac9f57cca900c48089c03c943edf38e/descomposicion%20de%20servicios/V4e%20-%20Contract%20First%20contratos%20de%20los%20servicios%20capa%203.png)
- 
+
 ### Qué muestra
- 
+
 Cada servicio de capa 3, su contrato (elemento Contract de ArchiMate, relación de especificación) y los objetos pasivos que el contrato agrega (Aggregation).
- 
+
 ### Qué significa Contract First
- 
+
 El contrato se diseña antes que la aplicación. Fija lo que el consumidor puede pedir y lo que el servicio promete. Cada contrato define cinco campos, que están guardados como propiedades del elemento Contract en Archi:
- 
+
 | Campo | Contenido |
 |---|---|
 | Operaciones | Firmas de las operaciones que expone el servicio |
@@ -868,15 +828,15 @@ El contrato se diseña antes que la aplicación. Fija lo que el consumidor puede
 | Salida | Resultado que entrega |
 | Reglas de negocio | Condiciones que el servicio garantiza o exige |
 | Excepciones | Qué pasa cuando falta información o algo falla |
- 
+
 Las capas 1 y 2 no tienen contrato propio porque solo agrupan.
- 
+
 ### Regla común de excepciones
- 
+
 Los contratos de capa 3 son los que ven los usuarios del negocio, por eso sus excepciones siguen la regla de la gerente: cuando la información falta o es dudosa, el sistema indica qué falta y no presenta un dato dudoso como correcto.
- 
+
 ### Ejemplo completo: 3.6 Servicio de clasificación de atributos
- 
+
 | Campo | Contenido |
 |---|---|
 | Operaciones | proponerClasificacion(atributo, categoría, criterio, justificación); marcarEnRevision(atributo, opinión); consultarPendientes() |
@@ -884,9 +844,9 @@ Los contratos de capa 3 son los que ven los usuarios del negocio, por eso sus ex
 | Salida | clasificación en estado propuesta o en revisión |
 | Reglas de negocio | Categorías según el marco normativo (por verificar). Si hay discusión queda "en revisión" con la opinión de cada parte |
 | Excepciones | Sin justificación no se guarda |
- 
+
 ### Resumen de los 14 contratos de capa 3
- 
+
 | Código | Servicio | Operaciones | Regla o excepción central |
 |---|---|---|---|
 | 3.1 | gestión del acceso a metadatos técnicos | solicitarAcceso(fuente); registrarAutorizacion(fuente, autorizador); registrarCuentaSoloLectura(fuente); revocarAcceso(fuente) | Solo lectura, cuenta propia. Sin autorización no se habilita la importación |
@@ -903,23 +863,21 @@ Los contratos de capa 3 son los que ven los usuarios del negocio, por eso sus ex
 | 3.12 | información para seguridad de la información | listarAtributosSensibles(); listarSistemasDeRiesgo(); listarCambiosDeRiesgo(); listarSinResponsable() | Solo atributos sensibles y privados, sin datos de personas |
 | 3.13 | información para el reporte regulatorio | prepararInforme(parámetros); validarCompletitud(informe); exportarInforme(informe, formato) | No se transmite: lo presenta Jurídica. Información no validada no se presenta como definitiva |
 | 3.14 | seguimiento de completitud de atributos | calcularCobertura(); listarIncompletos(); listarSinClasificar() | El cálculo es sobre atributos, no sobre datos. Sin atributos inventariados: cobertura no calculable |
- 
+
 ---
 
 ## 2.6 V4F: Contract First, contratos de entidad, utilidad e interoperabilidad
- 
-![V4F](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/bd823eea7ac9f57cca900c48089c03c943edf38e/descomposicion%20de%20servicios/V4f%20-%20Contract%20First%20contratos%20entidad%2C%20utilidad%20e%20interoperabilidad.png)
- 
+
 ### Qué muestra
- 
+
 Los contratos de los 13 servicios de capa 4 y de los 8 adaptadores de la capa anticorrupción, con los objetos pasivos que agregan. Los servicios de entidad y utilidad se muestran en amarillo claro y los adaptadores en naranja.
- 
+
 ### Por qué son el nivel de construcción
- 
+
 Estos contratos son los que sirven de base a la capa de aplicaciones: cada uno corresponde a una entidad, una utilidad o un adaptador. Son pequeños e independientes del proceso, por eso se reutilizan desde varios servicios de actividad. Los de los adaptadores dejan por escrito qué formato se espera de cada sistema externo y qué ocurre si no llega. Las operaciones están escritas como firmas del negocio y se refinan al pasar a la capa de aplicaciones.
- 
+
 ### Ejemplo completo de entidad: 4.6 Servicio de clasificación de atributo
- 
+
 | Campo | Contenido |
 |---|---|
 | Operaciones | proponer(atributo, categoría, criterio, justificación); registrarValidacion(id, decisión); marcarEnRevision(id, opinión); consultar(atributo); listarPendientes() |
@@ -927,9 +885,9 @@ Estos contratos son los que sirven de base a la capa de aplicaciones: cada uno c
 | Salida | clasificación con estado (propuesta, en revisión, validada), versión y fecha |
 | Reglas de negocio | La valida solo Jurídica u oficial. Reclasificar crea versión |
 | Excepciones | Sin justificación no se guarda; sin validar no es definitiva |
- 
+
 ### Ejemplo completo de adaptador: A1 Servicio de adaptación de metadatos técnicos de motores relacionales
- 
+
 | Campo | Contenido |
 |---|---|
 | Operaciones | leerCatalogo(motor, conexión); traducirAModeloInterno(catálogo) |
@@ -937,9 +895,9 @@ Estos contratos son los que sirven de base a la capa de aplicaciones: cada uno c
 | Salida | Metadatos técnicos en el modelo interno, con tipos normalizados |
 | Reglas de negocio | Solo el catálogo del sistema, nunca tablas de negocio. Cuenta propia de solo lectura |
 | Excepciones | Fallo de conexión: se reintenta y la fuente queda "desactualizada" |
- 
+
 ### Resumen de los contratos de capa 4
- 
+
 | Código | Servicio | Operaciones | Regla o excepción central |
 |---|---|---|---|
 | 4.1 | atributo de negocio | crearAtributo(datos); consultarAtributo(id); modificarAtributo(id, datos); listarAtributos(filtro); obtenerVersiones(id) | Un atributo puede mapearse a varias columnas. Cada cambio crea versión. Es "incompleto" si falta definición, responsable o clasificación |
@@ -955,9 +913,9 @@ Estos contratos son los que sirven de base a la capa de aplicaciones: cada uno c
 | 4.11 | notificación | programarAviso(tipo, rol, referencia); listarAvisos(rol); marcarAtendido(aviso) | Los avisos van por rol y nunca incluyen datos de personas |
 | 4.12 | control de acceso por rol | asignarRol(usuario, rol); verificarPermiso(usuario, operación); listarPermisos(rol) | Roles: administrador, responsable de dato, oficial, jurídica, TI, consulta. Sin permiso: se deniega y se registra en la bitácora |
 | 4.13 | informes y exportación | generarInforme(tipo, parámetros); exportar(informe, formato) | Marca qué falta o no está validado. No contiene datos de personas |
- 
+
 ### Resumen de los contratos de adaptadores
- 
+
 | Código | Servicio | Operaciones | Regla o excepción central |
 |---|---|---|---|
 | A1 | metadatos técnicos de motores relacionales | leerCatalogo(motor, conexión); traducirAModeloInterno(catálogo) | Ver ejemplo completo arriba |
@@ -968,9 +926,11 @@ Estos contratos son los que sirven de base a la capa de aplicaciones: cada uno c
 | A6 | información a seguridad de la información | obtenerAtributosSensibles(); obtenerSistemasDeRiesgo(); obtenerCambiosDeRiesgo() | Solo atributos sensibles y privados |
 | A7 | informe para la SIC | generarInformeRegulatorio(parámetros); exportar(informe, formato) | Formato por verificar. La presenta Jurídica de forma manual |
 | A8 | notificación por correo electrónico | enviarAviso(destinatario, plantilla, referencia) | El cuerpo no incluye datos de personas. Servidor no disponible: el aviso queda pendiente |
- 
-Total: 14 contratos de actividad, 13 de entidad y utilidad y 8 de adaptadores, es decir, 35 contratos. Son un primer borrador de operaciones y reglas que se refina en la capa de aplicaciones.
- 
+
+**Total:** 14 contratos de actividad, 13 de entidad y utilidad y 8 de adaptadores, es decir, 35 contratos. Son un primer borrador de operaciones y reglas que se refina en la capa de aplicaciones.
+
+---
+
 # 3. Dominios y lenguaje ubicuo
 
 La Fase 3 responde tres preguntas, repartidas entre las vistas así:
@@ -990,11 +950,11 @@ Elementos de ArchiMate que se agregan en esta fase:
 | Representation | Negocio | Cada término del glosario |
 | Meaning | Motivación | Cada significado de un término en un contexto |
 
-Relaciones nuevas: **Serving** entre subdominios ("A sirve a B" se lee "B depende de A") y **Association** entre un significado y su término. En esta sección, P1 a P9 son los pasos del proceso E2E (V3b) y R1 a R10 los requisitos de la V1.
-
----
+Relaciones nuevas: Serving entre subdominios ("A sirve a B" se lee "B depende de A") y Association entre un significado y su término. En esta sección, P1 a P9 son los pasos del proceso E2E (V3b) y R1 a R10 los requisitos de la V1.
 
 ## Análisis del ecosistema
+
+<!-- Base para reescribir con palabras propias. Cada afirmación lleva su bloque de la entrevista: verificar contra el registro. -->
 
 Este análisis describe el entorno en que operará la solución, siguiendo el primer paso del método de extracción de dominios: entender la estructura organizacional del problema para tener una visión general del entorno. Ninguna área de nuestro caso tiene el gobierno de los datos como función: varias personas participan en identificar, documentar y controlar los datos, pero ninguna lo tiene asignado y cada una hace una parte por costumbre (Bloque 3). Por eso las personas se agrupan según su relación con los datos. Los grupos se solapan: la abogada interna juzga lo legal y a la vez sería quien consulte la información (Bloque 8), y la gerente general decide y a la vez espera recibir un listado de datos personales clasificado (Bloque 6).
 
@@ -1018,16 +978,14 @@ Este análisis describe el entorno en que operará la solución, siguiendo el pr
 
 ## 3.1 V5: dominios y subdominios
 
-![V5 - Dominios y subdominios](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/main/dominios%20y%20lenguajes%20ubicuos/V5%20-%20Dominios%20y%20subdominios.png)
-
 ### Qué muestra
 
-El dominio de Gobierno del Dato Personal, en la parte que cubre la solución (el gobierno del dato personal), dividido en 8 subdominios. Cada uno está clasificado como Core, de soporte o genérico. La vista muestra las dependencias entre subdominios y los objetos de negocio que maneja cada uno: 8 subdominios, 13 objetos y 13 relaciones Serving.
+El dominio de Gestión del Dato Personal, en la parte que cubre la solución (el gobierno del dato personal), dividido en 8 subdominios. Cada uno está clasificado como Core, de soporte o genérico. La vista muestra las dependencias entre subdominios y los objetos de negocio que maneja cada uno: 8 subdominios, 13 objetos y 13 relaciones Serving.
 
 ### Cómo se lee
 
-- Cada rectángulo grande es un subdominio. Su color indica el tipo: naranja fuerte Core, naranja claro soporte y gris genérico. **No es el impacto de la solución de la V2**: la leyenda de la vista lo aclara.
-- Cada subdominio lleva tres propiedades: `Subdominio DDD` (Core, Supporting o Generic, `Requisitos` y `Pasos E2E`.
+- Cada rectángulo grande es un subdominio. Su color indica el tipo: naranja fuerte Core, naranja claro soporte y gris genérico. No es el impacto de la solución de la V2: la leyenda de la vista lo aclara.
+- Cada subdominio lleva tres propiedades: Subdominio DDD (Core, Supporting o Generic, los mismos valores de la V2), Requisitos y Pasos E2E.
 - Una flecha de A a B es una relación Serving y se lee "A sirve a B", es decir, B depende de A.
 - Los objetos dentro de cada subdominio son los mismos de la V4c, no copias.
 
@@ -1036,11 +994,11 @@ El dominio de Gobierno del Dato Personal, en la parte que cubre la solución (el
 | # | Subdominio | Tipo | Pasos del E2E | Requisitos | Objetos de negocio |
 |---|---|---|---|---|---|
 | 1 | Fuentes y metadatos técnicos | Soporte | P1, P2, P8 | R1, R7, R8 | Fuente de datos, Autorización de acceso a metadatos, Metadato técnico, Cambio de estructura |
-| 2 | Atributos de negocio y su descripción | **Core** | P3, P4 | R3, R4 | Atributo de negocio, Metadato de negocio |
-| 3 | Clasificación y validación jurídica | **Core** | P5, P6 | R2 | Clasificación del atributo |
+| 2 | Atributos de negocio y su descripción | Core | P3, P4 | R3, R4 | Atributo de negocio, Metadato de negocio |
+| 3 | Clasificación y validación jurídica | Core | P5, P6 | R2 | Clasificación del atributo |
 | 4 | Responsables, autoridad y decisiones | Soporte | P4 (en parte) | R10; R3 y R8 (en parte) | Responsabilidad sobre el dato, Evidencia de decisión |
 | 5 | Catálogo de términos | Soporte | Parte de P7 | R6 | Término de negocio |
-| 6 | Diccionario integrado | **Core** | Parte de P7 | R5 | Diccionario de datos |
+| 6 | Diccionario integrado | Core | Parte de P7 | R5 | Diccionario de datos |
 | 7 | Consulta y reporte | Soporte | P9 | R9 | Informe regulatorio |
 | 8 | Control de acceso por rol | Genérico | Transversal | R10 (parte técnica) | Permiso de acceso |
 
@@ -1085,10 +1043,9 @@ Los subdominios salieron del proceso y de tres criterios: lenguaje propio, actor
 - **Consulta y reporte** se apoya en quienes necesitarían consultar, aunque el informe nunca se haya preparado.
 - **Diccionario integrado** y **control de acceso** no corresponden a ningún grupo de personas. Son decisiones de diseño. El Bloque 7 solo advierte que el propio diccionario puede ser información delicada.
 
+---
+
 ## 3.2 V7: lenguaje ubicuo
-
-![V7](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/main/dominios%20y%20lenguajes%20ubicuos/V7%20-%20Lenguaje%20ubicuo.png)
-
 
 ### Qué muestra
 
@@ -1096,59 +1053,57 @@ Los 35 términos del glosario en 10 agrupaciones: los 8 subdominios de la V5 (25
 
 ### Cómo se lee
 
-- Cada término es una Representation. Su definición está en Documentation y su ejemplo en la propiedad `Ejemplo`.
+- Cada término es una Representation. Su definición está en Documentation y su ejemplo en la propiedad Ejemplo.
 - Los subdominios llevan el color de la V5. Los dos grupos de lenguaje no tienen color, porque no son subdominios.
-- Trece términos tienen un objeto equivalente en la V5, y la propiedad `Objeto de negocio en la V5` lo indica. En *Clasificación* y *Responsable de dato* el nombre del objeto es distinto (*Clasificación del atributo* y *Responsabilidad sobre el dato*).
+- Trece términos tienen un objeto equivalente en la V5, y la propiedad Objeto de negocio en la V5 lo indica. En Clasificación y Responsable de dato el nombre del objeto es distinto (Clasificación del atributo y Responsabilidad sobre el dato).
 
 ### Glosario
 
 | Término | Subdominio o grupo | Definición | Ejemplo |
 |---|---|---|---|
-| **Fuente de datos** | 1 · Fuentes y metadatos técnicos | Sistema o lugar donde hay datos que deben documentarse. Puede tener diccionario técnico (una base de datos) o no tenerlo (hojas, carpetas, correo, mensajería). Una fuente identificada pero sin inventariar se muestra como *área sin cubrir*. | S2, un CRM en la nube, solo entrega su estructura mediante un pedido al proveedor, y las hojas de cálculo no tienen diccionario (Bloque 1) |
-| **Metadato técnico** | 1 · Fuentes y metadatos técnicos | Descripción de la estructura de una columna en un sistema fuente: tabla, columna, tipo de dato, longitud y obligatoriedad. Se lee del diccionario del motor y no incluye los registros. Es la parte técnica de un *atributo de negocio*. | El negocio dice que la cédula tiene hasta 10 dígitos, pero en S2 el campo acepta 20 caracteres, incluidas letras (Bloque 5) |
-| **Autorización de acceso a metadatos** | 1 · Fuentes y metadatos técnicos | Constancia de quién autorizó, y cuándo, el acceso de solo lectura a la estructura de una fuente. Sin ella no se habilita la importación. No es la autorización que firma un *titular* ni un *permiso de acceso* a la herramienta. | Para S1 autoriza la jefa de administración y ejecuta el coordinador de TI (Bloque 8) |
-| **Importación** | 1 · Fuentes y metadatos técnicos | Lectura de la estructura técnica de una fuente para traerla a la herramienta. Solo trae estructura, nunca registros con datos de personas. | S2 tarda días en entregar su estructura, y el negocio acepta tener esa fuente desactualizada si se sabe (Bloque 8) |
-| **Cambio de estructura** | 1 · Fuentes y metadatos técnicos | Diferencia detectada entre dos importaciones de una misma fuente: tabla o columna agregada, renombrada o modificada. No es un cambio de clasificación ni de definición. | El proveedor de S2 renombró una columna y la publicación hacia S4 dejó de actualizar los precios durante tres días (Bloque 5) |
-| **Atributo de negocio** | 2 · Atributos de negocio y su descripción | Concepto de dato que se documenta una sola vez, con su definición, su responsable y su clasificación, aunque esté guardado en varias columnas de varios sistemas. No es la columna o campo de un sistema fuente, que es solo la ubicación técnica del dato (ver *metadato técnico*). | La cédula está en S1, que acepta de 7 a 11 caracteres, y en S2, que acepta letras (Bloque 4): son dos columnas de un mismo atributo |
-| **Metadato de negocio** | 2 · Atributos de negocio y su descripción | Descripción de un atributo hecha desde el negocio: su definición, su responsable, su política de calidad y su expresión regular. La asignación del responsable, su historial y quién lo designa se gestionan aparte (ver *responsable de dato*). | La columna VR_CAN de S1 tiene tres definiciones en uso y ningún responsable asignado (Bloque 5) |
-| **Política de calidad** | 2 · Atributos de negocio y su descripción | Regla que describe cómo debe ser el valor de un atributo (formato, longitud, obligatoriedad). Se documenta, no se ejecuta contra los datos. | La cédula debería tener solo números, de 6 a 10 dígitos y sin puntos (Bloque 4) |
-| **Expresión regular** | 2 · Atributos de negocio y su descripción | Patrón de texto que valida el formato de un atributo. Se registra y se comprueba que sea sintácticamente válida, pero no se ejecuta contra datos reales. Valida el formato, no que el dato sea verdadero ni lícito. | `^[0-9]{6,10}$` para la cédula, ilustrativa (Bloque 4) |
-| **Atributo incompleto** | 2 · Atributos de negocio y su descripción | Atributo al que le falta definición, responsable o clasificación. Se muestra como incompleto y no como correcto. | Nadie recuerda con certeza qué guarda la columna OBS3 de S1, así que le faltaría la definición (Bloque 5) |
-| **Clasificación** | 3 · Clasificación y validación jurídica | Asignación a un atributo de una *categoría legal*, con su criterio y su justificación. No incluye la *finalidad* del dato. | La abogada considera privada la cuenta bancaria del propietario (Bloque 4) |
-| **Categoría legal** | 3 · Clasificación y validación jurídica | Cada nivel con que se clasifica un atributo. Las clases pública, semiprivada y privada las define la Ley 1266 de 2008, y la Ley 1581 de 2012 añade otras categorías. El Decreto 1377 de 2013 completa la de dato público: es el que no cae en las otras tres. El dato semiprivado no es íntimo, reservado ni público, y su conocimiento puede interesar a cierto sector o a la sociedad, por ejemplo la información financiera y crediticia de la actividad comercial o de servicios. El privado, por ser íntimo o reservado, solo le interesa a su titular. El sensible es el que afecta la intimidad del titular, y su definición completa está en el art. 5 de la Ley 1581. En el habla cotidiana "delicado" es una intuición; aquí son categorías con definición legal. | La abogada considera sensible el estado de salud escrito en "observaciones" y dice que no debería estar ahí (Bloque 4) |
-| **Estado de la clasificación** | 3 · Clasificación y validación jurídica | Punto de revisión de una clasificación: propuesta, en revisión o validada. Es definitiva solo cuando la valida quien tenga la autoridad, hoy Jurídica o el oficial (por definir en R10). Un atributo sin clasificación no tiene estado y se muestra como "sin clasificar". Ver *estado*. | La abogada duda entre privado y semiprivado para el historial de mora (Bloque 4); la clasificación quedaría "en revisión", con la opinión de cada parte (Bloque 8) |
-| **Finalidad** | 3 · Clasificación y validación jurídica (fuera del modelo) | Propósito para el cual se usa un dato personal. La herramienta no la registra: es una exclusión explícita, y su cambio no se detecta por software. | El teléfono del propietario se recogía para la captación, y luego Mercadeo lo compartió con un portal (Bloque 4) |
-| **Responsable de dato** | 4 · Responsables, autoridad y decisiones | Persona o rol de negocio que responde por la definición y la calidad de un atributo, y queda registrado como tal. Se distingue del *administrador técnico* (TI, que conoce la estructura pero no decide el significado), del *oficial de protección de datos* y del *Responsable del Tratamiento* (término legal). | Un teléfono errado: TI dice que "es del negocio", Comercial dice que es de Administración, y nadie lo corrige (Bloque 5) |
-| **Oficial de protección de datos** | 4 · Responsables, autoridad y decisiones | Rol por designar, hoy inexistente. La gerencia imagina que mantendría las políticas, atendería los reclamos de los titulares y sería el contacto con la autoridad. Si la ley exige designarlo está por verificar. No es el *responsable de dato*. | Ante la solicitud de un titular que pide suprimir sus datos, necesitaría saber en qué sistemas están (Bloque 2) |
-| **Administrador del diccionario** | 4 · Responsables, autoridad y decisiones | Rol por designar que mantiene el diccionario y el catálogo en la herramienta. No es el administrador técnico de TI ni el "administrador" de permisos. | TI entrega la estructura técnica a "quien administre el diccionario", sin que esté definido quién es (Bloque 8) |
-| **Evidencia de decisión** | 4 · Responsables, autoridad y decisiones | Registro inmutable de una decisión sobre un atributo (clasificación, definición o responsable): quién, cuándo, con qué criterio y qué cambió. El registro técnico guarda además denegaciones e importaciones, que no son decisiones. | El negocio querría mostrar quién clasificó un dato, con qué criterio y cuándo (Bloque 7) |
-| **Término de negocio** | 5 · Catálogo de términos | Palabra con que las áreas nombran un concepto, registrada con su significado y asociada a los atributos que la describen. Puede tener un significado por área. | "Activo" es un interesado con seguimiento abierto para Comercial y un contrato vigente para Administración (Bloque 2) |
-| **Catálogo de términos** | 5 · Catálogo de términos | Conjunto de términos de negocio con sus significados y los atributos asociados. Se consulta junto al *diccionario de datos*, que puede buscar un atributo por término. | Quien busque el atributo asociado a "canon" encontraría las dos columnas que lo guardan (Bloques 2 y 5) |
-| **Conflicto de significado** | 5 · Catálogo de términos | Un término con más de un significado. Hay dos casos: (a) significados distintos por área, que se mantienen, uno por contexto; (b) disputa dentro de un mismo contexto sobre la definición de un atributo, que la organización debe decidir. | (a) "Canon" es el valor pactado al firmar para Comercial y el cobrado hoy para Administración (Bloque 2). (b) Tres definiciones de VR_CAN (Bloque 5) |
-| **Diccionario de datos** | 6 · Diccionario integrado | Vista de solo lectura de cada atributo con su metadato técnico, su metadato de negocio, su clasificación y su responsable, más los términos asociados. Se publica por versiones y marca lo incompleto y la antigüedad de la información técnica. | La ficha de VR_CAN reuniría su estructura en S1, sus tres definiciones y la ausencia de responsable (Bloque 5) |
-| **Informe regulatorio** | 7 · Consulta y reporte | Informe con información sobre las bases de datos y su clasificación, para que Jurídica lo presente a la autoridad. La herramienta no lo transmite y su formato está por verificar. Si no está validado, no se presenta como definitivo. | Habría que reunir la lista de bases con datos personales, su finalidad, responsable y encargado, clasificación y medidas de seguridad (Bloque 8) |
-| **Permiso de acceso** | 8 · Control de acceso por rol | Autorización para que un *rol* realice una operación en la herramienta, como consultar, proponer o aprobar. No es la *autorización de acceso a metadatos* ni la de un *titular*. | Quién puede ver y modificar la clasificación y las definiciones es un punto a revisar antes de dar el diseño por suficiente (Bloque 7) |
-| **Rol** | 8 · Control de acceso por rol | En la herramienta, conjunto de permisos que se asigna a un usuario. En el negocio y en las vistas de ArchiMate, función que alguien cumple (responsable de dato de área, oficial), que no es un cargo. | Quién propone una definición y quién la aprueba tendrían roles distintos, y esa autoridad sigue por definir (R10, Bloque 3) |
-| **Cliente** | Lenguaje del negocio inmobiliario | Para Comercial es el interesado que busca inmueble; para Administración, el arrendatario; para Contabilidad, el propietario que paga la administración. | Ilustrativo: una consulta de "clientes" daría interesados si la hace Comercial y propietarios si la hace Contabilidad. La entrevista solo da los significados (Bloque 2) |
-| **Propietario** | Lenguaje del negocio inmobiliario | Para Comercial es quien firmó el contrato de corretaje; para Administración y Contabilidad, el titular de la cuenta bancaria a la que se paga, que a veces es otra persona. | Quien firmó el contrato de corretaje puede no ser a quien se le paga (Bloque 2) |
-| **Interesado** | Lenguaje del negocio inmobiliario | Persona que busca un inmueble y queda registrada con un asesor. No es el *interesado* (stakeholder) de ArchiMate en la V1. | Hay interesados de 2016 que nunca contrataron y siguen en S2 (Bloque 1) |
-| **Inmueble** | Lenguaje del negocio inmobiliario | Bien que se vende o se arrienda. S1 registra los administrados y S2 los que están en oferta. Que sean el mismo bien en dos momentos es inferencia del equipo, no está en la entrevista. | S2 publica la ficha del inmueble en el sitio web S4 (Bloque 1) |
-| **Estado** | Lenguaje del negocio inmobiliario | Palabra con varios sentidos: para Comercial, el inmueble está publicado, reservado, vendido o arrendado; para Administración, ocupado, desocupado o en reparación; en S1, el campo describe el contrato (6 valores técnicos); en la herramienta hay un *estado de la clasificación* y un estado de importación (disponible o desactualizada). | "Estado" significa "publicado o no" en S2 y "contrato vigente" en S1 (Bloque 1) |
-| **Activo** | Lenguaje del negocio inmobiliario | Para Comercial es un interesado con seguimiento abierto; para Administración, un contrato vigente. | El reporte de morosidad de septiembre incluyó contratos terminados porque "estado = activo" significa cosas distintas en S1 y S2 (Bloque 2) |
-| **Canon** | Lenguaje del negocio inmobiliario | Para Comercial es el valor pactado al firmar; para Administración, el valor que se cobra hoy, ya reajustado. | Tras el reajuste anual (Bloque 1), el valor pactado y el cobrado dejan de coincidir |
-| **Titular** | Lenguaje jurídico | Persona natural a quien pertenecen los datos personales que se tratan (Ley 1581 de 2012, art. 3). Puede ser propietario, arrendatario, interesado u otra. No es el "titular de la cuenta bancaria" del propietario. | Un propietario pide que borren sus datos y nadie sabe en cuántos lugares están (Bloque 1) |
-| **Dato personal** | Lenguaje jurídico | Cualquier información que se relacione con una persona natural identificada o que pueda llegar a identificarse (Ley 1581 de 2012, art. 3). La herramienta no lee datos personales, solo la estructura de dónde están (restricción C1). | La gerente y la abogada no quieren abrir otro punto de exposición de cédulas e ingresos (Bloque 8) |
-| **Responsable y Encargado del Tratamiento** | Lenguaje jurídico | Términos legales de la Ley 1581 (art. 3). El Responsable es quien decide, solo o con otros, sobre la base de datos o el tratamiento. El Encargado es la persona natural o jurídica, pública o privada, que realiza el tratamiento por cuenta del Responsable. No es el *responsable de dato*. | El proveedor del CRM guarda datos de la empresa y tiene acceso a ellos, sin documento que defina sus responsabilidades (Bloques 3 y 7) |
+| Fuente de datos | 1 · Fuentes y metadatos técnicos | Sistema o lugar donde hay datos que deben documentarse. Puede tener diccionario técnico (una base de datos) o no tenerlo (hojas, carpetas, correo, mensajería). Una fuente identificada pero sin inventariar se muestra como área sin cubrir. | S2, un CRM en la nube, solo entrega su estructura mediante un pedido al proveedor, y las hojas de cálculo no tienen diccionario (Bloque 1) |
+| Metadato técnico | 1 · Fuentes y metadatos técnicos | Descripción de la estructura de una columna en un sistema fuente: tabla, columna, tipo de dato, longitud y obligatoriedad. Se lee del diccionario del motor y no incluye los registros. Es la parte técnica de un atributo de negocio. | El negocio dice que la cédula tiene hasta 10 dígitos, pero en S2 el campo acepta 20 caracteres, incluidas letras (Bloque 5) |
+| Autorización de acceso a metadatos | 1 · Fuentes y metadatos técnicos | Constancia de quién autorizó, y cuándo, el acceso de solo lectura a la estructura de una fuente. Sin ella no se habilita la importación. No es la autorización que firma un titular ni un permiso de acceso a la herramienta. | Para S1 autoriza la jefa de administración y ejecuta el coordinador de TI (Bloque 8) |
+| Importación | 1 · Fuentes y metadatos técnicos | Lectura de la estructura técnica de una fuente para traerla a la herramienta. Solo trae estructura, nunca registros con datos de personas. | S2 tarda días en entregar su estructura, y el negocio acepta tener esa fuente desactualizada si se sabe (Bloque 8) |
+| Cambio de estructura | 1 · Fuentes y metadatos técnicos | Diferencia detectada entre dos importaciones de una misma fuente: tabla o columna agregada, renombrada o modificada. No es un cambio de clasificación ni de definición. | El proveedor de S2 renombró una columna y la publicación hacia S4 dejó de actualizar los precios durante tres días (Bloque 5) |
+| Atributo de negocio | 2 · Atributos de negocio y su descripción | Concepto de dato que se documenta una sola vez, con su definición, su responsable y su clasificación, aunque esté guardado en varias columnas de varios sistemas. No es la columna o campo de un sistema fuente, que es solo la ubicación técnica del dato (ver metadato técnico). | La cédula está en S1, que acepta de 7 a 11 caracteres, y en S2, que acepta letras (Bloque 4): son dos columnas de un mismo atributo |
+| Metadato de negocio | 2 · Atributos de negocio y su descripción | Descripción de un atributo hecha desde el negocio: su definición, su responsable, su política de calidad y su expresión regular. La asignación del responsable, su historial y quién lo designa se gestionan aparte (ver responsable de dato). | La columna VR_CAN de S1 tiene tres definiciones en uso y ningún responsable asignado (Bloque 5) |
+| Política de calidad | 2 · Atributos de negocio y su descripción | Regla que describe cómo debe ser el valor de un atributo (formato, longitud, obligatoriedad). Se documenta, no se ejecuta contra los datos. | La cédula debería tener solo números, de 6 a 10 dígitos y sin puntos (Bloque 4) |
+| Expresión regular | 2 · Atributos de negocio y su descripción | Patrón de texto que valida el formato de un atributo. Se registra y se comprueba que sea sintácticamente válida, pero no se ejecuta contra datos reales. Valida el formato, no que el dato sea verdadero ni lícito. | `^[0-9]{6,10}$` para la cédula, ilustrativa (Bloque 4) |
+| Atributo incompleto | 2 · Atributos de negocio y su descripción | Atributo al que le falta definición, responsable o clasificación. Se muestra como incompleto y no como correcto. | Nadie recuerda con certeza qué guarda la columna OBS3 de S1, así que le faltaría la definición (Bloque 5) |
+| Clasificación | 3 · Clasificación y validación jurídica | Asignación a un atributo de una categoría legal, con su criterio y su justificación. No incluye la finalidad del dato. | La abogada considera privada la cuenta bancaria del propietario (Bloque 4) |
+| Categoría legal | 3 · Clasificación y validación jurídica | Cada nivel con que se clasifica un atributo. Las clases pública, semiprivada y privada las define la Ley 1266 de 2008, y la Ley 1581 de 2012 añade otras categorías. El Decreto 1377 de 2013 completa la de dato público: es el que no cae en las otras tres. El dato semiprivado no es íntimo, reservado ni público, y su conocimiento puede interesar a cierto sector o a la sociedad, por ejemplo la información financiera y crediticia de la actividad comercial o de servicios. El privado, por ser íntimo o reservado, solo le interesa a su titular. El sensible es el que afecta la intimidad del titular, y su definición completa está en el art. 5 de la Ley 1581. En el habla cotidiana "delicado" es una intuición; aquí son categorías con definición legal. | La abogada considera sensible el estado de salud escrito en "observaciones" y dice que no debería estar ahí (Bloque 4) |
+| Estado de la clasificación | 3 · Clasificación y validación jurídica | Punto de revisión de una clasificación: propuesta, en revisión o validada. Es definitiva solo cuando la valida quien tenga la autoridad, hoy Jurídica o el oficial (por definir en R10). Un atributo sin clasificación no tiene estado y se muestra como "sin clasificar". Ver estado. | La abogada duda entre privado y semiprivado para el historial de mora (Bloque 4); la clasificación quedaría "en revisión", con la opinión de cada parte (Bloque 8) |
+| Finalidad | 3 · Clasificación y validación jurídica (fuera del modelo) | Propósito para el cual se usa un dato personal. La herramienta no la registra: es una exclusión explícita, y su cambio no se detecta por software. | El teléfono del propietario se recogía para la captación, y luego Mercadeo lo compartió con un portal (Bloque 4) |
+| Responsable de dato | 4 · Responsables, autoridad y decisiones | Persona o rol de negocio que responde por la definición y la calidad de un atributo, y queda registrado como tal. Se distingue del administrador técnico (TI, que conoce la estructura pero no decide el significado), del oficial de protección de datos y del Responsable del Tratamiento (término legal). | Un teléfono errado: TI dice que "es del negocio", Comercial dice que es de Administración, y nadie lo corrige (Bloque 5) |
+| Oficial de protección de datos | 4 · Responsables, autoridad y decisiones | Rol por designar, hoy inexistente. La gerencia imagina que mantendría las políticas, atendería los reclamos de los titulares y sería el contacto con la autoridad. Si la ley exige designarlo está por verificar. No es el responsable de dato. | Ante la solicitud de un titular que pide suprimir sus datos, necesitaría saber en qué sistemas están (Bloque 2) |
+| Administrador del diccionario | 4 · Responsables, autoridad y decisiones | Rol por designar que mantiene el diccionario y el catálogo en la herramienta. No es el administrador técnico de TI ni el "administrador" de permisos. | TI entrega la estructura técnica a "quien administre el diccionario", sin que esté definido quién es (Bloque 8) |
+| Evidencia de decisión | 4 · Responsables, autoridad y decisiones | Registro inmutable de una decisión sobre un atributo (clasificación, definición o responsable): quién, cuándo, con qué criterio y qué cambió. El registro técnico guarda además denegaciones e importaciones, que no son decisiones. | El negocio querría mostrar quién clasificó un dato, con qué criterio y cuándo (Bloque 7) |
+| Término de negocio | 5 · Catálogo de términos | Palabra con que las áreas nombran un concepto, registrada con su significado y asociada a los atributos que la describen. Puede tener un significado por área. | "Activo" es un interesado con seguimiento abierto para Comercial y un contrato vigente para Administración (Bloque 2) |
+| Catálogo de términos | 5 · Catálogo de términos | Conjunto de términos de negocio con sus significados y los atributos asociados. Se consulta junto al diccionario de datos, que puede buscar un atributo por término. | Quien busque el atributo asociado a "canon" encontraría las dos columnas que lo guardan (Bloques 2 y 5) |
+| Conflicto de significado | 5 · Catálogo de términos | Un término con más de un significado. Hay dos casos: (a) significados distintos por área, que se mantienen, uno por contexto; (b) disputa dentro de un mismo contexto sobre la definición de un atributo, que la organización debe decidir. | (a) "Canon" es el valor pactado al firmar para Comercial y el cobrado hoy para Administración (Bloque 2). (b) Tres definiciones de VR_CAN (Bloque 5) |
+| Diccionario de datos | 6 · Diccionario integrado | Vista de solo lectura de cada atributo con su metadato técnico, su metadato de negocio, su clasificación y su responsable, más los términos asociados. Se publica por versiones y marca lo incompleto y la antigüedad de la información técnica. | La ficha de VR_CAN reuniría su estructura en S1, sus tres definiciones y la ausencia de responsable (Bloque 5) |
+| Informe regulatorio | 7 · Consulta y reporte | Informe con información sobre las bases de datos y su clasificación, para que Jurídica lo presente a la autoridad. La herramienta no lo transmite y su formato está por verificar. Si no está validado, no se presenta como definitivo. | Habría que reunir la lista de bases con datos personales, su finalidad, responsable y encargado, clasificación y medidas de seguridad (Bloque 8) |
+| Permiso de acceso | 8 · Control de acceso por rol | Autorización para que un rol realice una operación en la herramienta, como consultar, proponer o aprobar. No es la autorización de acceso a metadatos ni la de un titular. | Quién puede ver y modificar la clasificación y las definiciones es un punto a revisar antes de dar el diseño por suficiente (Bloque 7) |
+| Rol | 8 · Control de acceso por rol | En la herramienta, conjunto de permisos que se asigna a un usuario. En el negocio y en las vistas de ArchiMate, función que alguien cumple (responsable de dato de área, oficial), que no es un cargo. | Quién propone una definición y quién la aprueba tendrían roles distintos, y esa autoridad sigue por definir (R10, Bloque 3) |
+| Cliente | Lenguaje del negocio inmobiliario | Para Comercial es el interesado que busca inmueble; para Administración, el arrendatario; para Contabilidad, el propietario que paga la administración. | Ilustrativo: una consulta de "clientes" daría interesados si la hace Comercial y propietarios si la hace Contabilidad. La entrevista solo da los significados (Bloque 2) |
+| Propietario | Lenguaje del negocio inmobiliario | Para Comercial es quien firmó el contrato de corretaje; para Administración y Contabilidad, el titular de la cuenta bancaria a la que se paga, que a veces es otra persona. | Quien firmó el contrato de corretaje puede no ser a quien se le paga (Bloque 2) |
+| Interesado | Lenguaje del negocio inmobiliario | Persona que busca un inmueble y queda registrada con un asesor. No es el interesado (stakeholder) de ArchiMate en la V1. | Hay interesados de 2016 que nunca contrataron y siguen en S2 (Bloque 1) |
+| Inmueble | Lenguaje del negocio inmobiliario | Bien que se vende o se arrienda. S1 registra los administrados y S2 los que están en oferta. Que sean el mismo bien en dos momentos es inferencia del equipo, no está en la entrevista. | S2 publica la ficha del inmueble en el sitio web S4 (Bloque 1) |
+| Estado | Lenguaje del negocio inmobiliario | Palabra con varios sentidos: para Comercial, el inmueble está publicado, reservado, vendido o arrendado; para Administración, ocupado, desocupado o en reparación; en S1, el campo describe el contrato (6 valores técnicos); en la herramienta hay un estado de la clasificación y un estado de importación (disponible o desactualizada). | "Estado" significa "publicado o no" en S2 y "contrato vigente" en S1 (Bloque 1) |
+| Activo | Lenguaje del negocio inmobiliario | Para Comercial es un interesado con seguimiento abierto; para Administración, un contrato vigente. | El reporte de morosidad de septiembre incluyó contratos terminados porque "estado = activo" significa cosas distintas en S1 y S2 (Bloque 2) |
+| Canon | Lenguaje del negocio inmobiliario | Para Comercial es el valor pactado al firmar; para Administración, el valor que se cobra hoy, ya reajustado. | Tras el reajuste anual (Bloque 1), el valor pactado y el cobrado dejan de coincidir |
+| Titular | Lenguaje jurídico | Persona natural a quien pertenecen los datos personales que se tratan (Ley 1581 de 2012, art. 3). Puede ser propietario, arrendatario, interesado u otra. No es el "titular de la cuenta bancaria" del propietario. | Un propietario pide que borren sus datos y nadie sabe en cuántos lugares están (Bloque 1) |
+| Dato personal | Lenguaje jurídico | Cualquier información que se relacione con una persona natural identificada o que pueda llegar a identificarse (Ley 1581 de 2012, art. 3). La herramienta no lee datos personales, solo la estructura de dónde están (restricción C1). | La gerente y la abogada no quieren abrir otro punto de exposición de cédulas e ingresos (Bloque 8) |
+| Responsable y Encargado del Tratamiento | Lenguaje jurídico | Términos legales de la Ley 1581 (art. 3). El Responsable es quien decide, solo o con otros, sobre la base de datos o el tratamiento. El Encargado es la persona natural o jurídica, pública o privada, que realiza el tratamiento por cuenta del Responsable. No es el responsable de dato. | El proveedor del CRM guarda datos de la empresa y tiene acceso a ellos, sin documento que defina sus responsabilidades (Bloques 3 y 7) |
 
 ---
 
 ## 3.3 V7b: términos con varios significados
 
-![V7b - Términos con varios significados](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/main/dominios%20y%20lenguajes%20ubicuos/V7b%20-%20Términos%20con%20varios%20significados.png)
-
 ### Cómo se lee
 
-Los diez términos son los mismos elementos de la V7. Cada significado es un Meaning unido a su término con una Association, y su propiedad `Contexto` dice dónde aplica. Cliente, Propietario, Estado, Activo, Canon y Titular vienen de la entrevista. Interesado, Rol y Atributo de negocio salen del vocabulario del equipo, y Responsable de dato mezcla las dos fuentes.
+Los diez términos son los mismos elementos de la V7. Cada significado es un Meaning unido a su término con una Association, y su propiedad Contexto dice dónde aplica. Cliente, Propietario, Estado, Activo, Canon y Titular vienen de la entrevista. Interesado, Rol y Atributo de negocio salen del vocabulario del equipo, y Responsable de dato mezcla las dos fuentes.
 
 | Término | Contexto | Significado |
 |---|---|---|
@@ -1186,484 +1141,297 @@ Esta fase baja desde los ocho subdominios de la V5 hasta las reglas que deben pr
 
 ## Criterios de modelado
 
--   **Entidad:** concepto que necesita identidad propia y puede seguir siendo el mismo aunque cambien algunos de sus datos.
--   **Objeto de valor:** concepto definido por sus valores, sin identidad independiente. Ejemplos propuestos son la categoría legal, el estado de clasificación y parte de los metadatos descriptivos.
--   **Agregado:** límite de consistencia que agrupa conceptos y protege
-    reglas de negocio. Un agregado no equivale a todo lo que se
-    relaciona con un concepto.
--   **Raíz del agregado:** punto de entrada que protege las invariantes
-    del agregado. Los demás agregados se referencian, en lugar de
-    incorporarse completos sin necesidad.
--   **Comando:** solicitud para intentar realizar una acción. No
-    garantiza que la acción sea aceptada ni que termine con éxito.
--   **Evento:** hecho que ya ocurrió como resultado de una operación
-    exitosa. Una consulta no produce automáticamente un evento de
-    dominio.
--   **Representación en ArchiMate:** se usan `Data Object` para
-    representar conceptos y datos de aplicación, `Application Process`
-    para la ejecución de operaciones y `Application Event` para hechos
-    resultantes. Los `Grouping` delimitan visualmente una propuesta de
-    agregado.
+- **Entidad:** concepto que necesita identidad propia y puede seguir siendo el mismo aunque cambien algunos de sus datos.
+- **Objeto de valor:** concepto definido por sus valores, sin identidad independiente. Ejemplos propuestos son la categoría legal, el estado de clasificación y parte de los metadatos descriptivos.
+- **Agregado:** límite de consistencia que agrupa conceptos y protege reglas de negocio. Un agregado no equivale a todo lo que se relaciona con un concepto.
+- **Raíz del agregado:** punto de entrada que protege las invariantes del agregado. Los demás agregados se referencian, en lugar de incorporarse completos sin necesidad.
+- **Comando:** solicitud para intentar realizar una acción. No garantiza que la acción sea aceptada ni que termine con éxito.
+- **Evento:** hecho que ya ocurrió como resultado de una operación exitosa. Una consulta no produce automáticamente un evento de dominio.
+- **Representación en ArchiMate:** se usan Data Object para representar conceptos y datos de aplicación, Application Process para la ejecución de operaciones y Application Event para hechos resultantes. Los Grouping delimitan visualmente una propuesta de agregado.
 
-Las raíces indicadas a continuación son decisiones de diseño
-justificadas por identidad e invariantes. Cuando la consistencia u otras características aún dependen de reglas no definidas, se indica
-expresamente y no se presenta la hipótesis como una decisión cerrada.
+Las raíces indicadas a continuación son decisiones de diseño justificadas por identidad e invariantes. Cuando la consistencia u otras características aún dependen de reglas no definidas, se indica expresamente y no se presenta la hipótesis como una decisión cerrada.
+
+---
 
 ## 4.1 V6.a: Fuentes y metadatos técnicos
 
-![V6.a - Fuentes y metadatos
-técnicos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/7a75aef2d69728e39c1de680ccff72f3d2c1149b/agregados_comandos_eventos/V6.a-Fuentes%20y%20metadatos%20tecnicos.png)
-
 ### Qué muestra
 
-La vista separa la identidad de la fuente de los metadatos técnicos
-importados y del historial de cambios detectados. La fuente puede seguir
-siendo la misma aunque cambie su estructura o su proveedor. La
-autorización de acceso a metadatos se registra para cada fuente; no
-equivale al permiso de un usuario para operar dentro de la herramienta.
+La vista separa la identidad de la fuente de los metadatos técnicos importados y del historial de cambios detectados. La fuente puede seguir siendo la misma aunque cambie su estructura o su proveedor. La autorización de acceso a metadatos se registra para cada fuente; no equivale al permiso de un usuario para operar dentro de la herramienta.
 
 ### Decisión de diseño
 
-`Fuente de datos` se propone como raíz del agregado de fuente porque
-mantiene la identidad de una fuente y la relación con sus
-autorizaciones. `Metadato técnico`, `Versión de estructura` y
-`Cambio de estructura` se mantienen fuera de ese límite visual: son
-información relacionada, pero su ciclo de vida histórico no debe darse
-por resuelto solo por estar vinculada a una fuente. El límite definitivo
-del historial técnico requiere concretar cómo se conservan y consultan
-sus versiones.
+**Fuente de datos** se propone como raíz del agregado de fuente porque mantiene la identidad de una fuente y la relación con sus autorizaciones. Metadato técnico, Versión de estructura y Cambio de estructura se mantienen fuera de ese límite visual: son información relacionada, pero su ciclo de vida histórico no debe darse por resuelto solo por estar vinculada a una fuente. El límite definitivo del historial técnico requiere concretar cómo se conservan y consultan sus versiones.
 
 ### Invariantes principales
 
--   Cada fuente tiene una identidad estable.
--   La autorización de acceso a metadatos corresponde a una fuente
-    identificable y registra quién autoriza.
--   Solo se importan metadatos cuando existe autorización para esa
-    fuente.
--   Cada versión de estructura identifica la fuente y la fecha de
-    importación.
--   La comparación se realiza entre versiones de la misma fuente; solo
-    se registra un cambio detectado si existe una diferencia.
--   En S2, la entrega de la estructura depende del proveedor del CRM.
+- Cada fuente tiene una identidad estable.
+- La autorización de acceso a metadatos corresponde a una fuente identificable y registra quién autoriza.
+- Solo se importan metadatos cuando existe autorización para esa fuente.
+- Cada versión de estructura identifica la fuente y la fecha de importación.
+- La comparación se realiza entre versiones de la misma fuente; solo se registra un cambio detectado si existe una diferencia.
+- En S2, la entrega de la estructura depende del proveedor del CRM.
 
 ### Comandos y eventos
 
-
-  Comando (solicitud)         |        Evento si la operación tiene éxito
- | -- |-- |
-  Registrar fuente           |         Fuente registrada
-  Autorizar acceso a metadatos   |     Acceso a metadatos autorizado
-  Revocar autorización de metadatos |  Autorización de metadatos revocada
-  Importar metadatos técnicos   |      Metadatos técnicos importados
-  Comparar estructuras       |         Cambio de estructura detectado, solo si hay diferencias
+| Comando (solicitud) | Evento si la operación tiene éxito |
+|---|---|
+| Registrar fuente | Fuente registrada |
+| Autorizar acceso a metadatos | Acceso a metadatos autorizado |
+| Revocar autorización de metadatos | Autorización de metadatos revocada |
+| Importar metadatos técnicos | Metadatos técnicos importados |
+| Comparar estructuras | Cambio de estructura detectado, solo si hay diferencias |
 
 ---
 
 ## 4.2 V6.b: Atributos de negocio y descripción
 
-![V6.b - Atributos de negocio y
-descripción](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/7a75aef2d69728e39c1de680ccff72f3d2c1149b/agregados_comandos_eventos/V6.b%20-%20Atributos%20de%20negocio%20y%20descripci%C3%B3n.png)
-
 ### Qué muestra
 
-La vista centra el concepto de `Atributo de negocio` y lo separa de la
-fuente técnica donde se encuentra y de la responsabilidad que se le
-asigna. Un atributo de negocio puede corresponder a varias columnas
-técnicas, incluso en distintas fuentes. Por eso no se equipara
-automáticamente el atributo con una columna de base de datos.
+La vista centra el concepto de Atributo de negocio y lo separa de la fuente técnica donde se encuentra y de la responsabilidad que se le asigna. Un atributo de negocio puede corresponder a varias columnas técnicas, incluso en distintas fuentes. Por eso no se equipara automáticamente el atributo con una columna de base de datos.
 
 ### Decisión de diseño
 
-`Atributo de negocio` se propone como raíz del agregado porque necesita
-identidad estable y concentra las reglas mínimas para registrar y
-describir un atributo. `Metadato de negocio`, `Política de calidad` y
-`Expresión regular` se modelan como conceptos descriptivos asociados a
-ese límite. La fuente y la responsabilidad se representan como
-referencias externas, para no absorber dentro del agregado conceptos
-pertenecientes a otros subdominios.
+**Atributo de negocio** se propone como raíz del agregado porque necesita identidad estable y concentra las reglas mínimas para registrar y describir un atributo. Metadato de negocio, Política de calidad y Expresión regular se modelan como conceptos descriptivos asociados a ese límite. La fuente y la responsabilidad se representan como referencias externas, para no absorber dentro del agregado conceptos pertenecientes a otros subdominios.
 
 ### Invariantes principales
 
--   Todo atributo tiene una identidad estable, un nombre y una fuente
-    identificable.
--   La definición y la responsabilidad pueden completarse después de la
-    creación.
--   Si falta la definición o la responsabilidad, el atributo se muestra
-    como incompleto.
--   Para atributos que contienen datos personales, la asignación de
-    responsable es obligatoria.
--   La política de calidad y la expresión regular describen reglas;
-    validar la sintaxis de una expresión regular no significa ejecutarla
-    sobre los datos almacenados.
--   La herramienta documenta metadatos y no modifica los registros
-    operativos de las fuentes.
+- Todo atributo tiene una identidad estable, un nombre y una fuente identificable.
+- La definición y la responsabilidad pueden completarse después de la creación.
+- Si falta la definición o la responsabilidad, el atributo se muestra como incompleto.
+- Para atributos que contienen datos personales, la asignación de responsable es obligatoria.
+- La política de calidad y la expresión regular describen reglas; validar la sintaxis de una expresión regular no significa ejecutarla sobre los datos almacenados.
+- La herramienta documenta metadatos y no modifica los registros operativos de las fuentes.
 
 ### Comandos y eventos
 
-  Comando (solicitud) | Evento si la operación tiene éxito
- | -- |-- |
-  Registrar atributo de negocio    |   Atributo de negocio registrado
-  Actualizar metadato de negocio   |   Metadato de negocio actualizado
-  Registrar política de calidad    |  Política de calidad registrada
-  Validar sintaxis de expresión  regular    |   Expresión regular validada, solo si la sintaxis es válida
-                            
+| Comando (solicitud) | Evento si la operación tiene éxito |
+|---|---|
+| Registrar atributo de negocio | Atributo de negocio registrado |
+| Actualizar metadato de negocio | Metadato de negocio actualizado |
+| Registrar política de calidad | Política de calidad registrada |
+| Validar sintaxis de expresión regular | Expresión regular validada, solo si la sintaxis es válida |
+
 ---
 
 ## 4.3 V6.c: Clasificación y validación jurídica
 
-![V6.c - Clasificación y validación
-jurídica](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/7a75aef2d69728e39c1de680ccff72f3d2c1149b/agregados_comandos_eventos/V6.c%20-%20Clasificaci%C3%B3n%20y%20validaci%C3%B3n%20jur%C3%ADdica.png)
-
 ### Qué muestra
 
-La clasificación se representa separada del atributo que clasifica. La
-vista distingue categoría legal, estado y versión de la clasificación,
-sin convertir cada uno en un agregado independiente.
+La clasificación se representa separada del atributo que clasifica. La vista distingue categoría legal, estado y versión de la clasificación, sin convertir cada uno en un agregado independiente.
 
 ### Decisión de diseño
 
-`Clasificación del atributo` se propone como raíz porque debe conservar
-su identidad, estado, justificación e historial de versiones.
-`Atributo de negocio` queda fuera del agregado y se referencia por
-identidad. Esta separación permite que una clasificación cambie sin que
-la aplicación pierda el vínculo con el atributo ni borre la decisión
-anterior.
+**Clasificación del atributo** se propone como raíz porque debe conservar su identidad, estado, justificación e historial de versiones. Atributo de negocio queda fuera del agregado y se referencia por identidad. Esta separación permite que una clasificación cambie sin que la aplicación pierda el vínculo con el atributo ni borre la decisión anterior.
 
-El administrador del diccionario propone la clasificación con apoyo del
-responsable del dato. Jurídica revisa y valida. La aplicación registra
-la decisión, pero no decide por sí misma si una categoría es
-jurídicamente correcta. La Gerencia General resuelve desacuerdos
-generales; cuando el desacuerdo es sobre la clasificación legal, la
-autoridad final es Jurídica.
+El administrador del diccionario propone la clasificación con apoyo del responsable del dato. Jurídica revisa y valida. La aplicación registra la decisión, pero no decide por sí misma si una categoría es jurídicamente correcta. La Gerencia General resuelve desacuerdos generales; cuando el desacuerdo es sobre la clasificación legal, la autoridad final es Jurídica.
 
 ### Invariantes principales
 
--   Toda clasificación corresponde a un atributo identificable.
--   Debe registrar categoría y justificación.
--   Los estados son `Propuesta`, `En revisión` y `Validada`. «Sin
-    clasificar» es una condición derivada cuando no existe una
-    clasificación, no un estado del ciclo.
--   Una clasificación solo es definitiva después de la revisión y
-    validación de Jurídica.
--   Si se modifica una clasificación validada, se crea una nueva versión
-    en revisión y se conserva la versión validada anterior hasta que
-    Jurídica decida.
--   La categoría «no personal» no se incorpora como categoría
-    confirmada: su inclusión sigue pendiente de contrastar con el
-    alcance y la definición normativa aplicable.
+- Toda clasificación corresponde a un atributo identificable.
+- Debe registrar categoría y justificación.
+- Los estados son Propuesta, En revisión y Validada. «Sin clasificar» es una condición derivada cuando no existe una clasificación, no un estado del ciclo.
+- Una clasificación solo es definitiva después de la revisión y validación de Jurídica.
+- Si se modifica una clasificación validada, se crea una nueva versión en revisión y se conserva la versión validada anterior hasta que Jurídica decida.
+- La categoría «no personal» no se incorpora como categoría confirmada: su inclusión sigue pendiente de contrastar con el alcance y la definición normativa aplicable.
 
 ### Comandos y eventos
 
-  Comando (solicitud)              |   Evento si la operación tiene éxito
- | -- |-- |
-  Proponer clasificación             | Clasificación propuesta
-  Enviar clasificación a revisión     |Clasificación enviada a revisión
-  Registrar validación jurídica       |Clasificación validada por Jurídica
-  Solicitar ajuste de clasificación   |Ajuste de clasificación solicitado
-  Solicitar modificación de clasificación validada        |Nueva versión de clasificación en revisión
-               
----
+| Comando (solicitud) | Evento si la operación tiene éxito |
+|---|---|
+| Proponer clasificación | Clasificación propuesta |
+| Enviar clasificación a revisión | Clasificación enviada a revisión |
+| Registrar validación jurídica | Clasificación validada por Jurídica |
+| Solicitar ajuste de clasificación | Ajuste de clasificación solicitado |
+| Solicitar modificación de clasificación validada | Nueva versión de clasificación en revisión |
 
-El evento de validación solo se produce cuando Jurídica efectivamente
-valida; no se emite al enviar la clasificación a revisión ni al
-solicitar un ajuste.
+El evento de validación solo se produce cuando Jurídica efectivamente valida; no se emite al enviar la clasificación a revisión ni al solicitar un ajuste.
+
+---
 
 ## 4.4 V6.d: Responsables, autoridad y decisiones
 
-![V6.d - Responsables, autoridad y
-decisiones](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/7a75aef2d69728e39c1de680ccff72f3d2c1149b/agregados_comandos_eventos/V6.d%20-%20Responsables%2C%20autoridad%20y%20decisiones.png)
-
 ### Qué muestra
 
-La vista modela la asignación de responsabilidad sobre un atributo y la
-conservación de evidencia de decisiones. Distingue quién responde por el
-dato de quién administra técnicamente una fuente y de quién tiene
-autoridad para validar una clasificación legal.
+La vista modela la asignación de responsabilidad sobre un atributo y la conservación de evidencia de decisiones. Distingue quién responde por el dato de quién administra técnicamente una fuente y de quién tiene autoridad para validar una clasificación legal.
 
 ### Decisión de diseño
 
-`Responsabilidad sobre el dato` se propone como raíz de su agregado,
-porque la asignación debe poder identificarse y cambiarse con
-trazabilidad. `Atributo de negocio` y `Responsable del dato` se
-representan como referencias externas. `Evidencia de decisión` registra
-quién decidió, cuándo, con qué criterio y qué cambió; no se trata como
-un registro que pueda editarse silenciosamente.
+**Responsabilidad sobre el dato** se propone como raíz de su agregado, porque la asignación debe poder identificarse y cambiarse con trazabilidad. Atributo de negocio y Responsable del dato se representan como referencias externas. Evidencia de decisión registra quién decidió, cuándo, con qué criterio y qué cambió; no se trata como un registro que pueda editarse silenciosamente.
 
 ### Invariantes principales
 
--   La responsabilidad se asigna a un atributo identificable y a un
-    responsable identificable.
--   Un cambio de responsable corresponde a una asignación previa.
--   Las decisiones relevantes conservan actor, fecha, criterio y cambio
-    realizado.
--   La evidencia de decisión no sustituye la bitácora técnica: una
-    importación es un hecho técnico; aprobar una clasificación o cambiar
-    una definición es una decisión de negocio.
--   La aplicación hace visibles los desacuerdos y registra las
-    decisiones; no resuelve automáticamente las controversias.
--   La Gerencia General resuelve desacuerdos generales y Jurídica decide
-    en última instancia sobre discrepancias de clasificación legal.
+- La responsabilidad se asigna a un atributo identificable y a un responsable identificable.
+- Un cambio de responsable corresponde a una asignación previa.
+- Las decisiones relevantes conservan actor, fecha, criterio y cambio realizado.
+- La evidencia de decisión no sustituye la bitácora técnica: una importación es un hecho técnico; aprobar una clasificación o cambiar una definición es una decisión de negocio.
+- La aplicación hace visibles los desacuerdos y registra las decisiones; no resuelve automáticamente las controversias.
+- La Gerencia General resuelve desacuerdos generales y Jurídica decide en última instancia sobre discrepancias de clasificación legal.
 
 ### Comandos y eventos
 
+| Comando (solicitud) | Evento si la operación tiene éxito |
+|---|---|
+| Asignar responsable de dato | Responsable de dato asignado |
+| Cambiar responsable de dato | Responsable de dato cambiado |
+| Registrar evidencia de decisión | Evidencia de decisión registrada |
+| Registrar decisión organizacional | Decisión organizacional registrada |
 
-  Comando (solicitud)            |     Evento si la operación tiene éxito
- | -- |-- |
-  Asignar responsable de dato     |    Responsable de dato asignado
-  Cambiar responsable de dato      |   Responsable de dato cambiado
-  Registrar evidencia de decisión   |  Evidencia de decisión registrada
-  Registrar decisión organizacional  | Decisión organizacional registrada
+*Registrar decisión organizacional* se propone para que la herramienta deje constancia de la decisión de la organización; no significa que la aplicación elija por sí sola el significado vigente ni la categoría legal.
 
 ---
-
-`Registrar decisión organizacional` se propone para que la herramienta
-deje constancia de la decisión de la organización; no significa que la
-aplicación elija por sí sola el significado vigente ni la categoría
-legal.
 
 ## 4.5 V6.e: Catálogo de términos
 
-![V6.e - Catálogo de
-términos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/7a75aef2d69728e39c1de680ccff72f3d2c1149b/agregados_comandos_eventos/V6.e%20-%20Cat%C3%A1logo%20de%20t%C3%A9rminos.png)
-
 ### Qué muestra
 
-El catálogo registra las palabras que usan las áreas, sus significados
-por contexto y las asociaciones con los atributos que describen. La
-relación entre términos y atributos es de muchos a muchos: un término
-puede describir varios atributos y un atributo puede estar asociado con
-términos usados por distintas áreas.
+El catálogo registra las palabras que usan las áreas, sus significados por contexto y las asociaciones con los atributos que describen. La relación entre términos y atributos es de muchos a muchos: un término puede describir varios atributos y un atributo puede estar asociado con términos usados por distintas áreas.
 
 ### Decisión de diseño
 
-`Término de negocio` se propone como raíz del agregado porque el término
-conserva identidad mientras se registran o cambian sus significados por
-área. Los significados no se fusionan solo porque compartan una palabra.
-Si existen interpretaciones distintas, se conservan los contextos y se
-marca el conflicto. La organización decide cuál significado pasa a ser
-vigente; el sistema registra esa decisión.
+**Término de negocio** se propone como raíz del agregado porque el término conserva identidad mientras se registran o cambian sus significados por área. Los significados no se fusionan solo porque compartan una palabra. Si existen interpretaciones distintas, se conservan los contextos y se marca el conflicto. La organización decide cuál significado pasa a ser vigente; el sistema registra esa decisión.
 
 ### Invariantes principales
 
--   Cada término tiene una identidad estable.
--   Cada significado identifica el área o contexto en el que aplica.
--   Los significados de áreas distintas se conservan por separado.
--   La asociación término--atributo identifica ambos elementos y admite
-    muchos a muchos.
--   Un conflicto se hace visible; no se resuelve seleccionando
-    automáticamente uno de los significados.
--   El significado vigente solo se registra cuando existe una decisión
-    organizacional.
+- Cada término tiene una identidad estable.
+- Cada significado identifica el área o contexto en el que aplica.
+- Los significados de áreas distintas se conservan por separado.
+- La asociación término–atributo identifica ambos elementos y admite muchos a muchos.
+- Un conflicto se hace visible; no se resuelve seleccionando automáticamente uno de los significados.
+- El significado vigente solo se registra cuando existe una decisión organizacional.
 
 ### Comandos y eventos
 
-  Comando (solicitud)            |     Evento si la operación tiene éxito
- | -- |-- |
-  Registrar término de negocio    |    Término de negocio registrado
-  Actualizar significado de término |  Significado de término actualizado
-  Asociar término a atributo      |    Término asociado a atributo
-  Registrar significado por área  |    Significado por área registrado
-  Marcar conflicto de significado  |   Conflicto de significado marcado
-  Registrar significado vigente |      Significado vigente definido
-  
----
-## 4.6 V6.f: Diccionario integrado
+| Comando (solicitud) | Evento si la operación tiene éxito |
+|---|---|
+| Registrar término de negocio | Término de negocio registrado |
+| Actualizar significado de término | Significado de término actualizado |
+| Asociar término a atributo | Término asociado a atributo |
+| Registrar significado por área | Significado por área registrado |
+| Marcar conflicto de significado | Conflicto de significado marcado |
+| Registrar significado vigente | Significado vigente definido |
 
-![V6.f - Diccionario
-integrado](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/7a75aef2d69728e39c1de680ccff72f3d2c1149b/agregados_comandos_eventos/V6.f%20-%20Diccionario%20integrado.png)
+---
+
+## 4.6 V6.f: Diccionario integrado
 
 ### Qué muestra
 
-El diccionario integra la información de los subdominios propietarios en
-una ficha consultable por atributo. No se apropia de las decisiones de
-clasificación, responsabilidad o significado: las presenta con su estado
-y procedencia. La vista distingue la consulta de la publicación de una
-versión.
+El diccionario integra la información de los subdominios propietarios en una ficha consultable por atributo. No se apropia de las decisiones de clasificación, responsabilidad o significado: las presenta con su estado y procedencia. La vista distingue la consulta de la publicación de una versión.
 
 ### Decisión de diseño
 
-El diccionario se modela como una proyección de lectura, no como un
-agregado de escritura que sea dueño de los atributos, las
-clasificaciones o los términos. `Ficha integrada del atributo`
-representa la información consolidada de un atributo y
-`Versión publicada del diccionario` permite identificar una publicación
-histórica. El equipo confirmó que habrá versiones publicadas para
-mantener la información vigente y trazable.
+El diccionario se modela como una **proyección de lectura**, no como un agregado de escritura que sea dueño de los atributos, las clasificaciones o los términos. Ficha integrada del atributo representa la información consolidada de un atributo y Versión publicada del diccionario permite identificar una publicación histórica. El equipo confirmó que habrá versiones publicadas para mantener la información vigente y trazable.
 
 ### Invariantes principales
 
--   El diccionario integra información sin apropiarse de los datos de
-    los subdominios fuente.
--   Los atributos con clasificación `Propuesta` o `En revisión` pueden
-    publicarse si se señalan expresamente; nunca se presentan como
-    definitivos.
--   La ficha permite identificar información incompleta y la antigüedad
-    de los metadatos técnicos.
--   Cada publicación tiene una versión identificable.
--   La consulta ordinaria no produce por sí sola un evento de dominio.
--   La numeración, la frecuencia de publicación y los datos exactos que
-    se congelan en cada versión siguen por definir.
+- El diccionario integra información sin apropiarse de los datos de los subdominios fuente.
+- Los atributos con clasificación Propuesta o En revisión pueden publicarse si se señalan expresamente; nunca se presentan como definitivos.
+- La ficha permite identificar información incompleta y la antigüedad de los metadatos técnicos.
+- Cada publicación tiene una versión identificable.
+- La consulta ordinaria no produce por sí sola un evento de dominio.
+- La numeración, la frecuencia de publicación y los datos exactos que se congelan en cada versión siguen por definir.
 
 ### Procesos y evento de publicación
 
-  Proceso o comando               |    Resultado/evento
- | -- |-- |
-  Consultar diccionario integrado  |   Devuelve las fichas que correspondan al filtro; no genera evento de dominio solo por consultar
-  Generar nueva versión del diccionario    |    Versión del diccionario publicada, cuando la publicación termina correctamente
-                          
----
+| Proceso o comando | Resultado/evento |
+|---|---|
+| Consultar diccionario integrado | Devuelve las fichas que correspondan al filtro; no genera evento de dominio solo por consultar |
+| Generar nueva versión del diccionario | Versión del diccionario publicada, cuando la publicación termina correctamente |
 
-La publicación de versiones está confirmada; los criterios operativos
-para numerarlas y decidir cuándo generar una nueva versión son detalles
-pendientes.
+La publicación de versiones está confirmada; los criterios operativos para numerarlas y decidir cuándo generar una nueva versión son detalles pendientes.
+
+---
 
 ## 4.7 V6.g: Consulta y reporte
 
-![V6.g - Consulta y
-reporte](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/7a75aef2d69728e39c1de680ccff72f3d2c1149b/agregados_comandos_eventos/V6.g%20-%20Consulta%20y%20reporte.png)
-
 ### Qué muestra
 
-La vista representa la consulta de información y la generación y
-exportación del informe regulatorio. El informe utiliza información
-disponible en el diccionario y en los subdominios que la producen. No
-modifica las bases de datos fuente ni realiza automáticamente una
-presentación ante la SIC.
+La vista representa la consulta de información y la generación y exportación del informe regulatorio. El informe utiliza información disponible en el diccionario y en los subdominios que la producen. No modifica las bases de datos fuente ni realiza automáticamente una presentación ante la SIC.
 
 ### Decisión de diseño
 
-`Informe regulatorio` se conserva como objeto identificable, pero la
-vista no afirma que su agregado esté cerrado: todavía falta conocer su
-formato obligatorio, su ciclo de validación y si se debe conservar una
-copia reproducible de cada exportación. La V1 garantiza consulta y
-exportación; Jurídica presenta el informe manualmente ante la SIC.
+**Informe regulatorio** se conserva como objeto identificable, pero la vista no afirma que su agregado esté cerrado: todavía falta conocer su formato obligatorio, su ciclo de validación y si se debe conservar una copia reproducible de cada exportación. La V1 garantiza consulta y exportación; Jurídica presenta el informe manualmente ante la SIC.
 
 ### Invariantes y límites
 
--   El informe se genera a partir de información consultada, sin
-    modificar las fuentes.
--   Los atributos con clasificación pendiente o en revisión deben
-    aparecer señalados y nunca como definitivos.
--   El formato y el contenido obligatorio deben verificarse con
-    Jurídica.
--   La aplicación no presenta el informe automáticamente ante la SIC ni
-    garantiza por sí sola el cumplimiento legal.
--   No se modela un proceso de validación formal como capacidad
-    confirmada mientras Jurídica no defina sus criterios.
--   Queda por decidir si cada exportación debe conservar el corte de
-    datos o la versión del diccionario usada para reproducir el informe.
+- El informe se genera a partir de información consultada, sin modificar las fuentes.
+- Los atributos con clasificación pendiente o en revisión deben aparecer señalados y nunca como definitivos.
+- El formato y el contenido obligatorio deben verificarse con Jurídica.
+- La aplicación no presenta el informe automáticamente ante la SIC ni garantiza por sí sola el cumplimiento legal.
+- No se modela un proceso de validación formal como capacidad confirmada mientras Jurídica no defina sus criterios.
+- Queda por decidir si cada exportación debe conservar el corte de datos o la versión del diccionario usada para reproducir el informe.
 
 ### Procesos y eventos
 
-
-  Proceso o comando          |         Evento si la operación tiene éxito
- | -- |-- |
-  Consultar información para informe | Resultado de consulta disponible; no requiere evento de dominio por sí solo        
-  Generar informe regulatorio     |    Informe regulatorio generado
-  Exportar informe regulatorio     |   Informe regulatorio exportado, si se decide registrar la exportación como evento de aplicación o auditoría
+| Proceso o comando | Evento si la operación tiene éxito |
+|---|---|
+| Consultar información para informe | Resultado de consulta disponible; no requiere evento de dominio por sí solo |
+| Generar informe regulatorio | Informe regulatorio generado |
+| Exportar informe regulatorio | Informe regulatorio exportado, si se decide registrar la exportación como evento de aplicación o auditoría |
 
 El registro de una exportación puede ser útil para auditoría, pero no se presenta automáticamente como evento de dominio.
 
-## 4.8 V6.h: Control de acceso por rol
+---
 
-![V6.h - Control de acceso por
-rol](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/7a75aef2d69728e39c1de680ccff72f3d2c1149b/agregados_comandos_eventos/V6.h%20-%20Control%20de%20acceso%20por%20rol.png)
+## 4.8 V6.h: Control de acceso por rol
 
 ### Qué muestra
 
-La vista representa los roles iniciales predefinidos, los permisos que
-se asignan a cada rol y la comprobación de permisos al ejecutar una
-operación. No supone que los usuarios puedan crear roles nuevos ni que
-la matriz de permisos ya esté aprobada.
+La vista representa los roles iniciales predefinidos, los permisos que se asignan a cada rol y la comprobación de permisos al ejecutar una operación. No supone que los usuarios puedan crear roles nuevos ni que la matriz de permisos ya esté aprobada.
 
 ### Decisión de diseño
 
-Se parte de seis roles para la herramienta: `Administrador`,
-`Responsable de dato`, `Oficial`, `Jurídica`, `TI` y `Consulta`. Los
-cargos reales todavía no están formalizados; el rol de la aplicación es
-una función de autorización, no una afirmación de que exista ya un cargo
-organizacional con ese nombre.
+Se parte de seis roles para la herramienta: Administrador, Responsable de dato, Oficial, Jurídica, TI y Consulta. Los cargos reales todavía no están formalizados; el rol de la aplicación es una función de autorización, no una afirmación de que exista ya un cargo organizacional con ese nombre.
 
-Se representan `Rol`, `Permiso de acceso` y
-`Asignación de permiso a rol`. La matriz de permisos sigue pendiente. Se
-propone que la apruebe la Gerencia General, con Jurídica y TI
-consultadas. No se declara una raíz de agregado definitiva para roles y
-permisos hasta concretar las reglas de administración y consistencia de
-las asignaciones.
+Se representan Rol, Permiso de acceso y Asignación de permiso a rol. La matriz de permisos sigue pendiente. Se propone que la apruebe la Gerencia General, con Jurídica y TI consultadas. No se declara una raíz de agregado definitiva para roles y permisos hasta concretar las reglas de administración y consistencia de las asignaciones.
 
 ### Invariantes principales
 
--   Los roles iniciales son predefinidos.
--   Cada asignación relaciona un rol y un permiso identificables.
--   La revocación corresponde a una asignación existente.
--   Una operación protegida solo se permite cuando la política de
-    permisos vigente autoriza al rol.
--   El permiso de operar en la herramienta es distinto de la
-    autorización para acceder a los metadatos de una fuente externa.
--   La matriz de permisos y la política de registro de autorizaciones y
-    denegaciones siguen pendientes de aprobación.
+- Los roles iniciales son predefinidos.
+- Cada asignación relaciona un rol y un permiso identificables.
+- La revocación corresponde a una asignación existente.
+- Una operación protegida solo se permite cuando la política de permisos vigente autoriza al rol.
+- El permiso de operar en la herramienta es distinto de la autorización para acceder a los metadatos de una fuente externa.
+- La matriz de permisos y la política de registro de autorizaciones y denegaciones siguen pendientes de aprobación.
 
 ### Comandos y eventos
 
-  Comando (solicitud)         |        Evento si la operación tiene éxito
- | -- |-- |
-  Asignar permiso a rol        |       Permiso asignado a rol
-  Revocar permiso de rol       |       Permiso revocado de rol
-  Autorizar operación          |       Se comprueba la autorización; el resultado no se considera automáticamente un evento de  dominio
-  
----
+| Comando (solicitud) | Evento si la operación tiene éxito |
+|---|---|
+| Asignar permiso a rol | Permiso asignado a rol |
+| Revocar permiso de rol | Permiso revocado de rol |
+| Autorizar operación | Se comprueba la autorización; el resultado no se considera automáticamente un evento de dominio |
 
-Las denegaciones y los intentos de acceso pueden registrarse en la
-bitácora de seguridad. Ese registro técnico no se confunde con un evento
-de dominio.
+Las denegaciones y los intentos de acceso pueden registrarse en la bitácora de seguridad. Ese registro técnico no se confunde con un evento de dominio.
+
+---
 
 ## Decisiones transversales de la Fase 4
 
-1.  **Los límites siguen la consistencia, no la cantidad de objetos.**
-    Un elemento relacionado no entra automáticamente al agregado; se usa
-    una referencia cuando la regla no requiere que ambos conceptos
-    cambien como una sola unidad.
-2.  **Los registros tienen responsabilidades distintas.** La bitácora
-    técnica registra hechos operativos; la evidencia de decisión
-    conserva decisiones de negocio; el historial de estructura conserva
-    diferencias entre versiones técnicas; las versiones del diccionario
-    representan publicaciones históricas.
-3.  **La clasificación jurídica no se automatiza.** El sistema registra
-    propuestas y decisiones, pero Jurídica valida la clasificación
-    final.
-4.  **El diccionario puede mostrar información no definitiva, pero debe
-    marcarla.** Publicar una ficha no equivale a validar su
-    clasificación.
-5.  **La consulta no es un comando de escritura.** Solo se modela un
-    evento cuando ocurrió un hecho significativo; los registros técnicos
-    de consulta o exportación se identifican como auditoría cuando
-    corresponda.
-6.  **Los permisos locales no reemplazan las autorizaciones externas.**
-    El permiso para usar una función no concede por sí mismo acceso a la
-    estructura de una fuente.
+1. **Los límites siguen la consistencia, no la cantidad de objetos.** Un elemento relacionado no entra automáticamente al agregado; se usa una referencia cuando la regla no requiere que ambos conceptos cambien como una sola unidad.
+2. **Los registros tienen responsabilidades distintas.** La bitácora técnica registra hechos operativos; la evidencia de decisión conserva decisiones de negocio; el historial de estructura conserva diferencias entre versiones técnicas; las versiones del diccionario representan publicaciones históricas.
+3. **La clasificación jurídica no se automatiza.** El sistema registra propuestas y decisiones, pero Jurídica valida la clasificación final.
+4. **El diccionario puede mostrar información no definitiva, pero debe marcarla.** Publicar una ficha no equivale a validar su clasificación.
+5. **La consulta no es un comando de escritura.** Solo se modela un evento cuando ocurrió un hecho significativo; los registros técnicos de consulta o exportación se identifican como auditoría cuando corresponda.
+6. **Los permisos locales no reemplazan las autorizaciones externas.** El permiso para usar una función no concede por sí mismo acceso a la estructura de una fuente.
 
 ## Puntos que siguen abiertos
 
--   Confirmar con fuentes normativas y Jurídica las categorías legales y
-    resolver si se incorpora una categoría «no personal».
--   Definir el formato y los campos obligatorios del informe
-    regulatorio.
--   Definir cómo se identifican y cuándo se publican nuevas versiones
-    del diccionario.
--   Concretar el límite de consistencia del historial de versiones y
-    cambios de estructura.
--   Definir y aprobar la matriz de permisos para los seis roles
-    iniciales.
--   Determinar si la exportación del informe debe conservar un corte
-    reproducible de los datos o la versión del diccionario utilizada.
+- Confirmar con fuentes normativas y Jurídica las categorías legales y resolver si se incorpora una categoría «no personal».
+- Definir el formato y los campos obligatorios del informe regulatorio.
+- Definir cómo se identifican y cuándo se publican nuevas versiones del diccionario.
+- Concretar el límite de consistencia del historial de versiones y cambios de estructura.
+- Definir y aprobar la matriz de permisos para los seis roles iniciales.
+- Determinar si la exportación del informe debe conservar un corte reproducible de los datos o la versión del diccionario utilizada.
 
-## 5. V10 trazabilidad vertical
+---
 
-![V10 - Trazabilidad vertical](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/f72a6f8b41602e87ca24d183a394e8fe6308c789/trazabilidad%20vertical/V10%20-%20Trazabilidad%20vertical.png)
+# 5. V10: Trazabilidad Vertical
 
 ### Qué muestra
 
-Una sola vista transversal que recorre las cuatro capas del modelo de arriba abajo: Motivación, Estrategia, Negocio y Aplicación. Parte de la meta general y sus cinco sub-metas, baja por los resultados esperados, las restricciones y los requisitos de la aplicación, llega a las capacidades que realizan cada requisito y a los pasos del proceso E2E que realizan esas capacidades, y termina en los servicios de aplicación que apoyan cada paso y en los componentes que los prestan. Responde la pregunta que pide el enunciado: **por qué existe cada componente**, es decir, qué meta y qué capacidad lo justifican.
+Una sola vista transversal que recorre las cuatro capas del modelo de arriba abajo: Motivación, Estrategia, Negocio y Aplicación. Parte de la meta general y sus cinco sub-metas, baja por los resultados esperados, las restricciones y los requisitos de la aplicación, llega a las capacidades que realizan cada requisito y a los pasos del proceso E2E que realizan esas capacidades, y termina en los servicios de aplicación que apoyan cada paso y en los componentes que los prestan. Responde la pregunta que pide el enunciado: por qué existe cada componente, es decir, qué meta y qué capacidad lo justifican.
 
 ### Cómo se lee
 
@@ -1682,7 +1450,7 @@ Cada banda se conecta solo con la contigua, así que cada hilo se sigue en verti
 
 Cada elemento está ubicado debajo de los elementos a los que se conecta, para que las líneas bajen casi en vertical y se crucen lo menos posible. Las capacidades conservan el color de impacto de la V2 y los pasos el color de apoyo de la solución de la V3b, así que la misma vista muestra dónde la herramienta opera de lleno y dónde solo registra o prepara. Motivación usa el morado estándar de ArchiMate y Aplicación el azul.
 
-> **Códigos.** G, O, R y C son los de la V1; P1–P9 son los pasos del proceso E2E. Los componentes se numeran como el subdominio de la V5 al que corresponden.
+**Códigos.** G, O, R y C son los de la V1; P1–P9 son los pasos del proceso E2E. Los componentes se numeran como el subdominio de la V5 al que corresponden.
 
 ### Hilos completos, de la meta al componente
 
@@ -1701,7 +1469,7 @@ Cada fila es un recorrido de arriba abajo. Es la respuesta a «por qué existe c
 | G5 Mantener el diccionario vigente | O8 Historial de importaciones y cambios | R8 Registrar importaciones y detectar cambios | Gestión de cambios de estructura de datos; Gestión de trazabilidad y evidencia de decisiones | P8 | cambios de estructura | 1 Fuentes y metadatos técnicos |
 | G6 Contar con evidencia consultable | O9 Metadatos consultables y exportables | R9 Consultar y exportar metadatos (restringido por C4) | Gestión del diccionario de datos; Reporte regulatorio ante la SIC | P7, P9 | diccionario integrado; consulta y reporte | 6 Diccionario integrado; 7 Consulta y reporte |
 
-Un hilo completo, de arriba abajo: la meta *Clasificar los datos* se logra con el resultado *Atributos con clasificación registrada*, que realiza el requisito *Registrar la clasificación de cada atributo*, limitado por la restricción *Obligaciones legales por verificar con Jurídica*. Ese requisito lo realiza la capacidad *Clasificación de atributos por categoría legal*, que se ejerce en el paso *Clasificar atributos por categoría legal*. Al paso lo apoya el *Servicio de aplicación de clasificación*, que presta el *Componente de clasificación y validación jurídica*.
+Un hilo completo, de arriba abajo: la meta Clasificar los datos se logra con el resultado Atributos con clasificación registrada, que realiza el requisito Registrar la clasificación de cada atributo, limitado por la restricción Obligaciones legales por verificar con Jurídica. Ese requisito lo realiza la capacidad Clasificación de atributos por categoría legal, que se ejerce en el paso Clasificar atributos por categoría legal. Al paso lo apoya el Servicio de aplicación de clasificación, que presta el Componente de clasificación y validación jurídica.
 
 ### Relaciones nuevas: capacidad → requisito
 
@@ -1727,7 +1495,7 @@ Estas 15 realizaciones no existían en el modelo: la V1 llega hasta el requisito
 
 ### Servicios y componentes de aplicación
 
-Los servicios de aplicación son la versión en software de los servicios de negocio de la V4: cada uno se basa en los contratos de capa 3 y capa 4 de la V4e y la V4f. Se propone **un componente por subdominio de la V5**, porque cada subdominio tiene lenguaje, actores y razón de cambio propios, y esos son los límites naturales del software.
+Los servicios de aplicación son la versión en software de los servicios de negocio de la V4: cada uno se basa en los contratos de capa 3 y capa 4 de la V4e y la V4f. Se propone un componente por subdominio de la V5, porque cada subdominio tiene lenguaje, actores y razón de cambio propios, y esos son los límites naturales del software.
 
 | # | Componente (subdominio V5) | Servicios de aplicación que presta | Paso al que sirven | Contratos en que se basan |
 |---|---|---|---|---|
@@ -1742,152 +1510,252 @@ Los servicios de aplicación son la versión en software de los servicios de neg
 
 El componente 1 presta el servicio de cambios de estructura, que apoya a P8, al otro extremo del proceso. Esa línea de asignación rodea la banda de componentes por debajo para no cruzar las demás.
 
-# 6. Mapa de contextos delimitados
+---
 
-La Fase 5 responde una pregunta: ¿cómo se reparte el software en contextos delimitados y cómo se relacionan entre sí y con los sistemas externos?
+# 6. V11: Bounded Context Canvas del contexto principal
 
-Elementos de ArchiMate que se usan en esta fase:
+Documento técnico de la Fase 6. Documenta el contexto delimitado principal, **C2 · Atributos de negocio**, con un Bounded Context Canvas construido en ArchiMate. El canvas muestra en una sola página el propósito, la clasificación estratégica, el rol del dominio, el lenguaje ubicuo, la comunicación entrante y saliente, las decisiones de negocio y los supuestos. En este documento, C1 a C7 son los contextos de la V8, P1 a P9 los pasos del proceso E2E (V3b) y R1 a R10 los requisitos de la V1. Las decisiones llevan una marca: **(D)** decidida por el equipo, **(I)** inferencia por confirmar, **(P)** pendiente.
 
-| Elemento | Capa | Uso en este modelo |
-|---|---|---|
-| Application Component | Aplicación | Cada contexto delimitado y cada sistema externo |
-| Business Actor y Business Role | Negocio | Quienes reciben la información de la solución (los mismos de la V4d) |
+## Contenido
 
-Relaciones que se usan:
-
-| Relación | Significado en este modelo |
-|---|---|
-| Serving | Consulta o API: el origen presta un servicio al destino |
-| Flow | Eventos o flujo de información del origen al destino |
+1. [Qué es el canvas y qué pide el enunciado](#61-qué-es-el-canvas-y-qué-pide-el-enunciado)
+2. [Por qué C2 es el contexto principal](#62-por-qué-c2-es-el-contexto-principal)
+3. [V11: el canvas de C2](#63-v11-el-canvas-de-c2)
+4. [Contenido de cada sección](#64-contenido-de-cada-sección)
+5. [Cómo se modeló en ArchiMate y por qué](#65-cómo-se-modeló-en-archimate-y-por-qué)
+6. [Relaciones de la vista](#66-relaciones-de-la-vista)
+7. [Coherencia con el resto del modelo](#67-coherencia-con-el-resto-del-modelo)
+8. [Supuestos, tensiones y pendientes](#68-supuestos-tensiones-y-pendientes)
+9. [Archivos del repositorio](#69-archivos-del-repositorio)
 
 ---
 
-## 6.1 V8: mapa de contextos
+## 6.1 Qué es el canvas y qué pide el enunciado
 
-![V8 - Mapa de contextos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/main/mapa%20de%20contextos%20e%20interoperabilidad/V8%20-%20Mapa%20de%20contextos.png)
+El Bounded Context Canvas es una plantilla de DDD Crew (repositorio `ddd-crew/bounded-context-canvas`, licencia CC BY) para documentar un contexto delimitado en una página. Un contexto delimitado es el límite dentro del cual aplica un modelo de dominio y su propio lenguaje; el canvas deja a la vista qué hace el contexto, con quién se comunica y qué supuestos tiene el diseño.
 
-### Qué muestra
+El enunciado pide que el canvas muestre: propósito, clasificación estratégica, rol del dominio, lenguaje ubicuo, comunicación entrante y saliente, decisiones de negocio y supuestos. Los elementos de ArchiMate son de libre elección del equipo, con justificación, y la rúbrica evalúa que el canvas esté completo en una página, bien resuelto en la herramienta y coherente con el modelo.
 
-Los siete contextos delimitados de la solución, los siete sistemas externos con los que se relacionan, los cuatro actores que reciben información y las 24 relaciones entre ellos: 13 entre contextos y 11 con el exterior. Cada relación lleva en su etiqueta el patrón elegido.
+La plantilla de la diapositiva 35 tiene once campos. El enunciado exige siete; los otros tres son opcionales y se incluyeron:
+
+| Campo de la plantilla | Pedido por el enunciado | En la V11 |
+|---|---|---|
+| Name | No (es el título) | Sí |
+| Purpose | Sí | Sí |
+| Strategic Classification (Domain, Business Model, Evolution) | Sí | Sí |
+| Domain Roles | Sí | Sí |
+| Inbound Communication | Sí | Sí |
+| Ubiquitous Language | Sí | Sí |
+| Business Decisions | Sí | Sí |
+| Outbound Communication | Sí | Sí |
+| Assumptions | Sí | Sí |
+| Verification Metrics | No, opcional | Sí, sin cifras |
+| Open Questions | No, opcional | Sí |
+
+## 6.2 Por qué C2 es el contexto principal
+
+C2 · Atributos de negocio se eligió **(D)** por tres razones:
+
+- **Es Core:** cubre los verbos "conocer" y "describir" del pedido y es el concepto del que dependen otros cuatro contextos.
+- **Es el centro del diseño:** es upstream de C3, C4, C5 y C6 (relaciones 3, 4, 5 y 10 de la V8).
+- **Su agregado está cerrado:** el agregado Atributo de negocio está definido en la V6.b, a diferencia del informe regulatorio de C6, que sigue sin cerrar.
+
+## 6.3 V11: el canvas de C2
 
 ### Cómo se lee
 
-- Cada rectángulo grande es un contexto. Su color indica la clasificación del subdominio que contiene (naranja fuerte Core, naranja claro soporte y gris genérico). C6 es Core porque incluye el diccionario.
-- Lila es un sistema externo y amarillo un actor o rol. Los sistemas externos de entrada están a la izquierda de C1 y C2, y los de salida a la derecha de C6.
-- La línea continua es una consulta o API (Serving) y la discontinua son eventos o flujo de información (Flow). La flecha apunta al que consume.
-- La etiqueta dice el patrón. En «Servicio abierto · Conformista» el primer nombre es el patrón del contexto que ofrece y el segundo el del que consume. «Cliente-proveedor» describe la relación completa.
-- En las relaciones con el exterior, los códigos A1 a A8 son los adaptadores de la capa anticorrupción de la V4d.
-- La responsabilidad de cada contexto está en su Documentation.
+La vista sigue la rejilla del canvas de DDD Crew, de arriba hacia abajo:
 
-### Patrones de relación
+| Fila | Izquierda | Centro | Derecha |
+|---|---|---|---|
+| 1 | Purpose | Strategic Classification | Domain Roles |
+| 2 | Inbound Communication | Name, con el componente C2 y sus eventos | Outbound Communication |
+| 3 | Ubiquitous Language | Business Decisions (ocupa el centro y la derecha) | |
+| 4 | Assumptions | Verification Metrics | Open Questions |
 
-| Patrón | Definición usada | Dónde se usa |
-|---|---|---|
-| Servicio abierto (Open Host Service) | El contexto que ofrece expone una API bien definida para varios consumidores | C7 hacia C1; C1 hacia C2; C2 hacia C3, C4 y C5; C6 hacia el oficial y seguridad |
-| Lenguaje publicado (Published Language) | Formato o lenguaje común para el intercambio, que suele acompañar al servicio abierto | La identidad de la fuente (C1), la identidad del atributo (C2) y los eventos de C1 a C5 hacia C6 |
-| Conformista | El que consume adopta el modelo del que ofrece, tal cual | C1 con C7; C2 con C1; C3, C4 y C5 con C2; C6 con C1 a C5 |
-| Cliente-proveedor | El proveedor es upstream y las necesidades del cliente entran en su planificación | C4 y C3 en ambos sentidos; C2 hacia C4 |
-| Capa anticorrupción | Una capa de traducción protege el modelo propio del modelo del sistema externo | Los adaptadores A1 a A4 de entrada y A7 y A8 de salida |
+La fila 2 es el corazón de la vista: C2 queda al centro y los colaboradores se abren en abanico a ambos lados, entrantes a la izquierda y salientes a la derecha, de modo que las líneas no se cruzan ni atraviesan otras secciones.
 
-### Contextos delimitados
+Los colores indican el tipo de elemento: naranja fuerte para un contexto Core (C2, C3 y C6), naranja claro para soporte (C1, C4 y C5), lila para un sistema externo, amarillo para elementos de negocio y morado para elementos de motivación. Es la misma convención de la V5 y la V8. El color del contexto es su clasificación como subdominio, no el impacto de la solución de la V2.
 
-Los contextos salieron de los ocho subdominios de la V5, con tres criterios: un modelo propio (cada uno tiene su agregado en la Fase 4), un lenguaje propio (los términos con varios significados de la V7b marcan los límites) y una consistencia propia (lo que debe cambiar junto va en el mismo contexto). Un subdominio es una parte del problema y un contexto es una frontera del modelo del software, así que no tienen que coincidir uno a uno.
+## 6.4 Contenido de cada sección
 
-| Contexto | Subdominios (V5) | Clasificación | Responsabilidad | Agregado propio (Fase 4) | Lo que no posee |
-|---|---|---|---|---|---|
-| C1 · Fuentes y metadatos técnicos | 1 | Soporte | Conocer la estructura técnica de las fuentes y detectar sus cambios, sin leer datos de personas | Fuente de datos, con sus autorizaciones. El historial técnico queda fuera del agregado | Los atributos de negocio |
-| C2 · Atributos de negocio | 2 | Core | Registrar y describir cada atributo una sola vez, con su definición y sus reglas de calidad | Atributo de negocio | La fuente (C1) y la responsabilidad (C4) |
-| C3 · Clasificación y validación jurídica | 3 | Core | Clasificar los atributos por categoría legal y registrar la validación de Jurídica | Clasificación del atributo | El atributo, que referencia por su identidad |
-| C4 · Responsables, autoridad y decisiones | 4 | Soporte | Registrar quién responde por cada atributo y conservar la evidencia de las decisiones | Responsabilidad sobre el dato y evidencia de decisión | El atributo y el responsable |
-| C5 · Catálogo de términos | 5 | Soporte | Mantener los términos de negocio con sus significados por área y asociarlos a atributos | Término de negocio | El atributo, asociado por identidad |
-| C6 · Diccionario y reporte | 6 y 7 | Core | Mostrar la información integrada en fichas, versiones publicadas e informes, sin ser dueño de lo que muestra | Ninguno de escritura: ficha integrada, versión publicada e informe regulatorio (este último sin cerrar) | Los datos que muestra, que lee de C1 a C5 |
-| C7 · Control de acceso por rol | 8 | Genérico | Controlar qué rol puede realizar cada operación en la herramienta | Rol, permiso y asignación de permiso a rol, sin raíz declarada | Las autorizaciones de acceso a fuentes, que son de C1 |
+### Name
 
-**C6 agrupa dos subdominios que la Fase 3 separó.** La Fase 3 separó el diccionario integrado y consulta y reporte porque tienen consumidores y razones de cambio distintas: el formato del informe depende de Jurídica y aún no está definido. En la Fase 5 se reúnen porque ninguno tiene un agregado propio de escritura (el diccionario es una proyección de lectura, V6.f, y el agregado del informe sigue abierto, V6.g) y ambos leen de los mismos contextos. Dentro de C6 se mantienen dos componentes (V10), de modo que un cambio en el formato del informe no obliga a tocar el diccionario. Si el informe adquiere un agregado propio, C6 puede dividirse.
+C2 · Atributos de negocio, el mismo Application Component de la V8. Bajo el componente aparecen los cuatro eventos de dominio de C2 de la V6.b: Atributo de negocio registrado, Metadato de negocio actualizado, Política de calidad registrada y Expresión regular validada. Los dos últimos no tienen consumidor asignado **(P)**.
 
-**C2 y C4 se mantienen separados.** El atributo y la responsabilidad tienen agregados propios, y la V6.b ya trata la responsabilidad como una referencia externa. La regla «un atributo con datos personales exige responsable» cruza ambos contextos y se trata como una política entre ellos. El estado «incompleto» de un atributo lo calcula y lo muestra C6, de modo que C2 no necesita conocer lo que posee C4.
+### Purpose (D)
 
-### Relaciones entre contextos y patrón elegido
+Registrar y describir cada atributo de negocio una sola vez, con su definición y sus reglas de calidad, para que los demás contextos lo referencien por su identidad.
 
-Para cada relación se aplicaron los tres criterios de la fase: la dirección de la dependencia (la flecha va del que ofrece al que consume), quién controla el modelo y la forma de intercambio.
+Problema que resuelve: una misma columna con tres definiciones en uso (VR_CAN), columnas cuyo significado nadie recuerda (OBS3) y reglas de calidad escondidas en el código de cada sistema. Corresponde al subdominio 2 de la V5, a los pasos P3 y P4 y a los requisitos R3 y R4.
 
-| # | Relación | Control del modelo | Forma de intercambio | Patrón | Por qué |
-|---|---|---|---|---|---|
-| 1 | C7 → C1 | C7 define roles y permisos | API `verificarPermiso` (contrato 4.12) | Servicio abierto (C7); C1 conformista | C1 solo pregunta si un rol puede operar y no modela roles. Hoy es el único consumidor, porque la matriz de uso de la V4b solo conecta el control de acceso con C1 |
-| 2 | C1 → C2 | C1 define la fuente | Identificador de la fuente, consulta de fuentes válidas y evento «Fuente registrada» | Servicio abierto + lenguaje publicado (C1); C2 conformista | C2 adopta la identidad de la fuente tal cual, sin nada que negociar, y C1 sirve a dos consumidores (C2 y C6) |
-| 3 | C2 → C3 | C2 define el atributo | Identificador compartido del atributo y consulta `consultarAtributo` | Servicio abierto + lenguaje publicado (C2); C3 conformista | C3 solo necesita la identidad del atributo que clasifica |
-| 4 | C2 → C4 | ídem | ídem | ídem; C4 conformista | C4 solo necesita la identidad del atributo al que asigna responsable |
-| 5 | C2 → C5 | ídem | ídem | ídem; C5 conformista | C5 solo necesita la identidad del atributo al que asocia un término |
-| 6 | C4 → C3 | C4 define quién tiene autoridad | Reglas de autoridad (forma por definir, R10 abierto) | Cliente-proveedor (C4 proveedor, C3 cliente) | Lo que C3 necesita saber sobre la autoridad debe entrar en lo que C4 defina |
-| 7 | C3 → C4 | C3 define la clasificación | Evento «Clasificación validada por Jurídica» | Cliente-proveedor (C3 proveedor, C4 cliente) | La validación jurídica es una decisión que debe quedar como evidencia en C4 |
-| 8 | C2 → C4 | C2 define el metadato de negocio | Evento «Metadato de negocio actualizado» | Cliente-proveedor (C2 proveedor, C4 cliente) | Cambiar una definición es una decisión de negocio que debe quedar como evidencia (V6.d) |
-| 9 a 13 | C1, C2, C3, C4, C5 → C6 | Cada uno define lo suyo | Eventos de la Fase 4 (ver abajo) | Lenguaje publicado de cada uno; C6 conformista | C6 muestra lo que dicen los demás sin reinterpretarlo, por ejemplo el estado de una clasificación tal como lo define C3 |
+### Strategic Classification
 
-Eventos que C6 recibe de cada contexto, todos de la Fase 4: de C1, «Metadatos técnicos importados» y «Cambio de estructura detectado»; de C2, «Atributo de negocio registrado» y «Metadato de negocio actualizado»; de C3, «Clasificación propuesta», «Clasificación enviada a revisión» y «Clasificación validada por Jurídica»; de C4, «Responsable de dato asignado» y «Responsable de dato cambiado»; de C5, «Término asociado a atributo» y «Significado vigente definido».
+| Eje | Valor | Marca | Argumento |
+|---|---|---|---|
+| Domain | Core | (D) | Cubre "conocer" y "describir", es el concepto del que dependen otros cuatro contextos y concentra el dolor de la entrevista |
+| Business Model | Compliance | (I) | La solución existe para apoyar el cumplimiento de protección de datos (meta G1 de la V1). Las demás opciones de la plantilla no se verificaron |
+| Evolution | Custom built | (D) | Es una solución a la medida; no se evaluó comprar un catálogo de datos comercial. Los valores del eje son genesis, custom built, product y commodity |
 
-**C3 y C4 dependen en ambos sentidos.** Son dos relaciones cliente-proveedor, una en cada sentido, cada una con su forma de intercambio. Es un acoplamiento que conviene vigilar mientras R10 (quién propone, revisa, aprueba y desempata definiciones y clasificaciones) siga abierto.
+### Domain Roles (D)
 
-### Sistemas externos y capa anticorrupción
+**Specification model**, en borrador: C2 define qué significa cada dato y las reglas que debe cumplir. La plantilla ofrece varios roles (modelo de especificación o borrador, modelo de ejecución, modelo de análisis o auditoría, enforcer, octopus enforcer, gateway, gateway interchange, funnel y engagement). La alternativa considerada fue execution context, porque C2 también inventaría y mantiene los atributos en los pasos P3 y P4. Ninguna calza perfecto, y el equipo decidió por Specification model.
 
-Toda entrada externa entra por C1 y C2 y toda salida sale por C6. C3, C4, C5 y C7 no tienen integración externa: sus usuarios trabajan por pantalla.
+### Inbound Communication
 
-| Sistema o actor | Dirección | Adaptador | Contexto | Patrón |
-|---|---|---|---|---|
-| S1, S3 y S4 | Entrada | A1 | C1 | Capa anticorrupción |
-| S2 (CRM), vía su proveedor | Entrada | A2 | C1 | Capa anticorrupción |
-| Proveedores de software de S1 a S4 | Entrada | A3 | C1 | Capa anticorrupción |
-| Hojas, carpetas, correo y WhatsApp | Entrada, manual | A4 | C2 | Capa anticorrupción |
-| Oficial de protección de datos | Salida | A5 | C6 | Servicio abierto |
-| Coordinador de TI (seguridad de la información) | Salida | A6 | C6 | Servicio abierto |
-| Abogada interna, que presenta el informe a la SIC | Salida | A7 | C6 | Capa anticorrupción de salida |
-| Correo electrónico | Salida | A8 | C6 | Capa anticorrupción de salida |
+Lo que llega a C2:
 
-- **A4 entra por C2.** Cargar el inventario es registrar atributos, y una capa anticorrupción protege al contexto que recibe. La fuente se registra primero en C1 con su propio comando, y A4 rechaza las filas cuya fuente no existe y los archivos con datos de personas, como indica el contrato de la V4f.
-- **A5 y A6 son servicio abierto del lado de C6.** Sus consumidores son el oficial y seguridad de la información, que usan vistas que C6 define, y no hay un modelo ajeno que traducir. Los adaptadores conservan su lugar en la V4d. Para las salidas, el adaptador evita que el formato del consumidor (por ejemplo el de la SIC) condicione el modelo interno.
-- **La SIC no recibe nada de la solución:** Jurídica presenta el informe a mano. El abogado externo recibe el informe por el mismo adaptador A7 y no se dibuja, para no repetir la relación.
-- **Fuera del mapa:** portales, aseguradora, banco, notarías y centrales de riesgo (reciben datos del negocio, no de la herramienta; exclusión Z16), y las áreas de negocio y Jurídica, que usan la herramienta por pantalla sin adaptador.
+| Colaborador | Mensajes | Forma | Fuente |
+|---|---|---|---|
+| Administrador del diccionario de datos (rol por designar) | Comandos Registrar atributo de negocio, Actualizar metadato de negocio, Registrar política de calidad y Validar sintaxis de expresión regular | Por pantalla, sin adaptador | V4d fila 7, V6.b |
+| Responsable de dato de área (rol por designar) | Comandos Actualizar metadato de negocio y Registrar política de calidad | Por pantalla, sin adaptador | V4d fila 7, V6.b |
+| Hojas, carpetas, correo y WhatsApp, a través de A4 | Carga de inventario con plantilla. Se rechazan las filas cuya fuente no existe en C1 y los archivos con datos de personas | Capa anticorrupción | V4d, V4f, decisión de la Fase 5 |
+| C1 · Fuentes y metadatos técnicos | Identidad de la fuente y evento "Fuente registrada", para mantener una copia local | Servicio abierto con lenguaje publicado; C2 conformista | Relación 2 de la V8 |
+| C3, C4 y C5 | Consulta `consultarAtributo(id)` para referenciar la identidad del atributo | Servicio abierto de C2 | Relaciones 3 a 5 de la V8 |
 
-### Coherencia con la capa anticorrupción de la Fase 2
+Las consultas de C3, C4 y C5 aparecen en la sección de Outbound, y la sección de Inbound lo indica con una nota para no repetir la misma relación.
 
-- Los ocho adaptadores de la V4d aparecen en el mapa, con la misma dirección y el mismo contexto que corresponde a cada servicio que sirven.
-- De las 14 interoperabilidades de la V4d, doce tienen su relación o su usuario en el mapa; dos quedan fuera por no haber intercambio (portales y terceros) o no aplicar (dispositivos).
-- Dos diferencias con fases anteriores, ambas decididas: la V10 asigna A4 al componente del subdominio 1 y el mapa lo entrega a C2, y para A5 y A6 el patrón del lado de C6 es servicio abierto, aunque la Fase 2 llama capa anticorrupción a los ocho adaptadores.
+### Outbound Communication
 
-### Coherencia con el modelo táctico de la Fase 4
+Lo que sale de C2:
 
-- Todos los eventos que viajan entre contextos existen en las vistas V6.a a V6.e.
-- Una consulta no genera evento, como establece la Fase 4: C2 entrega la identidad del atributo por consulta, y los hechos se publican como eventos.
-- La comprobación de permisos de C7 se consulta como API y no como evento, como indica la V6.h.
-- Tres puntos van más allá de lo que dice la Fase 4 y están por confirmar: que C4 registre la evidencia al recibir los eventos de C2 y C3 (la V6.d tiene el comando «Registrar evidencia de decisión» pero no dice quién lo dispara); que C6 mantenga su propia copia por eventos (la V6.f solo muestra la consulta directa); y que C2 guarde una copia local de las identidades de las fuentes.
-- La V5 recoge las tres dependencias que el mapa agrega a las de la Fase 3: de C4 a C6 (el diccionario lee la responsabilidad), de C5 a C6 (lee los términos) y de C3 a C4 (la validación genera evidencia). Con ellas son 16 relaciones.
+| Colaborador | Mensajes | Forma | Fuente |
+|---|---|---|---|
+| C4 · Responsables, autoridad y decisiones | Evento "Metadato de negocio actualizado", para registrar la evidencia de la decisión; identidad del atributo | Cliente-proveedor (C4 cliente) para el evento, y servicio abierto con lenguaje publicado para la identidad; C4 conformista | Relaciones 4 y 8 de la V8 (la 8 es una inferencia por confirmar) |
+| C6 · Diccionario y reporte | Eventos "Atributo de negocio registrado" y "Metadato de negocio actualizado" | Lenguaje publicado; C6 conformista | Relación 10 de la V8 |
+| C3 · Clasificación y validación jurídica | Identidad del atributo como respuesta a `consultarAtributo(id)` | Servicio abierto con lenguaje publicado; C3 conformista | Relación 3 de la V8 |
+| C5 · Catálogo de términos | Identidad del atributo como respuesta a `consultarAtributo(id)` | Servicio abierto con lenguaje publicado; C5 conformista | Relación 5 de la V8 |
+| C1 | Consulta `consultarFuente`, para validar que la fuente exista | Consumo del servicio abierto de C1 | Relación 2 de la V8 |
 
-### Relación con los componentes de la V10
+### Ubiquitous Language
 
-La V10 tiene un componente por subdominio. Un contexto puede agrupar varios, y la V10 no cambia:
+Los términos propios de C2, tomados de la V7:
 
-| Contexto | Componente(s) de la V10 |
+| Término | En C2 significa |
 |---|---|
-| C1 | Fuentes y metadatos técnicos |
-| C2 | Atributos de negocio |
-| C3 | Clasificación y validación jurídica |
-| C4 | Responsables y decisiones |
-| C5 | Catálogo de términos |
-| C6 | Diccionario integrado y consulta y reporte |
-| C7 | Control de acceso por rol |
+| Atributo de negocio | Concepto de dato que se documenta una sola vez, con su definición, su responsable y su clasificación, aunque esté guardado en varias columnas de varios sistemas. No es la columna o campo del sistema fuente, que es solo la ubicación técnica del dato |
+| Metadato de negocio | Descripción de un atributo hecha desde el negocio: definición, responsable, política de calidad y expresión regular. La asignación del responsable, su historial y quién lo designa se gestionan aparte (C4) |
+| Política de calidad | Regla que describe cómo debe ser el valor de un atributo (formato, longitud, obligatoriedad). Se documenta, no se ejecuta contra los datos |
+| Expresión regular | Patrón que valida el formato de un atributo. Se registra y se comprueba que su sintaxis sea válida, pero no se ejecuta contra datos reales. No garantiza que el dato sea verdadero ni lícito |
+| Atributo incompleto | Atributo al que le falta definición, responsable o clasificación. Se muestra como incompleto y no como correcto (lo calcula C6) |
+| Fuente de datos | Solo como referencia a C1 |
+| Responsable de dato | Solo como referencia a C4 |
 
-### Pruebas de diseño
+La frontera de lenguaje de la V7b se muestra con dos elementos Meaning asociados a la Representation "Atributo de negocio": en C2 es el concepto de la herramienta, y en el contexto del sistema fuente es la columna. Es la evidencia de que C2 y C1 son contextos distintos: la misma palabra significa cosas diferentes a cada lado de la frontera.
 
-**Autonomía.** Si un contexto cae el que lo consume debe poder seguir con su propia copia. C6 la cumple porque mantiene su copia por eventos. C2 con C1 no del todo: no puede cargar atributos de una fuente que no conoce, y se mitiga con una copia local de las identidades de fuente, sincronizada con el evento «Fuente registrada». C1 con C7 es la más débil: sin control de acceso, C1 no puede verificar permisos. Se acepta como riesgo, o se agrega una copia de permisos.
+### Business Decisions
 
-**Lenguaje por contexto.** Los términos con varios significados de la V7b respaldan los límites: «Estado» significa estado de importación en C1 y estado de clasificación en C3; «Responsable de dato» tiene sentido de negocio en C4 y de administrador técnico en C1; «Atributo de negocio» es el concepto en C2 y la columna del sistema en la fuente.
+| Decisión | Tipo de elemento | Fuente |
+|---|---|---|
+| Un atributo se documenta una sola vez aunque esté en varias columnas o sistemas; las columnas equivalentes se consolidan | Requirement | Contratos 4.1 y 3.3, V7 |
+| Todo atributo con datos personales exige responsable (política entre C2 y C4) | Requirement | V6.b, contrato 3.5, decisión de la Fase 5 |
+| La expresión regular se valida solo en su sintaxis y no se ejecuta contra datos | Constraint | Contrato 4.4, V6.b |
+| La herramienta documenta metadatos y no modifica los registros de las fuentes | Constraint | V6.b, principio P3 |
+| Cada cambio de un atributo crea una versión | Requirement | Contrato 4.1 |
+| Un atributo solo se carga si su fuente existe en C1 | Constraint | Decisión de la Fase 5 |
+| Lo faltante o dudoso se muestra como tal, nunca como correcto | Requirement | Principio P2 |
+| La definición es obligatoria al registrar el metadato de negocio (contrato 4.4), pero el atributo puede existir antes sin metadato y queda incompleto (V6.b) | Requirement | V6.b, contrato 4.4 |
 
-### Decisiones y supuestos de la Fase 5
+Criterio de tipo: un Requirement expresa lo que el contexto debe hacer; un Constraint expresa un límite que no debe cruzar.
 
-- **Siete contextos** a partir de los ocho subdominios: C2 y C4 separados, C6 reúne dos subdominios y C7 se mantiene aparte como genérico.
-- **C1 hacia C2 es servicio abierto** y no cliente-proveedor: C2 solo adopta la identidad de la fuente.
-- **El estado «incompleto» de un atributo lo calcula C6.**
-- **A4 por C2, A8 por C6.** Toda entrada externa por C1 y C2 y toda salida por C6.
-- **C7 solo se conecta con C1**, como marca la matriz de la V4b. Esa matriz parece incompleta: el control de acceso debería afectar a más contextos.
-- **El contenido del informe a la SIC no tiene dueño.** La V4d dice que incluye la finalidad, el encargado y los titulares aproximados. La finalidad está excluida del modelo, el encargado también (Z10) y los titulares aproximados chocan con no leer datos de personas.
-- **R10 sigue abierto** y afecta la forma de la relación de autoridad entre C4 y C3.
-- **La V8 no modela interfaces ni los componentes de la V10 dentro de los contextos:** el servicio abierto se indica en la etiqueta de la relación y la correspondencia con los componentes está en la tabla de arriba.
+### Assumptions
+
+Cada supuesto indica quién lo confirma:
+
+| Supuesto | Confirma |
+|---|---|
+| C2 guarda una copia local de las identidades de las fuentes, sincronizada por el evento "Fuente registrada" (la V6.a y la V6.b no lo muestran) | Quien hizo la Fase 4 |
+| El estado "incompleto" lo calcula C6 | Equipo |
+| C4 registra la evidencia cuando C2 actualiza un metadato de negocio (la V6.d no dice quién dispara el registro) | Quien hizo la Fase 4 |
+| Quién decide que dos columnas son el mismo atributo no está definido; se asume el administrador del diccionario | Equipo |
+| La plantilla de inventario manual (A4) no tiene formato definido | Equipo |
+| Quién puede registrar o modificar definiciones depende de R10 (abierto) | Organización |
+| El control de acceso no está conectado con C2, porque la matriz de la V4b solo lo conecta con C1 | Equipo |
+| C2 tiene su propio modelo y su propia base de datos, según las diapositivas 26 y 27 | Equipo |
+| El modelo de negocio es "compliance" | Equipo |
+
+### Verification Metrics (opcional)
+
+La plantilla las usa para medir si el diseño del contexto es bueno (por ejemplo, qué proporción de los cambios afecta solo a un contexto). No se definieron métricas de diseño ni cifras. Se anotan los indicadores candidatos de la V1 relacionados con C2, sin metas numéricas:
+
+- Atributos con definición y responsable asignados sobre atributos de negocio inventariados (resultado O4).
+- Atributos con política de calidad y regla de validación sobre los que la requieren (resultado O5).
+- Fuentes no estructuradas inventariadas sobre las identificadas (resultado O2).
+
+### Open Questions (opcional)
+
+1. ¿Qué consumen C3, C4 o C5 de los eventos "Política de calidad registrada" y "Expresión regular validada"?
+2. El contrato 3.3 incluye `vincularColumna(atributo, columna)`: C2 necesita referenciar la columna técnica, que es de C1, no solo la identidad de la fuente. ¿El mapa debe mostrar también la identidad de la columna? Además, `inventariarAtributos(fuente)` sugiere que C2 podría consumir el evento "Metadatos técnicos importados", que no aparece en la V6.a ni en la V6.b.
+3. ¿Quién decide que dos columnas equivalentes son un solo atributo?
+4. ¿Qué formato tiene la plantilla de inventario manual (A4)?
+5. ¿Cómo se cierra R10 (quién propone, revisa, aprueba y desempata definiciones)?
+6. Tensión del término "incompleto": la V7 y el contrato 4.1 lo asignan a C2, pero la decisión de la Fase 5 dice que lo calcula C6. Propuesta: C2 conserva la definición de qué es "incompleto" y C6 lo calcula y lo muestra.
+7. R7 (registrar fuentes no estructuradas) está asignado en la V5 al subdominio 1, pero la carga manual de atributos entra por C2. Propuesta: registrar la fuente es de C1 y cargar sus atributos es de C2.
+
+La pregunta sobre cuál es la categoría correcta de rol del dominio para C2 se cerró con la decisión de Specification model.
+
+## 6.5 Cómo se modeló en ArchiMate y por qué
+
+La rúbrica pide que el canvas esté bien resuelto en la herramienta, y que la forma de modelarlo se justifique. Estas son las decisiones:
+
+| Decisión | Alternativa descartada | Justificación |
+|---|---|---|
+| Cada sección es un Group de Archi (agrupación visual) con el nombre de la plantilla | Un solo diagrama sin secciones | Un Group delimita cada sección, con su título, y permite ver los once campos de la plantilla en una sola página |
+| Se reutilizan los elementos que ya existen en el modelo: C2 y los demás contextos de la V8, las Representation de la V7, los Meaning de la V7b, los Business Object de la V5 y los eventos de la V6.b | Crear copias dentro de la V11 | Un canvas que duplica elementos se desincroniza del resto del modelo y rompe la coherencia que pide la rúbrica. En Archi, los elementos se arrastran desde el árbol del modelo |
+| Las decisiones de negocio son elementos de motivación, Requirement y Constraint, uno por regla, con la fuente en Documentation | Todas como notas de texto | Un elemento se puede buscar, referenciar y relacionar con C2 en el modelo; una nota es solo texto |
+| Purpose, Assumptions, Verification Metrics y Open Questions son Notes | Elementos de ArchiMate | ArchiMate no tiene un elemento nativo natural para estos contenidos, y forzarlo con un elemento distorsionaría el significado del elemento |
+| Las relaciones usan las mismas de la V8: Serving para consulta o API, Flow para eventos y Association para los comandos por pantalla. El patrón va en el nombre o en la Documentation de la relación | Dibujar interfaces o más elementos | Respeta las reglas de modelado de la V8: los contextos son componentes vacíos y las relaciones llevan el patrón |
+| Las relaciones dobles entre los mismos dos elementos (Serving más Flow con C1 y con C4) se dibujan con un punto de quiebre | Una sola relación | Cada relación tiene un significado distinto y, si se dibujaran rectas, quedarían una sobre la otra |
+| La relación Realization de C2 hacia las ocho decisiones existe en el modelo pero no se dibuja | Dibujar ocho líneas | La vista quedaría con líneas que cruzan las secciones; las relaciones se ven en Model Relations |
+| Color según la clasificación de la V5, con leyenda en el título | Colores propios | Es la misma convención de la V5 y la V8 |
+
+### Cómo se hace en Archi
+
+1. Crear la vista V11 en la carpeta Views.
+2. Dibujar cada sección con el elemento Group de la paleta (Other, Group), con el nombre de la sección.
+3. Arrastrar desde el árbol del modelo los elementos existentes dentro de su Group.
+4. Para las decisiones, crear los elementos Requirement y Constraint en la carpeta Motivation, ponerles la fuente en Documentation y arrastrarlos al Group de Business Decisions.
+5. Para el texto libre, usar la herramienta Note de la paleta.
+6. Crear las relaciones con la herramienta de conexión entre los elementos; el nombre de la relación se muestra sobre la línea. Para separar dos relaciones entre los mismos elementos, mover la línea con un punto de quiebre.
+7. Ordenar los grupos en la rejilla de la sección 3 y revisar que la página se vea completa.
+
+## 6.6 Relaciones de la vista
+
+| Relación | Tipo | De | A | Patrón o contenido |
+|---|---|---|---|---|
+| Comandos | Association | Administrador del diccionario | C2 | Por pantalla, sin adaptador |
+| Comandos | Association | Responsable de dato de área | C2 | Por pantalla, sin adaptador |
+| Carga (A4) | Flow | Hojas, carpetas, correo y WhatsApp | C2 | Capa anticorrupción |
+| Servicio abierto | Serving | C1 | C2 | Servicio abierto con lenguaje publicado; C2 conformista (relación 2) |
+| Evento | Flow | C1 | C2 | Fuente registrada |
+| Servicio abierto | Serving | C2 | C4 | Servicio abierto con lenguaje publicado; C4 conformista (relación 4) |
+| Evento | Flow | C2 | C4 | Metadato de negocio actualizado; cliente-proveedor (relación 8, inferencia) |
+| Eventos | Flow | C2 | C6 | Atributo de negocio registrado y Metadato de negocio actualizado; C6 conformista (relación 10) |
+| Servicio abierto | Serving | C2 | C3 | C3 conformista (relación 3) |
+| Servicio abierto | Serving | C2 | C5 | C5 conformista (relación 5) |
+| Association | Association | Meaning (concepto de la herramienta y columna del sistema fuente) | Representation "Atributo de negocio" | Frontera de lenguaje (V7b) |
+
+## 6.7 Coherencia con el resto del modelo
+
+- **V8:** los siete contextos, las relaciones y los patrones son los de la V8. La V11 no cambia ninguno.
+- **V5 y V7:** los términos, objetos y significados son los mismos elementos del modelo, no copias.
+- **V6.b:** los cuatro eventos y los cuatro comandos son los del agregado Atributo de negocio.
+- **V4d y V4f:** el adaptador A4 entra por C2, como se decidió en la Fase 5, y los contratos 3.3, 3.5, 4.1 y 4.4 respaldan las decisiones de negocio.
+- **V1:** las decisiones respetan los principios P2 (mostrar lo faltante o dudoso como tal) y P3 (gobernar metadatos sin modificar los sistemas operativos).
+
+## 6.8 Supuestos, tensiones y pendientes
+
+- Tres puntos que van más allá de la Fase 4 y requieren confirmación de quien la hizo: que C4 registre la evidencia al recibir eventos de C2, que C6 mantenga su copia por eventos y la copia local de identidades de fuente en C2.
+- **Relación 8 de la V8 (C2 a C4):** es una inferencia del equipo, porque cambiar una definición es una decisión de negocio que debe quedar en la evidencia, y esa decisión nace en C2.
+- **"Incompleto":** la V7 y el contrato 4.1 lo asignan a C2, y la decisión de la Fase 5 dice que lo calcula C6. La propuesta es que C2 conserve la definición y C6 lo calcule y lo muestre.
+- **R10 abierto:** afecta quién puede registrar o modificar definiciones y la relación de autoridad entre C3 y C4.
+- **Eventos sin consumidor:** "Política de calidad registrada" y "Expresión regular validada" no tienen consumidor asignado.
+- **Autonomía de C2 frente a C1:** C2 no puede cargar atributos de una fuente que no conoce; se mitiga con una copia local de las identidades de fuente, sincronizada por el evento "Fuente registrada".
+- **Evolution y Business Model:** Evolution (custom built) es una decisión del equipo; Business Model (compliance) sigue siendo una inferencia por confirmar.
+
+## 6.9 Archivos del repositorio
+
+| Archivo | Contenido |
+|---|---|
+| `Hogar_Andino_-_V11_Canvas_C2.archimate` | Vista V11 para Archi |
+| `images/V11.png` | Imagen de la vista V11 |
