@@ -2189,6 +2189,8 @@ Las raíces indicadas a continuación son decisiones de diseño
 justificadas por identidad e invariantes. Cuando la consistencia u otras características aún dependen de reglas no definidas, se indica
 expresamente y no se presenta la hipótesis como una decisión cerrada.
 
+## 4.1 V6.a: Fuentes y metadatos técnicos
+
 ![V6.a - Fuentes y metadatos
 técnicos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/7a75aef2d69728e39c1de680ccff72f3d2c1149b/agregados_comandos_eventos/V6.a-Fuentes%20y%20metadatos%20tecnicos.png)
 
@@ -2233,9 +2235,9 @@ sus versiones.
   Autorizar acceso a metadatos   |     Acceso a metadatos autorizado
   Revocar autorización de metadatos |  Autorización de metadatos revocada
   Importar metadatos técnicos   |      Metadatos técnicos importados
-  Comparar estructuras       |         Cambio de estructura detectado,
-                                      solo si hay diferencias
---
+  Comparar estructuras       |         Cambio de estructura detectado, solo si hay diferencias
+
+---
 
 ## 4.2 V6.b: Atributos de negocio y descripción
 
@@ -2283,9 +2285,9 @@ pertenecientes a otros subdominios.
   Registrar atributo de negocio    |   Atributo de negocio registrado
   Actualizar metadato de negocio   |   Metadato de negocio actualizado
   Registrar política de calidad    |  Política de calidad registrada
-  Validar sintaxis de expresión    |   Expresión regular validada, solo si
-  regular                             la sintaxis es válida
---
+  Validar sintaxis de expresión  regular    |   Expresión regular validada, solo si la sintaxis es válida
+                            
+---
 
 ## 4.3 V6.c: Clasificación y validación jurídica
 
@@ -2338,9 +2340,9 @@ autoridad final es Jurídica.
   Enviar clasificación a revisión     |Clasificación enviada a revisión
   Registrar validación jurídica       |Clasificación validada por Jurídica
   Solicitar ajuste de clasificación   |Ajuste de clasificación solicitado
-  Solicitar modificación de           |Nueva versión de clasificación en
-  clasificación validada              revisión
-  -----------------------------------------------------------------------
+  Solicitar modificación de clasificación validada        |Nueva versión de clasificación en revisión
+               
+---
 
 El evento de validación solo se produce cuando Jurídica efectivamente
 valida; no se emite al enviar la clasificación a revisión ni al
@@ -2391,7 +2393,8 @@ un registro que pueda editarse silenciosamente.
   Cambiar responsable de dato      |   Responsable de dato cambiado
   Registrar evidencia de decisión   |  Evidencia de decisión registrada
   Registrar decisión organizacional  | Decisión organizacional registrada
---
+
+---
 
 `Registrar decisión organizacional` se propone para que la herramienta
 deje constancia de la decisión de la organización; no significa que la
@@ -2442,7 +2445,8 @@ vigente; el sistema registra esa decisión.
   Registrar significado por área  |    Significado por área registrado
   Marcar conflicto de significado  |   Conflicto de significado marcado
   Registrar significado vigente |      Significado vigente definido
---
+  
+---
 ## 4.6 V6.f: Diccionario integrado
 
 ![V6.f - Diccionario
@@ -2484,14 +2488,10 @@ mantener la información vigente y trazable.
 
   Proceso o comando               |    Resultado/evento
  | -- |-- |
-  Consultar diccionario integrado  |   Devuelve las fichas que
-                                      correspondan al filtro; no genera
-                                      evento de dominio solo por
-                                      consultar
-  Generar nueva versión del       |    Versión del diccionario publicada,
-  diccionario                         cuando la publicación termina
-                                      correctamente
---
+  Consultar diccionario integrado  |   Devuelve las fichas que correspondan al filtro; no genera evento de dominio solo por consultar
+  Generar nueva versión del diccionario    |    Versión del diccionario publicada, cuando la publicación termina correctamente
+                          
+---
 
 La publicación de versiones está confirmada; los criterios operativos
 para numerarlas y decidir cuándo generar una nueva versión son detalles
@@ -2538,17 +2538,11 @@ exportación; Jurídica presenta el informe manualmente ante la SIC.
 
   Proceso o comando          |         Evento si la operación tiene éxito
  | -- |-- |
-  Consultar información para informe | Resultado de consulta disponible;
-                                      no requiere evento de dominio por
-                                      sí solo
+  Consultar información para informe | Resultado de consulta disponible; no requiere evento de dominio por sí solo        
   Generar informe regulatorio     |    Informe regulatorio generado
-  Exportar informe regulatorio     |   Informe regulatorio exportado, si
-                                      se decide registrar la exportación
-                                      como evento de aplicación o
-                                      auditoría
+  Exportar informe regulatorio     |   Informe regulatorio exportado, si se decide registrar la exportación como evento de aplicación o auditoría
 
-El registro de una exportación puede ser útil para auditoría, pero no se
-presenta automáticamente como evento de dominio.
+El registro de una exportación puede ser útil para auditoría, pero no se presenta automáticamente como evento de dominio.
 
 ## 4.8 V6.h: Control de acceso por rol
 
@@ -2595,11 +2589,9 @@ las asignaciones.
  | -- |-- |
   Asignar permiso a rol        |       Permiso asignado a rol
   Revocar permiso de rol       |       Permiso revocado de rol
-  Autorizar operación          |       Se comprueba la autorización; el
-                                      resultado no se considera
-                                      automáticamente un evento de
-                                      dominio
---
+  Autorizar operación          |       Se comprueba la autorización; el resultado no se considera automáticamente un evento de  dominio
+  
+---
 
 Las denegaciones y los intentos de acceso pueden registrarse en la
 bitácora de seguridad. Ese registro técnico no se confunde con un evento
