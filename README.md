@@ -2190,7 +2190,7 @@ justificadas por identidad e invariantes. Cuando la consistencia u otras caracte
 expresamente y no se presenta la hipótesis como una decisión cerrada.
 
 ![V6.a - Fuentes y metadatos
-técnicos](V6.a-Fuentes%y%metadatos%tecnicos.png)
+técnicos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/7a75aef2d69728e39c1de680ccff72f3d2c1149b/agregados_comandos_eventos/V6.a-Fuentes%20y%20metadatos%20tecnicos.png)
 
 ### Qué muestra
 
@@ -2240,7 +2240,7 @@ sus versiones.
 ## 4.2 V6.b: Atributos de negocio y descripción
 
 ![V6.b - Atributos de negocio y
-descripción](V6.b%-%Atributos%de%negocio%y%descripción.png)
+descripción](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/7a75aef2d69728e39c1de680ccff72f3d2c1149b/agregados_comandos_eventos/V6.b%20-%20Atributos%20de%20negocio%20y%20descripci%C3%B3n.png)
 
 ### Qué muestra
 
@@ -2290,7 +2290,7 @@ pertenecientes a otros subdominios.
 ## 4.3 V6.c: Clasificación y validación jurídica
 
 ![V6.c - Clasificación y validación
-jurídica](agregados_comandos_eventos/v6c-clasificacion-validacion-juridica.png)
+jurídica](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/7a75aef2d69728e39c1de680ccff72f3d2c1149b/agregados_comandos_eventos/V6.c%20-%20Clasificaci%C3%B3n%20y%20validaci%C3%B3n%20jur%C3%ADdica.png)
 
 ### Qué muestra
 
@@ -2349,7 +2349,7 @@ solicitar un ajuste.
 ## 4.4 V6.d: Responsables, autoridad y decisiones
 
 ![V6.d - Responsables, autoridad y
-decisiones](agregados_comandos_eventos/v6d-responsables-autoridad-decisiones.png)
+decisiones](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/7a75aef2d69728e39c1de680ccff72f3d2c1149b/agregados_comandos_eventos/V6.d%20-%20Responsables%2C%20autoridad%20y%20decisiones.png)
 
 ### Qué muestra
 
@@ -2401,7 +2401,7 @@ legal.
 ## 4.5 V6.e: Catálogo de términos
 
 ![V6.e - Catálogo de
-términos](agregados_comandos_eventos/v6e-catalogo-terminos.png)
+términos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/7a75aef2d69728e39c1de680ccff72f3d2c1149b/agregados_comandos_eventos/V6.e%20-%20Cat%C3%A1logo%20de%20t%C3%A9rminos.png)
 
 ### Qué muestra
 
@@ -2446,7 +2446,7 @@ vigente; el sistema registra esa decisión.
 ## 4.6 V6.f: Diccionario integrado
 
 ![V6.f - Diccionario
-integrado](agregados_comandos_eventos/v6f-diccionario-integrado.png)
+integrado](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/7a75aef2d69728e39c1de680ccff72f3d2c1149b/agregados_comandos_eventos/V6.f%20-%20Diccionario%20integrado.png)
 
 ### Qué muestra
 
@@ -2500,7 +2500,7 @@ pendientes.
 ## 4.7 V6.g: Consulta y reporte
 
 ![V6.g - Consulta y
-reporte](agregados_comandos_eventos/v6g-consulta-reporte.png)
+reporte](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/7a75aef2d69728e39c1de680ccff72f3d2c1149b/agregados_comandos_eventos/V6.g%20-%20Consulta%20y%20reporte.png)
 
 ### Qué muestra
 
@@ -2553,7 +2553,7 @@ presenta automáticamente como evento de dominio.
 ## 4.8 V6.h: Control de acceso por rol
 
 ![V6.h - Control de acceso por
-rol](agregados_comandos_eventos/v6h-control-acceso-rol.png)
+rol](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/7a75aef2d69728e39c1de680ccff72f3d2c1149b/agregados_comandos_eventos/V6.h%20-%20Control%20de%20acceso%20por%20rol.png)
 
 ### Qué muestra
 
