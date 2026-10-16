@@ -53,6 +53,9 @@
  
 - [5. V10: Trazabilidad Vertical](#V10-trazabilidad-vertical)
 
+- [6. Mapa de contextos delimitados](#6-mapa-de-contextos-delimitados)
+  - [5.1 V8: mapa de contextos](#61-v8-mapa-de-contextos)
+
 # 1. Entendimiento del negocio y mapa de capacidades 
 
 La Fase 1 responde seis preguntas, que se reparten entre las vistas así:
@@ -1741,3 +1744,152 @@ Los servicios de aplicación son la versión en software de los servicios de neg
 
 El componente 1 presta el servicio de cambios de estructura, que apoya a P8, al otro extremo del proceso. Esa línea de asignación rodea la banda de componentes por debajo para no cruzar las demás.
 
+# 6. Mapa de contextos delimitados
+
+La Fase 5 responde una pregunta: ¿cómo se reparte el software en contextos delimitados y cómo se relacionan entre sí y con los sistemas externos?
+
+Elementos de ArchiMate que se usan en esta fase:
+
+| Elemento | Capa | Uso en este modelo |
+|---|---|---|
+| Application Component | Aplicación | Cada contexto delimitado y cada sistema externo |
+| Business Actor y Business Role | Negocio | Quienes reciben la información de la solución (los mismos de la V4d) |
+
+Relaciones que se usan:
+
+| Relación | Significado en este modelo |
+|---|---|
+| Serving | Consulta o API: el origen presta un servicio al destino |
+| Flow | Eventos o flujo de información del origen al destino |
+
+---
+
+## 6.1 V8: mapa de contextos
+
+![V8 - Mapa de contextos]([mapa%20de%20contextos/V8%20-%20Mapa%20de%20contextos.png](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/main/mapa%20de%20contextos%20e%20interoperabilidad/V8%20-%20Mapa%20de%20contextos.png))
+
+### Qué muestra
+
+Los siete contextos delimitados de la solución, los siete sistemas externos con los que se relacionan, los cuatro actores que reciben información y las 24 relaciones entre ellos: 13 entre contextos y 11 con el exterior. Cada relación lleva en su etiqueta el patrón elegido.
+
+### Cómo se lee
+
+- Cada rectángulo grande es un contexto. Su color indica la clasificación del subdominio que contiene (naranja fuerte Core, naranja claro soporte y gris genérico). C6 es Core porque incluye el diccionario.
+- Lila es un sistema externo y amarillo un actor o rol. Los sistemas externos de entrada están a la izquierda de C1 y C2, y los de salida a la derecha de C6.
+- La línea continua es una consulta o API (Serving) y la discontinua son eventos o flujo de información (Flow). La flecha apunta al que consume.
+- La etiqueta dice el patrón. En «Servicio abierto · Conformista» el primer nombre es el patrón del contexto que ofrece y el segundo el del que consume. «Cliente-proveedor» describe la relación completa.
+- En las relaciones con el exterior, los códigos A1 a A8 son los adaptadores de la capa anticorrupción de la V4d.
+- La responsabilidad de cada contexto está en su Documentation.
+
+### Patrones de relación
+
+| Patrón | Definición usada | Dónde se usa |
+|---|---|---|
+| Servicio abierto (Open Host Service) | El contexto que ofrece expone una API bien definida para varios consumidores | C7 hacia C1; C1 hacia C2; C2 hacia C3, C4 y C5; C6 hacia el oficial y seguridad |
+| Lenguaje publicado (Published Language) | Formato o lenguaje común para el intercambio, que suele acompañar al servicio abierto | La identidad de la fuente (C1), la identidad del atributo (C2) y los eventos de C1 a C5 hacia C6 |
+| Conformista | El que consume adopta el modelo del que ofrece, tal cual | C1 con C7; C2 con C1; C3, C4 y C5 con C2; C6 con C1 a C5 |
+| Cliente-proveedor | El proveedor es upstream y las necesidades del cliente entran en su planificación | C4 y C3 en ambos sentidos; C2 hacia C4 |
+| Capa anticorrupción | Una capa de traducción protege el modelo propio del modelo del sistema externo | Los adaptadores A1 a A4 de entrada y A7 y A8 de salida |
+
+### Contextos delimitados
+
+Los contextos salieron de los ocho subdominios de la V5, con tres criterios: un modelo propio (cada uno tiene su agregado en la Fase 4), un lenguaje propio (los términos con varios significados de la V7b marcan los límites) y una consistencia propia (lo que debe cambiar junto va en el mismo contexto). Un subdominio es una parte del problema y un contexto es una frontera del modelo del software, así que no tienen que coincidir uno a uno.
+
+| Contexto | Subdominios (V5) | Clasificación | Responsabilidad | Agregado propio (Fase 4) | Lo que no posee |
+|---|---|---|---|---|---|
+| C1 · Fuentes y metadatos técnicos | 1 | Soporte | Conocer la estructura técnica de las fuentes y detectar sus cambios, sin leer datos de personas | Fuente de datos, con sus autorizaciones. El historial técnico queda fuera del agregado | Los atributos de negocio |
+| C2 · Atributos de negocio | 2 | Core | Registrar y describir cada atributo una sola vez, con su definición y sus reglas de calidad | Atributo de negocio | La fuente (C1) y la responsabilidad (C4) |
+| C3 · Clasificación y validación jurídica | 3 | Core | Clasificar los atributos por categoría legal y registrar la validación de Jurídica | Clasificación del atributo | El atributo, que referencia por su identidad |
+| C4 · Responsables, autoridad y decisiones | 4 | Soporte | Registrar quién responde por cada atributo y conservar la evidencia de las decisiones | Responsabilidad sobre el dato y evidencia de decisión | El atributo y el responsable |
+| C5 · Catálogo de términos | 5 | Soporte | Mantener los términos de negocio con sus significados por área y asociarlos a atributos | Término de negocio | El atributo, asociado por identidad |
+| C6 · Diccionario y reporte | 6 y 7 | Core | Mostrar la información integrada en fichas, versiones publicadas e informes, sin ser dueño de lo que muestra | Ninguno de escritura: ficha integrada, versión publicada e informe regulatorio (este último sin cerrar) | Los datos que muestra, que lee de C1 a C5 |
+| C7 · Control de acceso por rol | 8 | Genérico | Controlar qué rol puede realizar cada operación en la herramienta | Rol, permiso y asignación de permiso a rol, sin raíz declarada | Las autorizaciones de acceso a fuentes, que son de C1 |
+
+**C6 agrupa dos subdominios que la Fase 3 separó.** La Fase 3 separó el diccionario integrado y consulta y reporte porque tienen consumidores y razones de cambio distintas: el formato del informe depende de Jurídica y aún no está definido. En la Fase 5 se reúnen porque ninguno tiene un agregado propio de escritura (el diccionario es una proyección de lectura, V6.f, y el agregado del informe sigue abierto, V6.g) y ambos leen de los mismos contextos. Dentro de C6 se mantienen dos componentes (V10), de modo que un cambio en el formato del informe no obliga a tocar el diccionario. Si el informe adquiere un agregado propio, C6 puede dividirse.
+
+**C2 y C4 se mantienen separados.** El atributo y la responsabilidad tienen agregados propios, y la V6.b ya trata la responsabilidad como una referencia externa. La regla «un atributo con datos personales exige responsable» cruza ambos contextos y se trata como una política entre ellos. El estado «incompleto» de un atributo lo calcula y lo muestra C6, de modo que C2 no necesita conocer lo que posee C4.
+
+### Relaciones entre contextos y patrón elegido
+
+Para cada relación se aplicaron los tres criterios de la fase: la dirección de la dependencia (la flecha va del que ofrece al que consume), quién controla el modelo y la forma de intercambio.
+
+| # | Relación | Control del modelo | Forma de intercambio | Patrón | Por qué |
+|---|---|---|---|---|---|
+| 1 | C7 → C1 | C7 define roles y permisos | API `verificarPermiso` (contrato 4.12) | Servicio abierto (C7); C1 conformista | C1 solo pregunta si un rol puede operar y no modela roles. Hoy es el único consumidor, porque la matriz de uso de la V4b solo conecta el control de acceso con C1 |
+| 2 | C1 → C2 | C1 define la fuente | Identificador de la fuente, consulta de fuentes válidas y evento «Fuente registrada» | Servicio abierto + lenguaje publicado (C1); C2 conformista | C2 adopta la identidad de la fuente tal cual, sin nada que negociar, y C1 sirve a dos consumidores (C2 y C6) |
+| 3 | C2 → C3 | C2 define el atributo | Identificador compartido del atributo y consulta `consultarAtributo` | Servicio abierto + lenguaje publicado (C2); C3 conformista | C3 solo necesita la identidad del atributo que clasifica |
+| 4 | C2 → C4 | ídem | ídem | ídem; C4 conformista | C4 solo necesita la identidad del atributo al que asigna responsable |
+| 5 | C2 → C5 | ídem | ídem | ídem; C5 conformista | C5 solo necesita la identidad del atributo al que asocia un término |
+| 6 | C4 → C3 | C4 define quién tiene autoridad | Reglas de autoridad (forma por definir, R10 abierto) | Cliente-proveedor (C4 proveedor, C3 cliente) | Lo que C3 necesita saber sobre la autoridad debe entrar en lo que C4 defina |
+| 7 | C3 → C4 | C3 define la clasificación | Evento «Clasificación validada por Jurídica» | Cliente-proveedor (C3 proveedor, C4 cliente) | La validación jurídica es una decisión que debe quedar como evidencia en C4 |
+| 8 | C2 → C4 | C2 define el metadato de negocio | Evento «Metadato de negocio actualizado» | Cliente-proveedor (C2 proveedor, C4 cliente) | Cambiar una definición es una decisión de negocio que debe quedar como evidencia (V6.d) |
+| 9 a 13 | C1, C2, C3, C4, C5 → C6 | Cada uno define lo suyo | Eventos de la Fase 4 (ver abajo) | Lenguaje publicado de cada uno; C6 conformista | C6 muestra lo que dicen los demás sin reinterpretarlo, por ejemplo el estado de una clasificación tal como lo define C3 |
+
+Eventos que C6 recibe de cada contexto, todos de la Fase 4: de C1, «Metadatos técnicos importados» y «Cambio de estructura detectado»; de C2, «Atributo de negocio registrado» y «Metadato de negocio actualizado»; de C3, «Clasificación propuesta», «Clasificación enviada a revisión» y «Clasificación validada por Jurídica»; de C4, «Responsable de dato asignado» y «Responsable de dato cambiado»; de C5, «Término asociado a atributo» y «Significado vigente definido».
+
+**C3 y C4 dependen en ambos sentidos.** Son dos relaciones cliente-proveedor, una en cada sentido, cada una con su forma de intercambio. Es un acoplamiento que conviene vigilar mientras R10 (quién propone, revisa, aprueba y desempata definiciones y clasificaciones) siga abierto.
+
+### Sistemas externos y capa anticorrupción
+
+Toda entrada externa entra por C1 y C2 y toda salida sale por C6. C3, C4, C5 y C7 no tienen integración externa: sus usuarios trabajan por pantalla.
+
+| Sistema o actor | Dirección | Adaptador | Contexto | Patrón |
+|---|---|---|---|---|
+| S1, S3 y S4 | Entrada | A1 | C1 | Capa anticorrupción |
+| S2 (CRM), vía su proveedor | Entrada | A2 | C1 | Capa anticorrupción |
+| Proveedores de software de S1 a S4 | Entrada | A3 | C1 | Capa anticorrupción |
+| Hojas, carpetas, correo y WhatsApp | Entrada, manual | A4 | C2 | Capa anticorrupción |
+| Oficial de protección de datos | Salida | A5 | C6 | Servicio abierto |
+| Coordinador de TI (seguridad de la información) | Salida | A6 | C6 | Servicio abierto |
+| Abogada interna, que presenta el informe a la SIC | Salida | A7 | C6 | Capa anticorrupción de salida |
+| Correo electrónico | Salida | A8 | C6 | Capa anticorrupción de salida |
+
+- **A4 entra por C2.** Cargar el inventario es registrar atributos, y una capa anticorrupción protege al contexto que recibe. La fuente se registra primero en C1 con su propio comando, y A4 rechaza las filas cuya fuente no existe y los archivos con datos de personas, como indica el contrato de la V4f.
+- **A5 y A6 son servicio abierto del lado de C6.** Sus consumidores son el oficial y seguridad de la información, que usan vistas que C6 define, y no hay un modelo ajeno que traducir. Los adaptadores conservan su lugar en la V4d. Para las salidas, el adaptador evita que el formato del consumidor (por ejemplo el de la SIC) condicione el modelo interno.
+- **La SIC no recibe nada de la solución:** Jurídica presenta el informe a mano. El abogado externo recibe el informe por el mismo adaptador A7 y no se dibuja, para no repetir la relación.
+- **Fuera del mapa:** portales, aseguradora, banco, notarías y centrales de riesgo (reciben datos del negocio, no de la herramienta; exclusión Z16), y las áreas de negocio y Jurídica, que usan la herramienta por pantalla sin adaptador.
+
+### Coherencia con la capa anticorrupción de la Fase 2
+
+- Los ocho adaptadores de la V4d aparecen en el mapa, con la misma dirección y el mismo contexto que corresponde a cada servicio que sirven.
+- De las 14 interoperabilidades de la V4d, doce tienen su relación o su usuario en el mapa; dos quedan fuera por no haber intercambio (portales y terceros) o no aplicar (dispositivos).
+- Dos diferencias con fases anteriores, ambas decididas: la V10 asigna A4 al componente del subdominio 1 y el mapa lo entrega a C2, y para A5 y A6 el patrón del lado de C6 es servicio abierto, aunque la Fase 2 llama capa anticorrupción a los ocho adaptadores.
+
+### Coherencia con el modelo táctico de la Fase 4
+
+- Todos los eventos que viajan entre contextos existen en las vistas V6.a a V6.e.
+- Una consulta no genera evento, como establece la Fase 4: C2 entrega la identidad del atributo por consulta, y los hechos se publican como eventos.
+- La comprobación de permisos de C7 se consulta como API y no como evento, como indica la V6.h.
+- Tres puntos van más allá de lo que dice la Fase 4 y están por confirmar: que C4 registre la evidencia al recibir los eventos de C2 y C3 (la V6.d tiene el comando «Registrar evidencia de decisión» pero no dice quién lo dispara); que C6 mantenga su propia copia por eventos (la V6.f solo muestra la consulta directa); y que C2 guarde una copia local de las identidades de las fuentes.
+- La V5 recoge las tres dependencias que el mapa agrega a las de la Fase 3: de C4 a C6 (el diccionario lee la responsabilidad), de C5 a C6 (lee los términos) y de C3 a C4 (la validación genera evidencia). Con ellas son 16 relaciones.
+
+### Relación con los componentes de la V10
+
+La V10 tiene un componente por subdominio. Un contexto puede agrupar varios, y la V10 no cambia:
+
+| Contexto | Componente(s) de la V10 |
+|---|---|
+| C1 | Fuentes y metadatos técnicos |
+| C2 | Atributos de negocio |
+| C3 | Clasificación y validación jurídica |
+| C4 | Responsables y decisiones |
+| C5 | Catálogo de términos |
+| C6 | Diccionario integrado y consulta y reporte |
+| C7 | Control de acceso por rol |
+
+### Pruebas de diseño
+
+**Autonomía.** Si un contexto cae el que lo consume debe poder seguir con su propia copia. C6 la cumple porque mantiene su copia por eventos. C2 con C1 no del todo: no puede cargar atributos de una fuente que no conoce, y se mitiga con una copia local de las identidades de fuente, sincronizada con el evento «Fuente registrada». C1 con C7 es la más débil: sin control de acceso, C1 no puede verificar permisos. Se acepta como riesgo, o se agrega una copia de permisos.
+
+**Lenguaje por contexto.** Los términos con varios significados de la V7b respaldan los límites: «Estado» significa estado de importación en C1 y estado de clasificación en C3; «Responsable de dato» tiene sentido de negocio en C4 y de administrador técnico en C1; «Atributo de negocio» es el concepto en C2 y la columna del sistema en la fuente.
+
+### Decisiones y supuestos de la Fase 5
+
+- **Siete contextos** a partir de los ocho subdominios: C2 y C4 separados, C6 reúne dos subdominios y C7 se mantiene aparte como genérico.
+- **C1 hacia C2 es servicio abierto** y no cliente-proveedor: C2 solo adopta la identidad de la fuente.
+- **El estado «incompleto» de un atributo lo calcula C6.**
+- **A4 por C2, A8 por C6.** Toda entrada externa por C1 y C2 y toda salida por C6.
+- **C7 solo se conecta con C1**, como marca la matriz de la V4b. Esa matriz parece incompleta: el control de acceso debería afectar a más contextos.
+- **El contenido del informe a la SIC no tiene dueño.** La V4d dice que incluye la finalidad, el encargado y los titulares aproximados. La finalidad está excluida del modelo, el encargado también (Z10) y los titulares aproximados chocan con no leer datos de personas.
+- **R10 sigue abierto** y afecta la forma de la relación de autoridad entre C4 y C3.
+- **La V8 no modela interfaces ni los componentes de la V10 dentro de los contextos:** el servicio abierto se indica en la etiqueta de la relación y la correspondencia con los componentes está en la tabla de arriba.
