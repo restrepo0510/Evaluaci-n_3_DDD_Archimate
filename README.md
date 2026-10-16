@@ -54,7 +54,7 @@
 - [5. V10: Trazabilidad Vertical](#V10-trazabilidad-vertical)
 
 - [6. Mapa de contextos delimitados](#6-mapa-de-contextos-delimitados)
-  - [5.1 V8: mapa de contextos](#61-v8-mapa-de-contextos)
+  - [6.1 V8: mapa de contextos](#61-v8-mapa-de-contextos)
 
 # 1. Entendimiento del negocio y mapa de capacidades 
 
@@ -348,7 +348,7 @@ El mapa de capacidades completo del negocio, con 78 elementos Capability organiz
  
 ### Cómo se lee
  
-La vista usa anidamiento: el Nivel 1 contiene a sus capacidades de Nivel 2, y estas a las de Nivel 3 (relación Composition representada por contención). Solo los bloques de gestión de datos y de cumplimiento se detallan hasta Nivel 3; el resto del negocio llega a Nivel 2. Las cinco flechas de la vista son relaciones Serving que parten de Gestión de Datos e Información hacia las capacidades que consumen sus resultados.
+La vista usa anidamiento: el Nivel 1 contiene a sus capacidades de Nivel 2, y estas a las de Nivel 3 (relación Composition representada por contención). Solo los bloques de gestión de datos y de cumplimiento se detallan hasta Nivel 3; el resto del negocio llega a Nivel 2. Las cinco flechas de la vista son relaciones Serving que parten de Gobierno del Dato Personal hacia las capacidades que consumen sus resultados.
  
 ### Franjas y capacidades de Nivel 1
  
@@ -996,8 +996,6 @@ Relaciones nuevas: **Serving** entre subdominios ("A sirve a B" se lee "B depend
 
 ## Análisis del ecosistema
 
-<!-- Base para reescribir con palabras propias. Cada afirmación lleva su bloque de la entrevista: verificar contra el registro. -->
-
 Este análisis describe el entorno en que operará la solución, siguiendo el primer paso del método de extracción de dominios: entender la estructura organizacional del problema para tener una visión general del entorno. Ninguna área de nuestro caso tiene el gobierno de los datos como función: varias personas participan en identificar, documentar y controlar los datos, pero ninguna lo tiene asignado y cada una hace una parte por costumbre (Bloque 3). Por eso las personas se agrupan según su relación con los datos. Los grupos se solapan: la abogada interna juzga lo legal y a la vez sería quien consulte la información (Bloque 8), y la gerente general decide y a la vez espera recibir un listado de datos personales clasificado (Bloque 6).
 
 **Los sistemas.** Los datos están en cinco fuentes, más canales informales y portales. S1 es un software de administración de arrendamientos, comprado y alojado en servidor propio (SQL Server). S2 es un CRM comercial hecho a la medida por un proveedor y alojado en la nube (PostgreSQL). S3 es un sistema contable comercial (SQL Server, otra instancia). S4 es el sitio web (MySQL). S5 son las hojas de cálculo y las carpetas compartidas, sin motor de base de datos (Bloque 1). Fuera de las cinco están el correo y el WhatsApp de los asesores, que guardan cédulas, certificados y datos de contacto (Bloque 8), y los portales inmobiliarios, no controlados por la empresa (Bloque 1). Los portales actúan en dos sentidos: reciben las fichas de los inmuebles y envían interesados por correo, que se copian a mano a S2 (Bloques 1 y 8). La conexión entre los sistemas es mínima: S2 publica fichas en S4 y en los portales, el asesor vuelve a digitar en S1 los datos del contrato, y S1 envía a S3 un archivo plano cada noche (Bloque 1).
@@ -1024,12 +1022,12 @@ Este análisis describe el entorno en que operará la solución, siguiendo el pr
 
 ### Qué muestra
 
-El dominio de Gestión del Dato Personal, en la parte que cubre la solución (el gobierno del dato personal), dividido en 8 subdominios. Cada uno está clasificado como Core, de soporte o genérico. La vista muestra las dependencias entre subdominios y los objetos de negocio que maneja cada uno: 8 subdominios, 13 objetos y 13 relaciones Serving.
+El dominio de Gobierno del Dato Personal, en la parte que cubre la solución (el gobierno del dato personal), dividido en 8 subdominios. Cada uno está clasificado como Core, de soporte o genérico. La vista muestra las dependencias entre subdominios y los objetos de negocio que maneja cada uno: 8 subdominios, 13 objetos y 13 relaciones Serving.
 
 ### Cómo se lee
 
 - Cada rectángulo grande es un subdominio. Su color indica el tipo: naranja fuerte Core, naranja claro soporte y gris genérico. **No es el impacto de la solución de la V2**: la leyenda de la vista lo aclara.
-- Cada subdominio lleva tres propiedades: `Subdominio DDD` (Core, Supporting o Generic, los mismos valores de la V2), `Requisitos` y `Pasos E2E`.
+- Cada subdominio lleva tres propiedades: `Subdominio DDD` (Core, Supporting o Generic, `Requisitos` y `Pasos E2E`.
 - Una flecha de A a B es una relación Serving y se lee "A sirve a B", es decir, B depende de A.
 - Los objetos dentro de cada subdominio son los mismos de la V4c, no copias.
 
@@ -1659,7 +1657,7 @@ de dominio.
 -   Determinar si la exportación del informe debe conservar un corte
     reproducible de los datos o la versión del diccionario utilizada.
 
-# V10 trazabilidad vertical
+## 5. V10 trazabilidad vertical
 
 ![V10 - Trazabilidad vertical](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/f72a6f8b41602e87ca24d183a394e8fe6308c789/trazabilidad%20vertical/V10%20-%20Trazabilidad%20vertical.png)
 
@@ -1766,7 +1764,7 @@ Relaciones que se usan:
 
 ## 6.1 V8: mapa de contextos
 
-![V8 - Mapa de contextos]([mapa%20de%20contextos/V8%20-%20Mapa%20de%20contextos.png](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/main/mapa%20de%20contextos%20e%20interoperabilidad/V8%20-%20Mapa%20de%20contextos.png))
+![V8 - Mapa de contextos](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/main/mapa%20de%20contextos%20e%20interoperabilidad/V8%20-%20Mapa%20de%20contextos.png)
 
 ### Qué muestra
 
