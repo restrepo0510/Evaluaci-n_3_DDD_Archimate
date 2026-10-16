@@ -1532,6 +1532,8 @@ Documento técnico de la Fase 6. Documenta el contexto delimitado principal, **C
 
 ## 6.1 Qué es el canvas y qué pide el enunciado
 
+![hola](https://github.com/restrepo0510/Evaluacion_3_DDD_Archimate/blob/8b33981e7efe99a8593155bb1123bea78161bc2b/bounded%20Context%20Canvas/V11%20-%20Bounded%20Context.png)
+
 El Bounded Context Canvas es una plantilla de DDD Crew (repositorio `ddd-crew/bounded-context-canvas`, licencia CC BY) para documentar un contexto delimitado en una página. Un contexto delimitado es el límite dentro del cual aplica un modelo de dominio y su propio lenguaje; el canvas deja a la vista qué hace el contexto, con quién se comunica y qué supuestos tiene el diseño.
 
 El enunciado pide que el canvas muestre: propósito, clasificación estratégica, rol del dominio, lenguaje ubicuo, comunicación entrante y saliente, decisiones de negocio y supuestos. Los elementos de ArchiMate son de libre elección del equipo, con justificación, y la rúbrica evalúa que el canvas esté completo en una página, bien resuelto en la herramienta y coherente con el modelo.
